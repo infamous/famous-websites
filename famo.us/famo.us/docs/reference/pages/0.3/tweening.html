@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/tweening.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Tweening | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="tweening">Tweening</h1>
+
+<p>Tweening is a technique to create animation by smoothly transitioning an element from one state to another. In Famo.us, it’s common to animate the <a href="positioning.html">position</a> of elements, but we can also easily animate rotation, scale, distortion, and opacity — any property we can control with a <a href="modifiers.html">modifier</a>.</p>
+
+<p>To create basic animations in Famo.us, <strong>we begin with a starting state, and then <em>transition</em> the element to the desired ending state</strong>. It’s fairly simple to accomplish this type of animation using <a href="modifiers.html#dynamic-values">modifiers with functions</a>, but Famo.us also provides a module called <code>Transitionable</code> to make it more convenient.</p>
+
+<p>Unless you need to create complex (or more <a href="physics.html">open-ended</a>) animation behavior, transitionables are the recommended way to animate between states.</p>
+
+<h2 id="transitionables">Transitionables</h2>
+
+<p>A <code>Transitionable</code> instance’s job is to <strong>change a numeric value smoothly over time</strong>. We <em>set</em> a starting value and an ending value; we <em>get</em> the intermediate values over time. (The transitionable instance will manage that value’s progression from the starting value to the ending value.)</p>
+
+<p><strong>Here’s the boilerplate:</strong> We instantiate a new instance of <code>Transitionable</code>, giving the constructor a starting numeric value (or an array of them) as the first and only argument. Then we immediately call <code>.set()</code> to set the ending value — also optionally passing a transition specification as the second argument. Finally, we call <code>.get()</code> to retrieve the intermediate values.</p>
+
+<pre><code>var transitionable = new Transitionable(0);
+transitionable.set(1, { duration: 1000 });
+
+// Elsewhere, we fetch the intermediate value calculated
+// for the current time.
+transitionable.get(); 
+</code></pre>
+
+<p>Here’s an example of a transitionable in action. Note that we’ve used an <em>array</em> of numeric values instead of a single one.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group transitionable1
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transitionable = famous.transitions.Transitionable;
+
+var context = Engine.createContext();
+
+// First we set the starting state.
+// We can use a single numeric value,
+// or an array of numeric values.
+var transitionable = new Transitionable([0, 0]);
+
+// Then we set the ending state, with the
+// desired transition properties.
+transitionable.set([.5, .5], { duration: 1000 });
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+modifier.alignFrom(function() {
+    return transitionable.get();
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group transitionable1
+// @famous-block-filename en.md
+# A basic transitionable
+
+In this example, we transition the `align` property from `[0, 0]` to `[.5, .5]`, that is, from the top-left corner to the middle of the screen. (Note that we've left the `origin` value alone.)
+
+The modifier's `alignFrom` method is called on every frame. Each frame, the transitionable's `.get()` method returns a new updated value.
+</code></pre>
+
+<p>Transitionables can be used to animate the <code>align</code>, <code>origin</code>, <code>opacity</code>, <code>size</code>, and <code>proportions</code> of renderables. To animate the <code>transform</code> components (translation, rotation, scale, skew), use a <a href="#transitionable-transform">TransitionableTransform</a>.</p>
+
+<h2 id="chaining-animations">Chaining animations</h2>
+
+<p>We can use transitionables to <strong>chain animations together</strong>, such that one animation begins as soon as the previous one completes. To do so, we pass a callback function as the third argument to the transitionable instance’s constructor.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transitionable = famous.transitions.Transitionable;
+
+var context = Engine.createContext();
+
+var transitionable = new Transitionable([0, 0]);
+
+moveToMiddle();
+
+function moveToMiddle() {
+    transitionable.set([.5, .5], { duration: 1000 }, moveToTopLeft);
+}
+
+function moveToTopLeft() {
+    transitionable.set([0, 0], { duration: 500 }, moveToMiddle);
+}
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+modifier.alignFrom(function() {
+    return transitionable.get();
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h2 id="halting--interrupting-animations">Halting / interrupting animations</h2>
+
+<p>If need be, we can <strong>interrupt an animation in progress</strong>. Transitionable instances have a <code>.halt()</code> method that can stop the animation at any time.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transitionable = famous.transitions.Transitionable;
+
+var context = Engine.createContext();
+
+var transitionable = new Transitionable([0, 0]);
+
+moveToMiddle();
+
+function stopMoving() {
+    transitionable.halt();
+}
+
+function moveToMiddle() {
+    transitionable.set([.5, .5], { duration: 2000 }, moveToTopLeft);
+}
+
+function moveToTopLeft() {
+    transitionable.set([0, 0], { duration: 2000 }, moveToMiddle);
+}
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+modifier.alignFrom(function() {
+    return transitionable.get();
+});
+
+var surface = new Surface({
+    content: 'Click/tap me to halt',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+surface.on('click', stopMoving);
+surface.on('touchstart', stopMoving);
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<p>To begin a new animation after halting, we’d need to call <code>.set()</code> on the transitionable instance again. Animations can be stopped and restarted as many times as needed.</p>
+
+<h2 id="transitionabletransform">TransitionableTransform</h2>
+
+<p>The <code>Transitionable</code> instance is handy, but limited, since it doesn’t allow us to succintly create transitions for the four <a href="transforms.html">transform</a> components — translation, scale, rotation, and skew. To transition the transform property of a modifier, <strong>we need to use the <code>TransitionableTransform</code> module.</strong></p>
+
+<p>Using a <code>TransitionableTransform</code> instance is similar to using a <code>Transitionable</code> instance, except we pass its constructor a <code>Transform</code> instead of a numeric value.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var TransitionableTransform = famous.transitions.TransitionableTransform;
+
+var context = Engine.createContext();
+
+var transitionableTransform = new TransitionableTransform();
+
+transitionableTransform.setTranslate([150, 150], { duration: 1500 });
+transitionableTransform.setScale([2.0, 2.0, 1], { duration: 2000 });
+transitionableTransform.setRotate([2 * Math.PI, 2 * Math.PI, 2 * Math.PI], { duration: 2000 });
+transitionableTransform.setSkew([.5, .5, .5], { duration: 1000 });
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+modifier.transformFrom(function() {
+    return transitionableTransform.get();
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h2 id="statemodifier">StateModifier</h2>
+
+<p>The <code>StateModifier</code> module <strong>encapsulates the <em>transitionable-modifier-renderable</em> pattern</strong> behind one interface, making it convenient to produce multiple transitions at once. It includes methods for transitioning all of a renderables properties: size, align, origin, opacity, and transform. (It’s called <em>StateModifier</em> because it’s so closely coupled to the renderable state.)</p>
+
+<p>Rather than build our own relationship between a set of transitionables and a modifier, we can use just a single <code>StateModifier</code> instance which will take care of this setup for us. After the initial state is set, we can call <code>.setSize()</code>, <code>.setAlign()</code>, <code>.setOrigin()</code>, <code>.setOpacity()</code> or <code>.setTransform()</code> at any time to create an animation to the new state.</p>
+
+<p>The second argument to each of these methods is the optional transition specification, and the third is an optional callback which will be fired when the animation completes.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+
+var context = Engine.createContext();
+
+var stateModifier = new StateModifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+// The StateModifier manages the transitionables for us.
+stateModifier.setAlign([0.5, 0.5], { duration: 1000 });
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(stateModifier).add(surface);
+</code></pre>
+
+<p><a href="easing-curves.html">Next: Easing Curves »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/tweening.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+</html>

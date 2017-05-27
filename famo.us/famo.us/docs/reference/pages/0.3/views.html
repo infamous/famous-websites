@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/views.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:01 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Views | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="views">Views</h1>
+
+<p>Views are one of the most important concepts in Famo.us. Once you move beyond the fundamentals of Famo.us and start constructing more complex applications, views will be an indispensible tool for code organization and encapsulation.</p>
+
+<h2 id="what-are-views">What are views?</h2>
+
+<p>Conceptually, a <em>view</em> is an just an object comprised of multiple <a href="glossary.html#renderable">renderables</a>. A view might manage a collection of surfaces, or even a collection of other views, each of which manages its own internal renderable components. In Famo.us, <strong>you will use views to encapsulate the components of your application.</strong></p>
+
+<p>More concretely, a view is an object which inherits from the <code>View</code> prototype. In <a href="glossary.html#object-oriented-programming">OOP</a> terms, you might think of the <code>View</code> prototype as a sort of abstract class — a class only used for subclassing. The <code>View</code> prototype provides few things that just about every component in a complex Famo.us application will need:</p>
+
+<ul>
+  <li><strong>A render node:</strong> Every view has a <a href="the-render-tree-and-render-nodes.html">render node</a> and implements the <code>RenderNode</code> interface, meaning any view can be added directly to the render tree.</li>
+  <li><strong>Event handling:</strong> Every view has <a href="events.html">event handlers</a> set up for you already, so it can subscribe to events and emit them out of the box.</li>
+  <li><strong>Options management:</strong> All views have a built-in options manager that makes it simple to give each component default (override-able) options.</li>
+</ul>
+
+<h2 id="creating-a-custom-view">Creating a custom view</h2>
+
+<p>Here’s the boilerplate code you’ll use when creating your own custom view that inherits from <code>View</code>. (It’s up to you to add functionality on top of the boilerplate.)</p>
+
+<pre><code>var View = famous.core.View;
+
+function MyView() {
+  View.apply(this, arguments);
+}
+
+MyView.prototype = Object.create(View.prototype);
+MyView.prototype.constructor = MyView;
+MyView.DEFAULT_OPTIONS = {};
+
+module.exports = MyView;
+</code></pre>
+
+<p>As you build out your app, it’s good practice to separate each view out into its own file. For basic applications, we recommend placing all of these views into a <code>views</code> folder:</p>
+
+<pre><code>myapp/
+      views/
+            AppView.js
+            FooterView.js
+            HeaderView.js
+</code></pre>
+
+<h2 id="views-within-layouts">Views within layouts</h2>
+
+<p>In this example, we’ll create two views, each with a surface, and add them both to a <code>GridLayout</code>. Each view, when added to a grid cell, inherits the size of the cell; their surfaces will be centered by a modifier.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var HeaderFooterLayout = famous.views.HeaderFooterLayout;
+var View = famous.core.View;
+var GridLayout = famous.views.GridLayout;
+
+var mainContext = Engine.createContext();
+
+var layout;
+
+createLayout();
+addHeader();
+addFooter();
+addContent();
+
+function createLayout() {
+  layout = new HeaderFooterLayout({
+    headerSize: 100,
+    footerSize: 50
+  });
+
+  mainContext.add(layout);
+}
+
+function addHeader() {
+  layout.header.add(new Surface({
+    content: "Header",
+    properties: {
+      backgroundColor: 'gray',
+      lineHeight: "100px",
+      textAlign: "center"
+    }
+  }));
+}
+
+function addFooter() {
+  layout.footer.add(new Surface({
+    content: "Footer",
+    properties: {
+      backgroundColor: 'gray',
+      lineHeight: "50px",
+      textAlign: "center"
+    }
+  }));
+}
+
+function addContent() {
+  var grid = new GridLayout({
+    dimensions: [2, 1]
+  });
+
+  var views = [];
+  grid.sequenceFrom(views);
+
+  for(var i = 0; i &lt; 2; i++) {
+    var view = new View();
+
+    var centerModifier = new Modifier({
+      origin: [0.5, 0.5],
+      align: [0.5, 0.5]
+    });
+
+    var surface = new Surface({
+      content: 'content' + (i + 1),
+      size: [100, 100],
+      properties: {
+        backgroundColor: '#fa5c4f',
+        color: 'white',
+        textAlign: 'center',
+        lineHeight: '100px'
+      }
+    });
+
+    view.add(centerModifier).add(surface);
+
+    views.push(view);
+  }
+
+  layout.content.add(grid);
+}
+</code></pre>
+
+<h2 id="positioning-surfaces-within-views">Positioning surfaces within views</h2>
+
+<p>Let’s explore one way to position a surface within a view. First, we create a view that expands to the width of our parent context — but which has a specified height. Inside the view, we’ll include a “background surface” that fills the size of the view, and another “tab surface” that is centered vertically within the view.</p>
+
+<p>Instead of adding the surfaces to the view itself, we’ll add them to a reference node. In this way, the background surface expands to the view size, while the tab surface is centered vertically within the view.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var View = famous.core.View;
+var Surface = famous.core.Surface;
+var Transform = famous.core.Transform;
+var StateModifier = famous.modifiers.StateModifier;
+
+var mainContext = Engine.createContext();
+
+var viewSize = [undefined, 100];
+
+// adding a view
+var view = new View();
+
+var bottomModifier = new StateModifier({
+  origin: [0, 1],
+  align: [0, 1]
+});
+
+mainContext.add(bottomModifier).add(view);
+
+// creating a reference node in the view with size
+var sizeModifier = new StateModifier({
+  size: viewSize
+});
+
+var sizeNode = view.add(sizeModifier);
+
+// creating a background surface in the view
+var background = new Surface({
+  properties: {
+    backgroundColor: 'gray',
+  }
+});
+
+var backModifier = new StateModifier({
+  // positions the background behind the tab surface
+  transform: Transform.behind
+});
+
+// adding to reference node to get parent size
+sizeNode.add(backModifier).add(background);
+
+// create a tab on the left
+var tab = new Surface({
+  content: 'Feedback',
+  size: [150, 50],
+  properties: {
+    fontSize: '1.5em',
+    lineHeight: '50px',
+    textAlign: 'center',
+    backgroundColor: '#fa5c4f',
+  }
+});
+
+var tabOriginModifier = new StateModifier({
+  origin: [0, 0.5],
+  align: [0, 0.5]
+});
+
+sizeNode.add(tabOriginModifier).add(tab);
+</code></pre>
+
+<h2 id="laying-out-more-complex-views">Laying out more complex views</h2>
+
+<p>When views contain just a single renderable, the view can simply defer to the size of the item when it comes to defining its size. When multiple renderables are involved, life can become very complicated. There are two general approaches to solving this problem.</p>
+
+<p>If you <strong>add a size option to the view</strong>, specifying a precise height, then the layout will will be able to arrange its renderables properly. E.g.:</p>
+
+<pre><code>view.setOptions({
+    size: [undefined, 300]
+});
+</code></pre>
+
+<p>You could also <strong>override the <code>.getSize()</code> method</strong> of the view. E.g.:</p>
+
+<pre><code>view.getSize = function() {
+    return [undefined, 300];
+};
+</code></pre>
+
+<p>It is generally better to not override functions if you don’t need to, but there are cases where defining your own <code>.getSize()</code> function can be very beneficial.</p>
+
+<h2 id="using-events-with-views">Using events with views</h2>
+
+<p>Every view instance has <a href="events.html">event handlers</a> set up for you out of the box, allowing your modules to publish and subscribe to events as necessary. Using events with views is a great way to keep your application modular and your components reusable.</p>
+
+<h3 id="event-input-and-output">Event input and output</h3>
+
+<p>View instances have two “private” properties, <code>._eventInput</code> and <code>._eventOutput</code>, which can be used to subscribe to, and publish events, respectively. Here’s a snippet that illustrates how they can be used:</p>
+
+<pre><code>var view = new MyView();
+
+view._eventInput.on('incoming-event', function() {
+  // Handle the 'incoming-event' here
+});
+
+// These are equivalent to `view._eventInput.on`:
+view.on('incoming-event', function(){});
+view.addListener('incoming-event', function(){});
+
+view._eventOutput.emit('outgoing-event', 'message');
+</code></pre>
+
+<p>In most cases, you’d want to treat these properties as private to the module, only accessing them from the inside:</p>
+
+<pre><code>function MyView() {
+  View.apply(this);
+  this._eventInput.on('...', function(){});
+}
+
+MyView.prototype.emitReady() {
+  this._eventOutput.emit('ready');
+}
+</code></pre>
+
+<h3 id="piping-and-subscribing">Piping and subscribing</h3>
+
+<p>Views also have <code>.pipe()</code>/<code>.unpipe()</code> and <code>.subscribe()</code>/<code>.unsubscribe()</code> methods that you can use to channel events from one view to another.</p>
+
+<ul>
+  <li><code>view.pipe(otherView)</code> means “send my events to the other view’s input”</li>
+  <li><code>view.subscribe(otherView)</code> means “send events from the other view to me”</li>
+</ul>
+
+<p>A common use of <code>pipe</code>/<code>subscribe</code> might be to channel events from a view’s interior renderables up to the view itself, and then outward to other modules in the application. Here’s a quick live example to demonstrate one way we might do it:</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var View = famous.core.View;
+var Surface = famous.core.Surface;
+
+var context = Engine.createContext();
+
+function MyView() {
+  View.apply(this, arguments);
+
+  this.surface = new Surface({
+    size: [100, 100],
+    content: 'I belong to a view. Click me!',
+    properties: {
+      cursor: 'pointer',
+      textAlign: 'center',
+      padding: '1em',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  this.add(this.surface);
+
+  this.surface.pipe(this);
+
+  this._eventInput.on('click', function() {
+    this._eventOutput.emit('surface-clicked');
+  }.bind(this));
+}
+
+MyView.prototype = Object.create(View.prototype);
+MyView.prototype.constructor = MyView;
+MyView.DEFAULT_OPTIONS = {};
+
+var myView = new MyView();
+
+myView.on('surface-clicked', function() {
+  myView.surface.setProperties({ backgroundColor: 'red' });
+});
+
+context.add(myView);
+</code></pre>
+
+<p><a href="widgets.html">Next: Widgets »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/views.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+</html>

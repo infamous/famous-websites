@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="homepage-app" lang="en" ng-app="famous-angular">
+  
+<!-- Mirrored from famo.us/integrations/angular/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:26:56 GMT -->
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Famous Angular.">
+<meta name="keywords" content="angular,angularjs,famo.us,famous,phonegap,html5,threejs,famous-angular">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title ng-bind="pageTitle">Famo.us/Angular</title>
+    
+
+<!--Bower Scripts-->
+<!--<link rel="stylesheet" href="/bower_components/famous/core/famous.css">-->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+<link href="build/main.min.css" rel="stylesheet">
+
+
+
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/famous-angular/dist/famous-angular.min.css">
+    <link rel="stylesheet" href="bower_components/octicons/octicons/octicons.css">
+  </head>
+
+  <body class="homepage-app">
+
+    <div class="hidden-xs">
+      <div id="nav-bar">
+  <a href="../../index.html" class="nav-bar-item"><img src="img/famous_logo_white.svg" alt="φ"></a>
+  <a href="../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+  <a href="index.html" class="nav-bar-item">Famo.us/Angular</a><a href="../../help.html" class="nav-bar-item">Help</a>
+  <a href="../../docs/index.html" class="nav-bar-item">Docs</a>
+  <a href="../../blog/index.html" class="nav-bar-item">Blog</a>
+  <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+</div>
+
+<!-- Document flow placeholder -->
+<div style="height: 100px;">
+</div>
+
+    </div>
+
+    <div id="viewport">
+      <fa-app class="{{stateClasses }}" id="fa-app" fa-perspective="1000">
+
+        <fa-view ng-if="isMobile()">
+          <mobile-nav></mobile-nav>
+        </fa-view>
+
+        <fa-view ng-if="isDesktop()">
+          <desktop-nav></desktop-nav>
+        </fa-view>
+
+        <ui-view fa-animate-enter='enter($done)' fa-animate-leave='leave($done)'></ui-view>
+
+        <state-footer></state-footer>
+
+      </fa-app>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="libs/js/famous-global.0.2.2.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/famous-angular/dist/famous-angular.min.js"></script>
+    <script src="build/main.min.js"></script>
+    <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("7870a5b65a523c899992a1496ad1352d");</script><!-- end Mixpanel -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','__ga');
+
+  __ga('create', 'UA-34653957-3', 'famo.us-angular');
+  __ga('send', 'pageview');
+</script>
+
+  </body>
+
+<!-- Mirrored from famo.us/integrations/angular/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:27:10 GMT -->
+</html>

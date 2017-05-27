@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/animation-with-physics.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Animation with Physics | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="animation-with-physics">Animation with Physics</h1>
+
+<p>While Famo.us’ <a href="easing-curves.html">easing curves library</a> makes it easy to create smooth, natural-feeling animations, we can do even more. Famo.us also comes with physics-based transitions that you can use to build animations modeled after motion in the real world.</p>
+
+<p><em>(Note that Famo.us also includes a full <a href="physics.html">physics engine</a> that you can use to create even more complex behavior. While the physics transitions shown here are fun and easy to use, <a href="physics.html">using the physics engine directly</a> brings even more power and flexibility.)</em></p>
+
+<h2 id="springtransition">SpringTransition</h2>
+
+<p>The <code>SpringTransition</code> <a href="tweening.html#transitionables">transitionable</a> gives, as you might expect, a springy animation effect when a renderable is changed from one state to another. (Although it’s most common to use this transition when changing an element’s position, you can use it to change an element’s opacity, scale, etc.) We use a <code>SpringTransition</code> instance just as we would use a basic <code>Transitionable</code>, but giving it two special options, <code>dampingRatio</code> and <code>period</code>.</p>
+
+<ul>
+  <li>A high <code>dampingRatio</code> dimishes the bouncyness of the spring</li>
+  <li>The <code>period</code> represents the time it takes the spring to complete one “bounce”</li>
+</ul>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+var SpringTransition = famous.transitions.SpringTransition;
+
+var context = Engine.createContext();
+
+var springTransition = new SpringTransition([0, 0, 0]);
+
+moveOut();
+
+function moveOut() {
+    springTransition.set([50, 50, 0], {
+        dampingRatio: 0.3,
+        period: 1000
+    }, moveBack);
+}
+
+function moveBack() {
+    springTransition.set([-50, -50, 0], {
+        dampingRatio: 0.3,
+        period: 1000
+    }, moveOut);
+}
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0.5, 0.5],
+    align: [0.5, 0.5]
+});
+
+modifier.transformFrom(function() {
+    var translation = springTransition.get();
+    return Transform.translate(translation[0], translation[1], translation[2]);
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h3 id="gotcha-duration-vs-settling">Gotcha! Duration vs. settling</h3>
+
+<p>In the example above, you may notice that we don’t pass a <code>duration</code> value to the <code>.set()</code> method of the <code>SpringTransition</code>. This is because, unlike standard <a href="tweening.html#transitionables">transitionables</a>, the ending state is not determined by a fixed duration, but by physics calculations that determine whether the element has fully <em>settled</em> (is <em>asleep</em>).</p>
+
+<p>That is, the <code>SpringTransition</code> transition callbacks fire whenever the <a href="physics.html">physics engine</a> determines that the spring has stopped moving. This is also true of the <code>SnapTransition</code>.</p>
+
+<h2 id="snaptransition">SnapTransition</h2>
+
+<p>The <code>SnapTransition</code> []<a href="tweening.html#transitionables">3</a>transitionable is similar to the <code>SpringTransition</code>, but much faster and with additional <a href="glossary.html#damping">damping</a> — think of a rubber band being stretched out and then suddenly released. The <code>SnapTransition</code> comes to rest (<em>settles</em>) much faster than the <code>SpringTransition</code>.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+var SnapTransition = famous.transitions.SnapTransition;
+
+var context = Engine.createContext();
+
+var snapTransition = new SnapTransition([0, 0, 0]);
+
+moveOut();
+
+function moveOut() {
+    snapTransition.set([50, 50, 0], {
+        period: 200,
+        dampingRatio: 0.1
+    }, moveBack);
+}
+
+function moveBack() {
+    snapTransition.set([-50, -50, 0], {
+        period: 200,
+        dampingRatio: 0.1
+    }, moveOut);
+}
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0.5, 0.5],
+    align: [0.5, 0.5]
+});
+
+modifier.transformFrom(function() {
+    var translation = snapTransition.get();
+    return Transform.translate(translation[0], translation[1], translation[2]);
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<p><a href="interaction.html">Next: Adding interaction »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/animation-with-physics.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+</html>

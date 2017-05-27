@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from famo.us/guides/animations by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:31:30 GMT -->
+<head>
+        <title>famo.us</title>
+        <meta name="viewport" content="width=1024" />
+        <!-- Twitter Card data --> 
+        <meta name="twitter:card" content="summary_large_image"> 
+        <meta name="twitter:site" content="@befamous"> 
+        <meta name="twitter:title" content="Famo.us"> 
+        <meta name="twitter:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL"> 
+        <meta name="twitter:creator" content="@befamous"> 
+        <!-- Twitter summary card with large image must be at least 280x150px --> 
+        <meta name="twitter:image:src" content="http://code.famo.us/assets/famous.jpg">        <!-- Open Graph data --> 
+        <meta property="og:title" content="Famo.us" /> 
+        <meta property="og:type" content="website" /> 
+        <meta property="og:url" content="../index.html" />
+        <meta property="og:image" content="http://code.famo.us/assets/famous.jpg" />
+        <meta property="og:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL" /> 
+        <meta property="og:site_name" content="Famo.us" /> 
+        <meta property="fb:admins" content="500011502,8055,540108906,504445166" />        <!-- Scripts -->
+        <script type="text/javascript" src="http://code.famo.us/lib/requestAnimationFrame.js"></script>
+        <script type="text/javascript" src="http://code.famo.us/lib/functionPrototypeBind.js"></script>
+        <script type="text/javascript" src="../lib/alameda.min.js"></script>
+        <script type="text/javascript" src="../lib/zepto.min.js"></script>
+        <script type="text/javascript" src="../lib/famous/famous.min.js"></script>
+        <script type="text/javascript" src="../src/social.js"></script>
+        <script type="text/javascript" src="../src/demos.js"></script>
+        <script type="text/javascript" src="../docs/api/latest/js/main.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="../lib/famous/famous.css" />
+        <link rel="stylesheet" type="text/css" href="../assets/style.css" />
+        <link rel="stylesheet" type="text/css" href="../assets/code.css" />        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-34653957-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- Require -->
+        <script type="text/javascript">
+            require.config({ baseUrl: '..' });
+            require(['src/main']);
+        </script>
+    </head>
+    <body>
+        <nav id="navigation" class="famous-root">
+            <a class="menu" href="../index.html"><img src="../assets/images/famous_logo_white.svg" alt="&phi;"></a>
+            <a class="menu university" href="../university/home/index.html">Famo.us University</a>
+            <a class="menu" href="../integrations/angular/index.html">Famo.us/Angular</a>
+            <a class="menu" href="../docs/index.html">Docs</a>
+            <a class="menu" href="../help.html">Help</a>
+            <a class="menu" href="../blog/index.html">Blog</a>
+            <a class="cta highlight download" href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top">Download</a>
+        </nav>
+        <div id="preloaded" class="content" data-route="/guides/animations"><h1 id="animation-transition-guide">Animation &amp; Transition Guide</h1>
+<p>Famo.us began when we moved a square <code>&lt;div&gt;</code> at 60 FPS entirely in JavaScript without relying on CSS3 keyframe animations. From that proof of concept, we built a framework. Animation was as core to Famo.us then as it is now. You&#39;ll find that unlike the standard HTML5 techniques, our animations are far more flexible and extensible. They can be halted, chained, and customized. We support a wide variety of built in tween transitions as well as transitions that are inspired from physical principles like springs and walls.</p>
+<h2 id="outline">Outline</h2>
+<ul>
+<li><a href="#transitionable">Transitionables</a></li>
+<li><a href="#tweens">Tween Transitions</a></li>
+<li><a href="#physics">Physics Transitions</a></li>
+<li><a href="#tween_vs_physics">Tweens vs Physics</a></li>
+</ul>
+<h2 id="-a-name-transitionable-transitionables-transitions-transitionable-js-a-"><a name="transitionable">Transitionables (Transitions/Transitionable.js)</a></h2>
+<p><code>Transitionable</code> turns any static number or array of numbers into dynamic data.<br>It allows the transition from a start state to an end state via an<br>interpolating definition. The state could be the <code>[x,y,z]</code> position of a<br>Surface, or a number representing the opacity of a Modifier. Transitionables are<br>agnostic to what they&#39;re transitioning; they just go from A to B over time.</p>
+<p>In the example below, we transition a number from 0 to 100 in a duration of<br>500 milliseconds.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>At any time you can call <code>.get</code> which returns the current value of the Transitionable<br>given that it has been transitioning at a constant rate since <code>.set</code> was called.<br>You can also call <code>.set</code> with no arguments, which changes the value immediately;<br>no transition is applied.</p>
+<p>We can do the same to arrays of arbitrary length.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">]);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">],</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">state</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>            <span class="c1">//returns [50, 15]</span>
+<span class="p">},</span> <span class="mi">250</span><span class="p">);</span>
+</pre></div>
+
+</code></pre>
+<p>The <code>set</code> method can be called over and over again. For instance, if there<br>is an opacity that is being transitioned on and off, you may code that with</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">opacityState</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">opacitateIn</span> <span class="p">(</span><span class="nx">duration</span><span class="p">){</span>
+    <span class="nx">opacityState</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="nx">duration</span> <span class="o">||</span> <span class="mi">0</span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">opacitateOut</span> <span class="p">(</span><span class="nx">duration</span><span class="p">){</span>
+    <span class="nx">opacityState</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="nx">duration</span> <span class="o">||</span> <span class="mi">0</span><span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">opacityToggle</span> <span class="p">(</span><span class="nx">duration</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">currentOpacity</span> <span class="o">=</span> <span class="nx">opacityState</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">currentOpacity</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="nx">opacitateIn</span><span class="p">(</span><span class="nx">duration</span><span class="p">);</span>
+    <span class="k">else</span> <span class="nx">opacitateOut</span><span class="p">(</span><span class="nx">duration</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+</code></pre>
+<p>Transitionables can also take an optional third argument, which is a callback to<br>fire after the transition is complete. In the following example, after 500ms<br>the callback will fire.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">},</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;done!&#39;</span><span class="p">);</span> <span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<h2 id="-a-name-tweens-tween-transitions-transitions-transitionable-js-a-"><a name="tweens">Tween Transitions (Transitions/Transitionable.js)</a></h2>
+<p>The above examples showed the simplest transition, which is linear, or with<br>constant rate of change. We can modify the transition definition to have<br>different tween (easing) curves. This will allow transitions that ramp up, slow<br>down, or overshoot, etc. Famo.us comes with 30 optional tween curves in<br>Transitions/Easing.js, and six defaults: <code>linear</code>, <code>easeIn</code>, <code>easeOut</code>, <code>easeInOut</code>,<br><code>easeOutBounce</code>, and <code>spring</code>.</p>
+<p>To apply a default tween transition, all you need to do is add a <code>curve</code> key to<br>the transition definition.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">curve</span> <span class="o">:</span> <span class="s1">&#39;easeInOut&#39;</span><span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>To apply a non-default transition, first register it with a key that is consistent<br>with the transition definition.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">TweenTransition</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;famous/transitions/TweenTransition&#39;</span><span class="p">);</span>
+<span class="nx">TweenTransition</span><span class="p">.</span><span class="nx">registerCurve</span><span class="p">(</span><span class="s1">&#39;inSine&#39;</span><span class="p">,</span> <span class="nx">Easing</span><span class="p">.</span><span class="nx">inSine</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">curve</span> <span class="o">:</span> <span class="s1">&#39;inSine&#39;</span><span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>You can extend our easing library by creating your own. An easing curve is simply<br>a function that is defined on the domain [0, 1] and maps to the range [0,1]. You<br>can map to values beyond the range [0,1] which will correspond to an undershoot<br>(if less than 0) or overshoot (if greater than 1).</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">customCurve</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">TweenTransition</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;famous/transitions/TweenTransition&#39;</span><span class="p">);</span>
+<span class="nx">TweenTransition</span><span class="p">.</span><span class="nx">registerCurve</span><span class="p">(</span><span class="s1">&#39;custom&#39;</span><span class="p">,</span> <span class="nx">customCurve</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">curve</span> <span class="o">:</span> <span class="s1">&#39;custom&#39;</span><span class="p">});</span>
+</pre></div>
+
+</code></pre>
+<p>You only need to register the custom curve with TweenTransition once in your app.<br>After the initial registration (typically in main.js), you can refer to the curve<br>anywhere else in your app.</p>
+<h2 id="-a-name-physics-physics-transitions-a-"><a name="physics">Physics Transitions</a></h2>
+<p>The limitation of tween transitions is that they are a discrete set of 30.<br>Sometimes what is needed is a continuum of curves. For instance, when coding a<br>scrollview, you want to scroll based on the velocity of the user input, which<br>can be any number. A tween will never be able to accommodate this.</p>
+<p>This is one of the reasons why Famo.us has invested in its own physics engine. A<br>physics simulation is capable of giving a fully parametrizable transition, where<br>the velocity can be any number, and the bounce effect of an overshoot can be of<br>infinite variety. Whereas tweens are hard-coded, physics transitions are fluid.</p>
+<p>There are several physics transitions:</p>
+<table>
+<thead>
+<tr>
+<th>Transition Type</th>
+<th>Definition</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SpringTransition</td>
+<td><code>{method : &lt;String&gt;, period : &lt;Number&gt;, dampingRatio : &lt;Number&gt;, velocity : &lt;Number or Array&gt;}</code></td>
+<td>Overshoots with a bounce</td>
+</tr>
+<tr>
+<td>WallTransition</td>
+<td><code>{method : &lt;String&gt;, period : &lt;Number&gt;, dampingRatio : &lt;Number&gt;, velocity : &lt;Number or Array&gt;}</code></td>
+<td>Undershoots with a bounce</td>
+</tr>
+<tr>
+<td>SnapTransition</td>
+<td><code>{method : &lt;String&gt;, period : &lt;Number&gt;, dampingRatio : &lt;Number&gt;, velocity : &lt;Number or Array&gt;}</code></td>
+<td>Overshoots with a sharp bounce</td>
+</tr>
+</tbody>
+</table>
+<p>You&#39;ll notice that the definition to define a physics transition is slightly<br>different than for a tween, which takes a duration and type. For physics transitions<br>no exact duration can be defined; instead, you define the physical parameters<br>of the transitions.</p>
+<p>The <code>method</code> key is a user-defined string that tells Famo.us which physics transition<br>you&#39;re using.</p>
+<p>The <code>period</code> key denotes the period of a spring, which is the amount<br>of time for a complete back and forth cycle when there is no damping.</p>
+<p>The <code>dampingRatio</code> key is a number between 0 and 1 that introduces damping into<br>the motion. For <code>dampingRatio = 0</code>, the spring motion with oscillate forever,<br>and when <code>dampingRatio = 1</code>, the spring motion will not oscillate at all, and come<br>to a gentle halt.</p>
+<p>Transitioning with a physics definition is very similar to transitioning with<br>a non-default easing curve: require in the physics transition, and register it<br>with Transitionable as a method.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">SpringTransition</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;famous/transitions/SpringTransition&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">WallTransition</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;famous/transitions/WallTransition&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">SnapTransition</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;famous/transitions/SnapTransition&#39;</span><span class="p">);</span>
+
+<span class="nx">Transitionable</span><span class="p">.</span><span class="nx">registerMethod</span><span class="p">(</span><span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="nx">SpringTransition</span><span class="p">);</span>
+<span class="nx">Transitionable</span><span class="p">.</span><span class="nx">registerMethod</span><span class="p">(</span><span class="s1">&#39;wall&#39;</span><span class="p">,</span> <span class="nx">WallTransition</span><span class="p">);</span>
+<span class="nx">Transitionable</span><span class="p">.</span><span class="nx">registerMethod</span><span class="p">(</span><span class="s1">&#39;snap&#39;</span><span class="p">,</span> <span class="nx">SnapTransition</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transitionable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="nx">dampingRatio</span> <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nx">period</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span> <span class="c1">// spring</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>   <span class="p">{</span><span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;wall&#39;</span><span class="p">,</span>   <span class="nx">dampingRatio</span> <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nx">period</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span> <span class="c1">// wall</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">{</span><span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;snap&#39;</span><span class="p">,</span>   <span class="nx">dampingRatio</span> <span class="o">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="nx">period</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span> <span class="c1">// snap</span>
+</pre></div>
+
+</code></pre>
+<p>You only need to register a physics transition once per app. After you register it<br>with as a method, you can call any transition with that <code>method</code> key anywhere<br>else in your app.</p>
+<h2 id="-a-name-tween_vs_physics-tweens-vs-physics-a-"><a name="tween_vs_physics">Tweens vs Physics </a></h2>
+<p>With physics transitions, you may wonder, &quot;Why use a tween transition<br>at all?&quot; The Achilles&#39; Heel of a physics transition is that it cannot have a<br>predetermined duration like a tween can. With physics you gain intuitive feel,<br>but sacrifice on exact duration. If you don&#39;t need events to fire with precise<br>timing, but instead respond to variable user input, it is suggested to use a physics transition.</p>
+<h2 id="-a-name-modifiers-transitioning-modifiers-a-"><a name="modifiers">Transitioning Modifiers</a></h2>
+<p>Thus far we have only mentioned transitions in the abstract: numbers going from<br>start to end. In practice, you would want this transition to effect some visual<br>aspect of your app, like the translation or rotation of a Surface, or perhaps<br>its opacity. All of these are properties of a Modifier, and Modifiers are built<br>to transition between states, just like Transitionables.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">rotateModifier</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Modifier</span><span class="p">({</span><span class="nx">transform</span> <span class="o">:</span> <span class="nx">Transform</span><span class="p">.</span><span class="nx">identity</span><span class="p">});</span>
+<span class="nx">rotateModifier</span><span class="p">.</span><span class="nx">setTransform</span><span class="p">(</span><span class="nx">Transform</span><span class="p">.</span><span class="nx">rotateZ</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">),</span> <span class="p">{</span><span class="nx">curve</span> <span class="o">:</span> <span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">rotateModifier</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">();</span>    <span class="c1">// returns Transform.rotateZ(Math.PI/2)</span>
+<span class="p">},</span> <span class="mi">250</span><span class="p">)</span>
+</pre></div>
+
+</code></pre>
+<p>Modifiers can take any transition that&#39;s been registered in your app, whether<br>a physics definition, or a tween.</p>
+<p>Opacity, origin and size are all properties of Modifiers and can be transitioned<br>as well.</p>
+<pre><code class="lang-js"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">modifier</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Modifier</span><span class="p">({</span>
+    <span class="nx">transform</span> <span class="o">:</span> <span class="nx">Transform</span><span class="p">.</span><span class="nx">identity</span><span class="p">,</span>
+    <span class="nx">opacity</span>   <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">origin</span>    <span class="o">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+    <span class="nx">size</span>      <span class="o">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="p">});</span>
+
+<span class="nx">modifier</span><span class="p">.</span><span class="nx">setOpacity</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+<span class="nx">modifier</span><span class="p">.</span><span class="nx">setSize</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+<span class="nx">modifier</span><span class="p">.</span><span class="nx">setOrigin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">{</span><span class="nx">duration</span> <span class="o">:</span> <span class="mi">500</span><span class="p">});</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">modifier</span><span class="p">.</span><span class="nx">getOpacity</span><span class="p">();</span>   <span class="c1">// returns 0.5</span>
+    <span class="nx">modifier</span><span class="p">.</span><span class="nx">getSize</span><span class="p">();</span>      <span class="c1">// returns [50, 50]</span>
+    <span class="nx">modifier</span><span class="p">.</span><span class="nx">getOrigin</span><span class="p">();</span>    <span class="c1">// returns [0.25, 0.25]</span>
+<span class="p">},</span> <span class="mi">250</span><span class="p">)</span>
+</pre></div>
+
+</code></pre>
+</div>
+        <footer id="footer" class="social block desktop-only">
+            <div class="links">
+                <a href="../branding/index.html">Branding</a>
+                <a href="../terms/index.html">Terms</a>
+                <a href="../privacy-policy/index.html">Privacy</a>
+                <a href="https://jobs.lever.co/famo.us?lever-source=homepage">Jobs</a>
+                &copy; Famous Industries, Inc. 2015
+            </div>
+            <div class="subscribe">
+                <form class="subscribe" action="http://famo.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;id=3293122916" method="POST" target="_blank">
+                    <input type="email" name="EMAIL" placeholder="Email Address" />
+                    <button>Get Updates</button>
+                </form>
+            </div>
+        </footer>
+    </body>
+
+<!-- Mirrored from famo.us/guides/animations by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:31:30 GMT -->
+</html>

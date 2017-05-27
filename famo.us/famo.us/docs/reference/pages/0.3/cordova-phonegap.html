@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/cordova-phonegap.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:08 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Cordova / PhoneGap | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="cordova--phonegap">Cordova / PhoneGap</h1>
+
+<p>With <a href="http://cordova.apache.org/">Apache Cordova</a>/<a href="http://phonegap.com/">Adobe PhoneGap</a>, you can bundle your Famo.us application to run natively on mobile devices. In this guide, we’ll show you how to build your Famo.us project with PhoneGap and how to test it locally on your own mobile device.</p>
+
+<p>The steps we’ll be covering here are:</p>
+
+<ul>
+  <li>Installing Cordova</li>
+  <li>Creating a Cordova project</li>
+  <li>Adding Famo.us files to the Cordova project</li>
+  <li>Adding device platforms</li>
+  <li>Building the project</li>
+  <li>Emulating the device platform</li>
+  <li>Viewing the Famo.us app on your device</li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>This guide assumes you’re already familiar with <a href="http://wiseheartdesign.com/articles/2010/11/12/the-designers-guide-to-the-osx-command-prompt/">using a command-line interface</a>. For simplicity, we’ll also assume you’re developing on Mac OS X. (If you’re developing in a Windows environment, the principles should be the same.) You’ll need to have installed <a href="http://nodejs.org/">Node.js</a> before continuing.</p>
+
+<h2 id="install">Install</h2>
+
+<p>To use PhoneGap, we’ll first need to <a href="http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface">install Cordova</a>, a command-line utility that will allow us to build our project.</p>
+
+<pre><code>$ npm install -g cordova
+</code></pre>
+
+<p>That command is all you should need to get started!</p>
+
+<p><em>(Here’s a bit of history: PhoneGap is simply one distribution of Apache Cordova. Think of Cordova as the engine, with PhoneGap being a project built upon that engine. For most purposes, you can think of them as one and the same.)</em></p>
+
+<h2 id="create-the-phonegap-app">Create the PhoneGap app</h2>
+
+<p>Now we need to set up a new PhoneGap application. First, <code>cd</code> to the folder where you put all of your projects, then run the following command:</p>
+
+<pre><code>$ cordova create hello-famous
+</code></pre>
+
+<p>That command will create a folder called <code>hello-famous</code> inside the current directory. The generated <code>hello-famous</code> folder contains special metadata about the project that Cordova will use when wrapping our app.</p>
+
+<p><strong><code>cd</code> into the <code>hello-famous</code> folder before continuing</strong>. We’ll be running all of the following commands from within that folder.</p>
+
+<h2 id="create-a-famous-app">Create a Famo.us app</h2>
+
+<p>Let’s create a fresh Famo.us project.</p>
+
+<p>First, download the <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top">Famo.us Starter Kit ↓</a>. Unzip the download. In the unzipped Starter Kit folder, you should find an <code>index.html</code> file, a <code>src</code> folder, and a <code>css</code> folder. If you open the <code>index.html</code> file in your browser, you should see the familiar spinning Famo.us logo.</p>
+
+<p>We need to copy our files from this project into the <code>www</code> directory inside the <code>hello-famous</code> PhoneGap project. First, remove all the files from the <code>www</code> directory, then copy the Famo.us files in. PhoneGap will use these files when building the project.</p>
+
+<h2 id="add-platforms">Add platforms</h2>
+
+<p>We need to decide what platforms we want to deploy our Famo.us application to. PhoneGap supports a <a href="http://docs.phonegap.com/en/edge/guide_support_index.md.html#Platform%20Support">variety of platforms</a>, and it’s up to you to choose which to target. For simplicity, in this lesson we’ll just target the iOS platform.</p>
+
+<p>Add the iOS platform to the Cordova project by running the following command (again, within the <code>hello-famous</code> folder):</p>
+
+<pre><code>$ cordova platform add ios
+</code></pre>
+
+<p>This command will install the platform-specific packages needed to wrap your application to run on iOS devices.</p>
+
+<h2 id="build-the-app">Build the app</h2>
+
+<p>With a skeletal Cordova project set up, we’re ready to build our (admittedly simple) project for the platforms we’ve targeted. To build the app, run this command:</p>
+
+<pre><code>$ cordova build
+</code></pre>
+
+<p>As Cordova builds your project, you’ll see a lot of text fly by your console. When the build process succeeds, you should see a “BUILD SUCCEEDED” message in your Terminal window.</p>
+
+<p>Now, it’s time to test out our new native application.</p>
+
+<h2 id="test-the-app-in-an-emulator">Test the app in an emulator</h2>
+
+<p>PhoneGap offers several tools for emulating different mobile platforms on your development workstation. But first, we need to install them. We can install the iOS platform simulator like so:</p>
+
+<pre><code>$ npm install -g ios-sim
+</code></pre>
+
+<p>With the iOS simulator installed, we can run the emulator from the <code>hello-famous</code> folder:</p>
+
+<pre><code>$ cordova emulate ios
+</code></pre>
+
+<p>This command will run several generator tasks, then launch a new window that contains the emulation environment. After a few moments, you should see the spinning Famo.us logo appear in the emulator window. Congratulations! You’ve just built your app to run natively!</p>
+
+<h2 id="serve-to-a-real-device">Serve to a real device</h2>
+
+<p>To do an initial test of our wrapped app on a real device, we’re going to install a special app on our iOS device that can run the application as served from our development workstation. Follow these steps:</p>
+
+<ol>
+  <li>Connect your iOS device to the local WiFi network – the same network your workstation is connected to.</li>
+  <li>Find your workstation’s IP address. (Look under System Preferences &gt; Network and select the connected WiFi network. An IP address should be listed. The IP address should begin with <code>192.168</code>.)</li>
+  <li>Serve the Famo.us + PhoneGap project. From the <code>hello-world</code> directory on your development workstation, run <code>$ cordova serve</code>.</li>
+  <li>On your iOS device, download and install the free <em>PhoneGap Developer</em> application. Once installed, open it.</li>
+  <li>In the <em>PhoneGap Developer</em> app interface on your iOS device, enter the IP address above in the “Server Address” field, followed by the port number (it should be <code>8000</code>). The full address should be something like <code>192.168.123.456:8000</code>. Tap the ‘Connect’ button and wait. After a moment, you should see a ‘SUCCESS!’ message. The application should begin running.</li>
+  <li>You will initially see a “Package Metadata” page with a list of packages. Click the “ios” link to see the application fully launched.</li>
+</ol>
+
+<h2 id="deploy">Deploy</h2>
+
+<p>To deploy a packaged app to your iOS device and app stores, you’ll need to follow several additional steps that are out of scope for this beginners-oriented lesson. You can refer to the <a href="http://docs.phonegap.com/en/edge/guide_platforms_ios_index.md.html#iOS%20Platform%20Guide">PhoneGap Documentation on deployment</a> for information about the steps required.</p>
+
+<h2 id="more-info">More info</h2>
+
+<p>There’s plenty of additional information about PhoneGap and Cordova around the web:</p>
+
+<ul>
+  <li><a href="http://phonegap.com/">PhoneGap homepage</a></li>
+  <li><a href="http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-Line%20Interface">The PhoneGap command-line interface</a></li>
+  <li><a href="http://docs.phonegap.com/en/edge/guide_platforms_index.md.html#Platform%20Guides">PhoneGap platform guides</a></li>
+  <li><a href="http://cordova.apache.org/">Apache Cordova homepage</a></li>
+  <li><a href="http://www.smashingmagazine.com/2014/02/11/four-ways-to-build-a-mobile-app-part3-phonegap/"><em>Smashing Magazine</em> PhoneGap article</a></li>
+</ul>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/cordova-phonegap.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:08 GMT -->
+</html>

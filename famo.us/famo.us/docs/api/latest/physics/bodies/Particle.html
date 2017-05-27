@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from famo.us/docs/api/latest/physics/bodies/Particle by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:30:31 GMT -->
+<head>
+        <title>famo.us</title>
+        <meta name="viewport" content="width=1024" />
+        <!-- Twitter Card data --> 
+        <meta name="twitter:card" content="summary_large_image"> 
+        <meta name="twitter:site" content="@befamous"> 
+        <meta name="twitter:title" content="Famo.us"> 
+        <meta name="twitter:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL"> 
+        <meta name="twitter:creator" content="@befamous"> 
+        <!-- Twitter summary card with large image must be at least 280x150px --> 
+        <meta name="twitter:image:src" content="http://code.famo.us/assets/famous.jpg">        <!-- Open Graph data --> 
+        <meta property="og:title" content="Famo.us" /> 
+        <meta property="og:type" content="website" /> 
+        <meta property="og:url" content="../../../../../index.html" />
+        <meta property="og:image" content="http://code.famo.us/assets/famous.jpg" />
+        <meta property="og:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL" /> 
+        <meta property="og:site_name" content="Famo.us" /> 
+        <meta property="fb:admins" content="500011502,8055,540108906,504445166" />        <!-- Scripts -->
+        <script type="text/javascript" src="http://code.famo.us/lib/requestAnimationFrame.js"></script>
+        <script type="text/javascript" src="http://code.famo.us/lib/functionPrototypeBind.js"></script>
+        <script type="text/javascript" src="../../../../../lib/alameda.min.js"></script>
+        <script type="text/javascript" src="../../../../../lib/zepto.min.js"></script>
+        <script type="text/javascript" src="../../../../../lib/famous/famous.min.js"></script>
+        <script type="text/javascript" src="../../../../../src/social.js"></script>
+        <script type="text/javascript" src="../../../../../src/demos.js"></script>
+        <script type="text/javascript" src="../../js/main.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="../../../../../lib/famous/famous.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../../assets/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../../assets/code.css" />        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-34653957-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- Require -->
+        <script type="text/javascript">
+            require.config({ baseUrl: '../../../../..' });
+            require(['src/main']);
+        </script>
+    </head>
+    <body>
+        <nav id="navigation" class="famous-root">
+            <a class="menu" href="../../../../../index.html"><img src="../../../../../assets/images/famous_logo_white.svg" alt="&phi;"></a>
+            <a class="menu university" href="../../../../../university/home/index.html">Famo.us University</a>
+            <a class="menu" href="../../../../../integrations/angular/index.html">Famo.us/Angular</a>
+            <a class="menu" href="../../../../index.html">Docs</a>
+            <a class="menu" href="../../../../../help.html">Help</a>
+            <a class="menu" href="../../../../../blog/index.html">Blog</a>
+            <a class="cta highlight download" href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top">Download</a>
+        </nav>
+        <div id="preloaded" class="content" data-route="/docs/api/latest/physics/bodies/Particle">
+<div id="doc-container" class="col1">
+  <div class="col1 navigation-margin relative pad20">
+    <div class="col1">
+      <div class="col1-4">
+        <ul class="mar-20 sidebar nav">
+          <li>core</li>
+          <li><a href="../../core/Context.html">Context</a>
+          </li>
+          <li><a href="../../core/ElementAllocator.html">ElementAllocator</a>
+          </li>
+          <li><a href="../../core/ElementOutput.html">ElementOutput</a>
+          </li>
+          <li><a href="../../core/Engine.html">Engine</a>
+          </li>
+          <li><a href="../../core/Entity.html">Entity</a>
+          </li>
+          <li><a href="../../core/EventEmitter.html">EventEmitter</a>
+          </li>
+          <li><a href="../../core/EventHandler.html">EventHandler</a>
+          </li>
+          <li><a href="../../core/Group.html">Group</a>
+          </li>
+          <li><a href="../../core/Modifier.html">Modifier</a>
+          </li>
+          <li><a href="../../core/OptionsManager.html">OptionsManager</a>
+          </li>
+          <li><a href="../../core/RenderNode.html">RenderNode</a>
+          </li>
+          <li><a href="../../core/Scene.html">Scene</a>
+          </li>
+          <li><a href="../../core/SpecParser.html">SpecParser</a>
+          </li>
+          <li><a href="../../core/Transform.html">Transform</a>
+          </li>
+          <li><a href="../../core/View.html">View</a>
+          </li>
+          <li><a href="../../core/ViewSequence.html">ViewSequence</a>
+          </li>
+          <li>events</li>
+          <li><a href="../../events/EventArbiter.html">EventArbiter</a>
+          </li>
+          <li><a href="../../events/EventFilter.html">EventFilter</a>
+          </li>
+          <li><a href="../../events/EventMapper.html">EventMapper</a>
+          </li>
+          <li>inputs</li>
+          <li><a href="../../inputs/Accumulator.html">Accumulator</a>
+          </li>
+          <li><a href="../../inputs/GenericSync.html">GenericSync</a>
+          </li>
+          <li><a href="../../inputs/MouseSync.html">MouseSync</a>
+          </li>
+          <li><a href="../../inputs/PinchSync.html">PinchSync</a>
+          </li>
+          <li><a href="../../inputs/RotateSync.html">RotateSync</a>
+          </li>
+          <li><a href="../../inputs/ScaleSync.html">ScaleSync</a>
+          </li>
+          <li><a href="../../inputs/ScrollSync.html">ScrollSync</a>
+          </li>
+          <li><a href="../../inputs/TouchSync.html">TouchSync</a>
+          </li>
+          <li><a href="../../inputs/TouchTracker.html">TouchTracker</a>
+          </li>
+          <li><a href="../../inputs/TwoFingerSync.html">TwoFingerSync</a>
+          </li>
+          <li>math</li>
+          <li><a href="../../math/Matrix.html">Matrix</a>
+          </li>
+          <li><a href="../../math/Quaternion.html">Quaternion</a>
+          </li>
+          <li><a href="../../math/Random.html">Random</a>
+          </li>
+          <li><a href="../../math/Utilities.html">Utilities</a>
+          </li>
+          <li><a href="../../math/Vector.html">Vector</a>
+          </li>
+          <li>modifiers</li>
+          <li><a href="../../modifiers/Draggable.html">Draggable</a>
+          </li>
+          <li><a href="../../modifiers/Fader.html">Fader</a>
+          </li>
+          <li><a href="../../modifiers/ModifierChain.html">ModifierChain</a>
+          </li>
+          <li><a href="../../modifiers/StateModifier.html">StateModifier</a>
+          </li>
+          <li>physics</li>
+          <li><a href="../PhysicsEngine.html">PhysicsEngine</a>
+          </li>
+          <li>physics/bodies</li>
+          <li><a href="Body.html">Body</a>
+          </li>
+          <li><a href="Circle.html">Circle</a>
+          </li>
+          <li><a href="Particle.html">Particle</a>
+          </li>
+          <li><a href="Rectangle.html">Rectangle</a>
+          </li>
+          <li>physics/constraints</li>
+          <li><a href="../constraints/Surface.html">Surface</a>
+          </li>
+          <li><a href="../constraints/Collision.html">Collision</a>
+          </li>
+          <li><a href="../constraints/Constraint.html">Constraint</a>
+          </li>
+          <li><a href="../constraints/Curve.html">Curve</a>
+          </li>
+          <li><a href="../constraints/Distance.html">Distance</a>
+          </li>
+          <li><a href="../constraints/Snap.html">Snap</a>
+          </li>
+          <li><a href="../constraints/Wall.html">Wall</a>
+          </li>
+          <li><a href="../constraints/Walls.html">Walls</a>
+          </li>
+          <li>physics/forces</li>
+          <li><a href="../forces/Drag.html">Drag</a>
+          </li>
+          <li><a href="../forces/Force.html">Force</a>
+          </li>
+          <li><a href="../forces/Repulsion.html">Repulsion</a>
+          </li>
+          <li><a href="../forces/RotationalDrag.html">RotationalDrag</a>
+          </li>
+          <li><a href="../forces/RotationalSpring.html">RotationalSpring</a>
+          </li>
+          <li><a href="../forces/Spring.html">Spring</a>
+          </li>
+          <li><a href="../forces/VectorField.html">VectorField</a>
+          </li>
+          <li>physics/integrators</li>
+          <li><a href="../integrators/SymplecticEuler.html">SymplecticEuler</a>
+          </li>
+          <li>surfaces</li>
+          <li><a href="../../surfaces/CanvasSurface.html">CanvasSurface</a>
+          </li>
+          <li><a href="../../surfaces/ContainerSurface.html">ContainerSurface</a>
+          </li>
+          <li><a href="../../surfaces/ImageSurface.html">ImageSurface</a>
+          </li>
+          <li><a href="../../surfaces/InputSurface.html">InputSurface</a>
+          </li>
+          <li><a href="../../surfaces/TextareaSurface.html">TextareaSurface</a>
+          </li>
+          <li><a href="../../surfaces/VideoSurface.html">VideoSurface</a>
+          </li>
+          <li>transitions</li>
+          <li><a href="../../transitions/CachedMap.html">CachedMap</a>
+          </li>
+          <li><a href="../../transitions/Easing.html">Easing</a>
+          </li>
+          <li><a href="../../transitions/MultipleTransition.html">MultipleTransition</a>
+          </li>
+          <li><a href="../../transitions/SnapTransition.html">SnapTransition</a>
+          </li>
+          <li><a href="../../transitions/SpringTransition.html">SpringTransition</a>
+          </li>
+          <li><a href="../../transitions/Transitionable.html">Transitionable</a>
+          </li>
+          <li><a href="../../transitions/TransitionableTransform.html">TransitionableTransform</a>
+          </li>
+          <li><a href="../../transitions/TweenTransition.html">TweenTransition</a>
+          </li>
+          <li><a href="../../transitions/WallTransition.html">WallTransition</a>
+          </li>
+          <li>utilities</li>
+          <li><a href="../../utilities/KeyCodes.html">KeyCodes</a>
+          </li>
+          <li><a href="../../utilities/Timer.html">Timer</a>
+          </li>
+          <li><a href="../../utilities/Utility.html">Utility</a>
+          </li>
+          <li>views</li>
+          <li><a href="../../views/ContextualView.html">ContextualView</a>
+          </li>
+          <li><a href="../../views/Deck.html">Deck</a>
+          </li>
+          <li><a href="../../views/DrawerLayout.html">DrawerLayout</a>
+          </li>
+          <li><a href="../../views/EdgeSwapper.html">EdgeSwapper</a>
+          </li>
+          <li><a href="../../views/FlexibleLayout.html">FlexibleLayout</a>
+          </li>
+          <li><a href="../../views/Flipper.html">Flipper</a>
+          </li>
+          <li><a href="../../views/GridLayout.html">GridLayout</a>
+          </li>
+          <li><a href="../../views/HeaderFooterLayout.html">HeaderFooterLayout</a>
+          </li>
+          <li><a href="../../views/Lightbox.html">Lightbox</a>
+          </li>
+          <li><a href="../../views/RenderController.html">RenderController</a>
+          </li>
+          <li><a href="../../views/ScrollContainer.html">ScrollContainer</a>
+          </li>
+          <li><a href="../../views/Scroller.html">Scroller</a>
+          </li>
+          <li><a href="../../views/Scrollview.html">Scrollview</a>
+          </li>
+          <li><a href="../../views/SequentialLayout.html">SequentialLayout</a>
+          </li>
+          <li>widgets</li>
+          <li><a href="../../widgets/NavigationBar.html">NavigationBar</a>
+          </li>
+          <li><a href="../../widgets/ToggleButton.html">TabBar</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col1-2">
+        <div id="docs-container" class="cf docs col1 pad-g1 main">
+          <div class="col1 pad-ls-g1 pad-t1">
+            <div class="col1 spacer">
+              <div class="col1 spacer-bar mar-b">
+                <h2 class="col1">Particle</h2>
+                <h5>A point body that is controlled by the Physics Engine. A particle has position and velocity states that are updated by the Physics Engine. Ultimately, a particle is a special type of modifier, and can be added to the Famo.us Scene Graph like any other modifier.</h5>
+              </div>
+              <div class="col1 miniSpacer spacer-bar mar-b">
+                <h3 class="col-1">Overview</h3>
+                <div class="col1-3">
+                  <h5>Options</h5>
+                  <div class="red">position</div>
+                  <div class="red">velocity</div>
+                  <div class="red">mass</div>
+                </div>
+                <div class="col1-3">
+                  <h5>Methods</h5>
+                  <div class="red">isBody</div>
+                  <div class="red">isActive</div>
+                  <div class="red">sleep</div>
+                  <div class="red">wake</div>
+                  <div class="red">setPosition</div>
+                  <div class="red">setPosition1D</div>
+                  <div class="red">getPosition</div>
+                  <div class="red">getPosition1D</div>
+                  <div class="red"></div>
+                  <div class="red">setVelocity1D</div>
+                  <div class="red">getVelocity</div>
+                  <div class="red">setForce</div>
+                  <div class="red">getVelocity1D</div>
+                  <div class="red">setMass</div>
+                  <div class="red">getMass</div>
+                  <div class="red">reset</div>
+                  <div class="red">applyForce</div>
+                  <div class="red">applyImpulse</div>
+                  <div class="red">integrateVelocity</div>
+                  <div class="red">integratePosition</div>
+                  <div class="red"></div>
+                  <div class="red">getTransform</div>
+                  <div class="red">modify</div>
+                </div>
+              </div>
+              <div class="col1 linkable">
+                <h3 id="Particle" class="mar-t1 left">Particle(options)</h3>
+              </div>
+              <h5 class="medium-grey miniSpacer col1">Constructor Parameters</h5>
+              <div class="col1 spacer-bar mar-b constructor">
+                <p class="col1-3">options</p>
+                <p class="col1-3 monospace">Options</p>
+                <p class="col1-3">An object of configurable options.</p>
+                <div class="left mar-20">
+                  <div id="options-position" class="col1">
+                    <div class="col1 miniSpacer">
+                      <div class="col1-3 red miniSpacer">position</div>
+                      <div class="col1-3 monospace">Array</div>
+                      <div class="col1-3">The position of the particle.</div>
+                      <!-- todo: .col1-3= param.optional-->
+                    </div>
+                  </div>
+                  <div id="options-velocity" class="col1">
+                    <div class="col1 miniSpacer">
+                      <div class="col1-3 red miniSpacer">velocity</div>
+                      <div class="col1-3 monospace">Array</div>
+                      <div class="col1-3">The velocity of the particle.</div>
+                      <!-- todo: .col1-3= param.optional-->
+                    </div>
+                  </div>
+                  <div id="options-mass" class="col1">
+                    <div class="col1 miniSpacer">
+                      <div class="col1-3 red miniSpacer">mass</div>
+                      <div class="col1-3 monospace">Number</div>
+                      <div class="col1-3">The mass of the particle.</div>
+                      <!-- todo: .col1-3= param.optional-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h5 class="medium-grey miniSpacer col1-2">Methods</h5>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="isBody" class="mar-t1 left">isBody()<small class="mar-l-20 medium-grey-bg pad-5 up3 bor-2">Static</small></h3>
+                  </div>
+                  <p></p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="isActive" class="mar-t1 left">isActive()</h3>
+                  </div>
+                  <p>Determines if particle is active</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Boolean</div>
+                    <div class="col2-3"></div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="sleep" class="mar-t1 left">sleep()</h3>
+                  </div>
+                  <p>Stops the particle from updating</p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="wake" class="mar-t1 left">wake()</h3>
+                  </div>
+                  <p>Starts the particle update</p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="setPosition" class="mar-t1 left">setPosition(position)</h3>
+                  </div>
+                  <p>Basic setter for position</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">position</div>
+                    <div class="col1-3 monospace">Array|Vector</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="setPosition1D" class="mar-t1 left">setPosition1D(x)</h3>
+                  </div>
+                  <p>1-dimensional setter for position</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">x</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getPosition" class="mar-t1 left">getPosition()</h3>
+                  </div>
+                  <p>Basic getter function for position</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Array</div>
+                    <div class="col2-3">position</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getPosition1D" class="mar-t1 left">getPosition1D()</h3>
+                  </div>
+                  <p>1-dimensional getter for position</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">value</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="" class="mar-t1 left">()</h3>
+                  </div>
+                  <p>Basic setter function for velocity Vector</p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="setVelocity1D" class="mar-t1 left">setVelocity1D(x)</h3>
+                  </div>
+                  <p>1-dimensional setter for velocity</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">x</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getVelocity" class="mar-t1 left">getVelocity()</h3>
+                  </div>
+                  <p>Basic getter function for velocity Vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Array</div>
+                    <div class="col2-3">velocity</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="setForce" class="mar-t1 left">setForce()</h3>
+                  </div>
+                  <p>Basic setter function for force Vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Array</div>
+                    <div class="col2-3">force</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getVelocity1D" class="mar-t1 left">getVelocity1D()</h3>
+                  </div>
+                  <p>1-dimensional getter for velocity</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">velocity</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="setMass" class="mar-t1 left">setMass(mass)</h3>
+                  </div>
+                  <p>Basic setter function for mass quantity</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">mass</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">mass</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getMass" class="mar-t1 left">getMass()</h3>
+                  </div>
+                  <p>Basic getter function for mass quantity</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">mass</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="reset" class="mar-t1 left">reset(position, velocity)</h3>
+                  </div>
+                  <p>Reset position and velocity</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">position</div>
+                    <div class="col1-3 monospace">Array|Vector</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">velocity</div>
+                    <div class="col1-3 monospace">Array|Vector</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="applyForce" class="mar-t1 left">applyForce(force)</h3>
+                  </div>
+                  <p>Add force vector to existing internal force Vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">force</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="applyImpulse" class="mar-t1 left">applyImpulse(impulse)</h3>
+                  </div>
+                  <p>Add impulse (change in velocity) Vector to this Vector's velocity.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">impulse</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="integrateVelocity" class="mar-t1 left">integrateVelocity(dt)</h3>
+                  </div>
+                  <p>Update a particle's velocity from its force accumulator</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">dt</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">Time differential</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="integratePosition" class="mar-t1 left">integratePosition(dt)</h3>
+                  </div>
+                  <p>Update a particle's position from its velocity</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">dt</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">Time differential</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer private-method hidden">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="_integrate" class="mar-t1 left">_integrate(dt)<small class="mar-l-20 medium-grey-bg pad-5 up3 bor-2">Protected</small></h3>
+                  </div>
+                  <p>Update the position and velocity of the particle</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">dt</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">Time differential</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="" class="mar-t1 left">()</h3>
+                  </div>
+                  <p>Get kinetic energy of the particle.</p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="getTransform" class="mar-t1 left">getTransform()</h3>
+                  </div>
+                  <p>Generate transform from the current position state</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Transform</div>
+                    <div class="col2-3">Transform</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="modify" class="mar-t1 left">modify(target)</h3>
+                  </div>
+                  <p>The modify interface of a Modifier</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">target</div>
+                    <div class="col1-3 monospace">Spec</div>
+                    <div class="col1-3"></div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Spec</div>
+                    <div class="col2-3">Spec</div>
+                  </col1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- script(type='text/javascript', src='#{pathPrefix}/js/main.js')-->
+<!-- script//- include ../lib/assets/js/main.js
+--></div>
+        <footer id="footer" class="social block desktop-only">
+            <div class="links">
+                <a href="../../../../../branding/index.html">Branding</a>
+                <a href="../../../../../terms/index.html">Terms</a>
+                <a href="../../../../../privacy-policy/index.html">Privacy</a>
+                <a href="https://jobs.lever.co/famo.us?lever-source=homepage">Jobs</a>
+                &copy; Famous Industries, Inc. 2015
+            </div>
+            <div class="subscribe">
+                <form class="subscribe" action="http://famo.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;id=3293122916" method="POST" target="_blank">
+                    <input type="email" name="EMAIL" placeholder="Email Address" />
+                    <button>Get Updates</button>
+                </form>
+            </div>
+        </footer>
+    </body>
+
+<!-- Mirrored from famo.us/docs/api/latest/physics/bodies/Particle by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:30:31 GMT -->
+</html>

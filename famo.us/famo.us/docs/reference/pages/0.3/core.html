@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/core.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:01 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Core | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="core">Core</h1>
+
+<p>We’ve done the <a href="licensing.html">housekeeping</a>, covered <a href="download-and-installation.html">how to get set up</a>, and talked about <a href="why-famous.html">why you might want to use Famo.us</a>. Now, let’s dust off our hands and start exploring the exciting stuff: the Famo.us platform itself. We’ll start by covering the core components of Famo.us, and gradually build our knowledge from there.</p>
+
+<p>Most of the logic in your Famo.us application will deal with manipulating a set of <strong>six basic building blocks</strong>, namely:</p>
+
+<ul>
+  <li>the <em>engine</em></li>
+  <li>a <em>context</em></li>
+  <li><em>render nodes</em></li>
+  <li><em>surfaces</em></li>
+  <li><em>modifiers</em></li>
+  <li><em>transforms</em></li>
+</ul>
+
+<p>Each of these building blocks plays a central role in creating what appears on the screen. Understanding how each works on a conceptual level, and how they interoperate, is essential to understanding Famo.us as a whole.</p>
+
+<h2 id="the-engine">The engine</h2>
+
+<p>Every Famo.us application has one <em>engine</em>. It’s a single object that <strong>orchestrates all the components of your application</strong>. It manages all <em>contexts</em>, runs the <em>render loop</em>, and dispatches events. If your Famo.us application were a film, you could think of it as the director. (You’re the producer; you ultimately call the shots!) <a href="the-engine-and-contexts.html">More about the engine »</a></p>
+
+<h2 id="the-context">The context</h2>
+
+<p><strong>The <em>context</em> is a container for all visual elements</strong> in a Famo.us application. Anything that needs to be displayed on the screen must be added to the context. Although there can be more than one context in a Famo.us app, it’s most common for there to be only one. In film terms, you could think of the context as the stage. <a href="the-engine-and-contexts.html#contexts">More about contexts »</a></p>
+
+<h2 id="the-render-tree--render-nodes">The render tree &amp; render nodes</h2>
+
+<p><strong>The <em>render tree</em> is a hierarchical object</strong> that describes how all visual elements in your Famo.us application will be displayed. It’s made up of many <em>render nodes</em> that keep track of the <em>size</em>, <em>position</em>, <em>opacity</em>, and <em>transform</em> of displayed elements. You could almost think of the render tree as a storyboard, describing what every visual element will look like during every frame of the scene. <a href="the-render-tree-and-render-nodes.html">More about the render tree »</a></p>
+
+<h2 id="surfaces">Surfaces</h2>
+
+<p><strong><em>Surfaces</em> are the atomic unit of displayed content</strong> in any Famo.us application. They are one of the two predominant types of <em>render nodes</em>. They are the only type of Famo.us element that actually connects directly to a visible HTML element; every Famo.us surface maps to a visible HTML element (such as a <code>&lt;div&gt;</code>) in the DOM. Surfaces are individually animatable, and can be scaled, rotated, or skewed in 3D space. Think of surfaces like the actors and the props in your film. <a href="surfaces.html">More about surfaces »</a></p>
+
+<h2 id="modifiers">Modifiers</h2>
+
+<p><strong><em>Modifiers</em> control how rendered elements are displayed.</strong> Think of them like individual stage directions. They tell displayed elements where to go and, to a degree, what to look like. Modifiers are one of the two predominant types of <em>render nodes</em>. Although modifiers themselves are not displayed, they can affect the properties of one or many displayed elements. <a href="modifiers.html">More about modifiers »</a></p>
+
+<h2 id="transforms">Transforms</h2>
+
+<p><strong><em>Transforms</em> control the position, scale, rotation, and distortion of rendered elements.</strong> Used in conjunction with modifiers, transforms can give visible elements the effect of motion through space, scaling up in size, or spinning. <a href="transforms.html">More about transforms »</a></p>
+
+<p><a href="the-engine-and-contexts.html">Next: The engine &amp; contexts »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/core.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:01 GMT -->
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/events.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Events | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="events">Events</h1>
+
+<p>Events are one of the most powerful features of JavaScript. In the <a href="user-input.html">user input</a> section, we explored how to use them to capture user actions. But our application can also use event internally to create other logic. We call this type of usage <strong>program events</strong>.</p>
+
+<p>Emitting and listening to events is a great way to achieve <em>this-action-follows-that</em>-style interactivity without the downsides you might encounter when creating UI logic with, say, functions.</p>
+
+<h2 id="emit-and-listen-with-eventhandler">Emit and listen with EventHandler</h2>
+
+<p>Events are a way of moving information between program modules. In Famo.us, we can <em>emit</em> and <em>listen</em> to program events using a class called <code>EventHandler</code>. In this example, we have a simple emit-and-listen pattern using one event handler. Clicking the surface will emit a <code>'hello'</code> event, which a handler will listen to downstream.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+var EventHandler = famous.core.EventHandler;
+
+var mainContext = Engine.createContext();
+var surface;
+createSurface();
+var eventHandler = new EventHandler();
+
+surface.on('click', function() {
+  eventHandler.emit('hello');
+});
+
+eventHandler.on('hello', function() {
+  surface.setContent('heard hello');
+});
+
+function createSurface() {
+  surface = new Surface({
+    size: [100, 100],
+    content: 'click me to emit "hello"',
+    properties: {
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  mainContext.add(surface);
+}
+</code></pre>
+
+<p>As you can see, we use the <code>EventHandler</code> instance’s <code>.on()</code> method to listen to specific events. We use its <code>.emit()</code> method to emit a named event.</p>
+
+<h2 id="listening-to-many-events-with-subscribe">Listening to many events with .subscribe()</h2>
+
+<p>More commonly, you’ll use multiple event handlers to communicate between different application modules. In this example, we have two event handlers, A and B. Event handler A emits <code>'hello'</code> when surface A is clicked. Event handler B listens for the <code>'hello'</code> event and calls surface B to set its content when the event is triggered.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+var EventHandler = famous.core.EventHandler;
+
+var mainContext = Engine.createContext();
+
+var surfaceA, surfaceB;
+createSurfaces();
+
+var eventHandlerA = new EventHandler();
+var eventHandlerB = new EventHandler();
+
+surfaceA.on('click', function() {
+  eventHandlerA.emit('hello');
+  surfaceA.setContent('said hello');
+});
+
+eventHandlerB.subscribe(eventHandlerA);
+
+eventHandlerB.on('hello', function() {
+  surfaceB.setContent('heard hello');
+});
+
+function createSurfaces() {
+  surfaceA = new Surface({
+    size: [100, 100],
+    content: 'A&lt;br&gt;click me to say hello',
+    properties: {
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  surfaceB = new Surface({
+    size: [100, 100],
+    content: 'B',
+    properties: {
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  var modifierB = new StateModifier({
+    origin: [1, 1],
+    align: [1, 1]
+  });
+
+  mainContext.add(surfaceA);
+  mainContext.add(modifierB).add(surfaceB);
+}
+</code></pre>
+
+<p>By using the <code>EventHandler</code> instance’s <code>.subscribe()</code> method, we can tell one event handler to listen to <em>all events</em> emitted by the other one.</p>
+
+<h2 id="going-the-other-direction-with-pipe">Going the other direction with .pipe()</h2>
+
+<p>The <code>EventHandler</code> instance’s <code>.pipe()</code> method is the inverse of <code>.subscribe()</code>. With <code>.pipe()</code>, we <em>transmit</em> all events to another object. The end result is the same, but the implementation is slightly different. It’s up to you to decide when to use <code>.pipe()</code> and when to use <code>.subscribe()</code>.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+var EventHandler = famous.core.EventHandler;
+
+var mainContext = Engine.createContext();
+
+var surfaceA, surfaceB;
+createSurfaces();
+
+var eventHandlerA = new EventHandler();
+var eventHandlerB = new EventHandler();
+
+surfaceA.on('click', function() {
+  eventHandlerA.emit('hello');
+  surfaceA.setContent('said hello');
+});
+
+eventHandlerA.pipe(eventHandlerB);
+
+eventHandlerB.on('hello', function() {
+  surfaceB.setContent('heard hello');
+});
+
+function createSurfaces() {
+  surfaceA = new Surface({
+    size: [100, 100],
+    content: 'A&lt;br&gt;click me to say hello',
+    properties: {
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  surfaceB = new Surface({
+    size: [100, 100],
+    content: 'B',
+    properties: {
+      color: 'white',
+      textAlign: 'center',
+      backgroundColor: '#fa5c4f'
+    }
+  });
+
+  var modifierB = new StateModifier({
+    origin: [1, 1],
+    align: [1, 1]
+  });
+
+  mainContext.add(surfaceA);
+  mainContext.add(modifierB).add(surfaceB);
+}
+</code></pre>
+
+<h2 id="program-events-and-views">Program events and views</h2>
+
+<p><a href="views.html">Views</a> are important tools in Famo.us to help keep our code organized and modularized. One way views help us do this is by providing two (internally created) event handlers: an input handler and an output handler. These are ready to use with any object that inherits from the <code>View</code> prototype.</p>
+
+<p>When you pipe into a view or subscribe from a view, you’re actually piping into or subscribing from the input event handler of a view, called <code>view._eventInput</code>. Conceptually, a view’s input handler is the aggregation point of all the events coming into that view. The view can then decide what to do with those events by listening on its <code>_eventInput</code>.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var View = famous.core.View;
+
+var mainContext = Engine.createContext();
+
+var myView = new View();
+mainContext.add(myView);
+
+var surface = new Surface({
+  size: [100, 100],
+  content: 'click me',
+  properties: {
+    color: 'white',
+    textAlign: 'center',
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+myView.add(surface);
+
+surface.pipe(myView);
+// alternatively, myView.subscribe(surface);
+
+// normally inside view module's code
+myView._eventInput.on('click', function() {
+  surface.setContent('hello');
+});
+</code></pre>
+
+<p><a href="html-and-css.html">Next: Using HTML and CSS with Famo.us »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/events.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:03 GMT -->
+</html>

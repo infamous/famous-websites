@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/user-input.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>User Input | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="user-input">User Input</h1>
+
+<p>We can capture two different types of user input in a Famo.us application: <strong>data from HTML form elements</strong>, and <strong>input events</strong>, such as mouse clicks. In this section, we’ll look at the techniques to do both.</p>
+
+<p><em>Make sure you also read the companion to this section, which covers how to <a href="events.html">use events to create application logic</a>.</em></p>
+
+<h2 id="getting-input-element-data">Getting input element data</h2>
+
+<p>In the section on <a href="surfaces.html">surfaces</a>, we learned that surfaces come in a variety of flavors representing different HTML elements. This includes elements for accepting user input as part of a form: <code>InputSurface</code> and <code>TextareaSurface</code>.</p>
+
+<p>Both <code>InputSurface</code> and <code>TextareaSurface</code> have a <code>.getValue()</code> method which will return the input value content as a string. Both also have a <code>.setValue()</code> method that takes a string as an argument and sets the value of the element.</p>
+
+<pre><code>var inputSurface = new InputSurface({
+    value: 'Hello Input!'
+});
+
+inputSurface.getValue();
+// =&gt; 'Hello Input!'
+</code></pre>
+
+<p>Note that unlike a plain <code>Surface</code>, we set the <code>value</code> property, <em>not the <code>content</code></em> property, to set the content of these surfaces.</p>
+
+<h2 id="capturing-input-events">Capturing input events</h2>
+
+<p>We can also capture user-input events such as mouse clicks and touches. There are two places to capture these interactions: via <strong>engine events</strong>, and via <strong>surface events</strong>.</p>
+
+<h3 id="surface-events">Surface events</h3>
+
+<p>Surface events are emitted from <a href="surfaces.html">surfaces</a>. We can listen to all of the familiar events that are available in vanilla <a href="glossary.html#dom">DOM</a>, including:</p>
+
+<ul>
+  <li>click — when the mouse button is pressed and released</li>
+  <li>mousedown — when the mouse button is pressed</li>
+  <li>mousemove — when the mouse cursor is moved</li>
+  <li>mouseup — when the mouse button is released</li>
+  <li>mouseover — when the mouse cursor hovers over an element</li>
+  <li>mouseout — when the mouse cursor leaves an element</li>
+  <li>touchstart — when fingers first touch the screen</li>
+  <li>touchmove — when fingers move across the screen</li>
+  <li>touchend — when fingers are removed from the screen</li>
+  <li>touchcancel — when the system cancels the touch event</li>
+  <li>keydown — when a keyboard key is pressed down</li>
+  <li>keyup — when a keyboard key is released</li>
+  <li>keypress — when a character key is pressed down</li>
+</ul>
+
+<p>To listen for any of these, we use the surface’s <code>.on()</code> method, passing it the event name string as the first argument, and a callback function as the second. Example:</p>
+
+<pre><code>var surface = new Surface();
+
+surface.on('click', function(event) {
+   // Handle the click event here. 
+});
+</code></pre>
+
+<h2 id="engine-events">Engine events</h2>
+
+<p>When an input event, such as a click, isn’t intercepted by a surface or a <a href="the-engine-and-contexts.html#contexts">context</a>, they propagate up to the <a href="the-engine-and-contexts.html">engine</a>. (As we’ll cover in the <a href="events.html">program events</a> section, the engine can also receive and emit generic events.) We can thus use the engine as a catch-all to make sure we handle all events that occur in the application. As with surfaces, we use the <code>.on()</code> method:</p>
+
+<pre><code>Engine.on('click', function(event) {
+    // Handle the click event that was
+    // not intercepted 
+});
+</code></pre>
+
+<p><em>(Note: The engine also emits several events unrelated to user input. For those, see the <a href="the-engine-and-contexts.html">engine section</a>.)</em></p>
+
+<h2 id="synchronizing-input">Synchronizing input</h2>
+
+<p>In the real world, our applications need to be able to <strong>handle input that comes from multiple elements, as well as multiple types of input</strong>. For example, we may need to listen to events from multiple surfaces. Also, we may need to handle both mouse events and touch events. However, handling all the variations in an application can get complex.</p>
+
+<p>To solve this problem, Famo.us provides <strong>sync classes</strong> that can pull these different events together into one interface, and even merge event types that should be treated the same.</p>
+
+<h3 id="genericsync">GenericSync</h3>
+
+<p>The <code>GenericSync</code> class is the most commonly used sync class, because it allows us to merge both mouse and touch input into a single interface. Here’s how to use it.</p>
+
+<p><strong>1. Load sync modules.</strong> We first need to load sync modules for all the types of input we want it to handle:</p>
+
+<pre><code>var MouseSync = famous.inputs.MouseSync;
+var TouchSync = famous.inputs.ScrollSync;
+var GenericSync = famous.inputs.GenericSync;
+</code></pre>
+
+<p><strong>2. Register keys for each module.</strong> Next, we must register each of these sync modules with a special string key. This gives us a way of referencing their merged output from <code>GenericSync</code> later. The class’ <code>.register()</code> function takes an object whose property names are the keys, and whose property values are the sync classes themselves:</p>
+
+<pre><code>GenericSync.register({
+    'mouse': MouseSync,
+    'touch': TouchSync
+});
+</code></pre>
+
+<p><strong>3. Create a sync instance.</strong> Then we create a sync <em>instance</em> that will emit events from only the sources (keys) we specify:</p>
+
+<pre><code>// This `sync` instance will emit events from both
+// mouse and touch sources.
+var sync = new GenericSync(['mouse', 'touch']);
+
+// We could create a separate sync that only emits
+// events from one of the sources.
+var otherSync = new GenericSync(['mouse']);
+</code></pre>
+
+<p><strong>4. Pipe events to the sync instance.</strong> The sync instance isn’t very useful until we start sending it events to synchronize. We can pipe events to it from any object that emits them. For example, a surface:</p>
+
+<pre><code>var sync = new GenericSync(['mouse', 'touch']);
+var surface = new Surface();
+surface.pipe(sync);
+</code></pre>
+
+<p><strong>5. Listen to the sync instance.</strong> Now that the sync instance is receiving events from the surface, we can listen to events <em>from the sync</em>, which will transparemtly merge together touch and mouse events.</p>
+
+<p>Since the sync instance is an abstraction on top of direct mouse and touch events, <strong>the standard DOM events are not available</strong>. Instead, we listen for the <code>start</code>, <code>update</code>, and <code>end</code> events:</p>
+
+<pre><code>sync.on('start', function(event) {
+    // Fires when a pointer action starts
+    // (When the mouse goes down or a touch begins)
+});
+
+sync.on('update', function(event) {
+    // Fires on every update of the pointer
+    // (When the mouse/touch moves)
+});
+
+sync.on('end', function(event) {
+    // Fires when the pointer action ends
+    // (When the mouse/touch is released)
+});
+</code></pre>
+
+<h4 id="sync-event-properties">Sync event properties</h4>
+
+<p>The <code>MouseSync</code> and <code>TouchSync</code> modules both emit event objects with several convenient properties you can use when building up your application’s interactivity:</p>
+
+<ul>
+  <li><code>position</code> The screen position of the pointer event</li>
+  <li><code>delta</code> The change in position since the last event</li>
+  <li><code>velocity</code> The velocity of the movement</li>
+  <li><code>clientX</code>/<code>clientY</code> Position values with respect to the viewport</li>
+  <li><code>offsetX</code>/<code>offsetY</code> Position values with respect to the element</li>
+</ul>
+
+<h3 id="other-sync-modules">Other sync modules</h3>
+
+<p>Famo.us also includes several other modules you can use when capturing and synchronizing input:</p>
+
+<ul>
+  <li><strong>PinchSync:</strong> Two-finger touch events to change position via pinching / expanding.</li>
+  <li><strong>RotateSync:</strong> Two-finger touch events to support rotation.</li>
+  <li><strong>ScaleSync:</strong> Two-finger touch events to increase or decrease scale via pinching / expanding.</li>
+  <li><strong>ScrollSync:</strong> Mousewheel events.</li>
+</ul>
+
+<p><a href="events.html">Next: Using program events »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/user-input.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:02 GMT -->
+</html>

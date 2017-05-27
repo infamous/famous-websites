@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/overview.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:32:58 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Overview | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="http://code.famo.us/famous-starter-kit/famous-starter-kit.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="overview">Overview</h1>
+
+<p><strong>Famo.us</strong> is a JavaScript platform for building high-performance user interfaces. It’s free to use and <a href="https://github.com/Famous/famous">the source is on GitHub</a>. It’s written in mainstream web technologies, supported by modern web browsers and mobile devices, and is compatible with <a href="cordova-phonegap.html">tools</a> that package websites into smartphone applications. The current stable version is <a href="https://github.com/Famous/famous/tree/v0.3.2">0.3.5</a>.</p>
+
+<h2 id="what-can-i-build-with-famous">What can I build with Famo.us?</h2>
+
+<p>Famo.us is a platform for <strong>building user interfaces</strong>. Anything the user can see or directly interact with — a navigation menu, a game, an advertisement, a single-page app — is a candidate to be built in Famo.us.</p>
+
+<h2 id="what-is-it-like-to-build-with-famous">What is it like to build with Famo.us?</h2>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group s1
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var context = Engine.createContext();
+var surface = new Surface({
+  size: [200, 200],
+  content: 'Hello world!&lt;br&gt;&lt;br&gt;I am a &lt;strong&gt;surface&lt;/strong&gt;, the basic way to display content in Famo.us.',
+  properties: {
+    textAlign: 'center',
+    padding: '1em',
+    backgroundColor: '#fa5c4f'
+  }
+});
+context.add(surface);
+</code></pre>
+
+<p>The example above gives a solid first look at what it’s like to build with Famo.us. In it, we can see how a few of the core components of Famo.us interact: we use an <em><a href="the-engine-and-contexts.html">engine</a></em> to create a <em><a href="the-engine-and-contexts.html#contexts">context</a></em> in which a <em><a href="surfaces.html">surface</a></em> is displayed.</p>
+
+<p>Suppose we wanted to <strong>center some content</strong> on the screen. Making this kind of change in plain HTML and CSS can be surprisingly tricky. In Famo.us, we use an object called a <a href="modifiers.html">modifier</a> and two properties, <code>align</code> and <code>origin</code>, to put content in the center of the screen.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group s2
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+  size: [200, 200],
+  content: 'Content can easily be centered using a &lt;em&gt;modifier&lt;/em&gt; to control its alignment and origin point.',
+  properties: {
+    textAlign: 'center',
+    padding: '1em',
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+var modifier = new StateModifier({
+  align: [0.5, 0.5],
+  origin: [0.5, 0.5]
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<p>Broadly speaking, when working with Famo.us, you will:</p>
+
+<ul>
+  <li><strong>Spend most of your time writing JavaScript — just JavaScript.</strong> You’ll occasionally write CSS. You’ll write HTML even less frequently. Famo.us has been designed with richly interactive apps and games in mind.</li>
+  <li><strong>Write in a modular style.</strong> Famo.us works best when you approach development using modular programming techniques. In JavaScript, this means you’ll need a strong understanding of <a href="glossary.html#prototypal-inheritance">prototypal inheritance</a> and composition. In Famo.us, you’ll build your interface out of encapsulated <em><a href="views.html">views</a></em> that communicate via <em><a href="events.html">events</a></em>.</li>
+  <li><strong>Consider interactivity from the very start.</strong> If you’re already a web developer, you may be accustomed to building out your static elements first, and only then adding interaction on top. But, as the whole purpose of Famo.us is rich interaction, it makes sense to flip your thinking and ask: How will my app <em>behave</em>?</li>
+</ul>
+
+<h2 id="paradigm-shift">Paradigm shift</h2>
+
+<p>Although Famo.us is built in a familiar language, <strong>coding in Famo.us may feel a bit unusual at first</strong>, especially if you’re accustomed to building UIs with conventional HTML, CSS, and JavaScript. Notions like <em>normal flow</em> and <em>floated elements</em>, the bread and butter of modern website constructions, are peripheral — even completely avoided — when using Famo.us.</p>
+
+<p>In fact, building an interface in Famo.us feels a lot more like building a native app than it does building a website. That’s why many developers love to use it, but it can take getting used to!</p>
+
+<p>Many techniques that are second nature for experienced web developers have been designed out of Famo.us entirely. Before you start coding, think through the differences covered here. Understanding how a Famo.us application differs from a conventional website will save you time — and potentially a lot of head-scratching.</p>
+
+<h3 id="document-vs-context">Document vs. context</h3>
+
+<p>When building a traditional webpage, our text content, image assets, icons, and structural elements are all said to live on a page or within the <em>document</em>. But in Famo.us, <strong>we call that home for elements the <em>context</em></strong>. The <a href="the-engine-and-contexts.html#contexts">context</a> is similar to what other multimedia platforms call the “stage”. The Famo.us context is simply an area where visible content is displayed. Since its behavior is very unlike a real-world page, it’s incorrect to think of it as one.</p>
+
+<h3 id="fixed-vs-flexible-coordinate-origin">Fixed vs. flexible coordinate origin</h3>
+
+<p>In traditional webpages, the coordinates <code>(0, 0)</code> always represent the top-left corner of the document, or the top-left corner of a specific element. In Famo.us, <strong>that origin point is fully controllable by the programmer</strong>, and can vary across elements. In Famo.us, the combined concepts of <a href="positioning.html">align and origin</a> are used together to position elements with respect to points in space.</p>
+
+<h3 id="hierarchical-vs-flat-elements">Hierarchical vs. flat elements</h3>
+
+<p>When developing traditional webpages, it’s widespread practice to nest HTML elements. (For example, you might have a <code>&lt;div&gt;</code> representing a sidebar component, and another <code>&lt;div&gt;</code> representing a tab button within that sidebar.) Nesting is often used to represent elements’ status within a hierarchy of information, as well as to obtain the benefit of inherited styles. But in Famo.us, <strong>you often can’t (or shouldn’t) rely on nesting</strong>. Instead, you’ll use <a href="the-render-tree-and-render-nodes.html">the render tree</a>.</p>
+
+<h3 id="parent-relative-vs-manual-positioning">Parent-relative vs. manual positioning</h3>
+
+<p>When coding a traditional webpage, it’s trivial to adjust elements’ positions with respect to their parent elements. Setting percentage-based widths in CSS, for example, is a common way of achieving a columnar layout.</p>
+
+<p>In Famo.us, accomplishing that same task involves very different <a href="responsive-sizing.html">techniques</a>. However, there’s a good reason: Famo.us makes <a href="the-render-tree-and-render-nodes.html">trade-offs</a> that enable you to do things that are downright impossible in a traditional website. And, fortunately, Famo.us provides a suite of <a href="ready-made-layouts.html">pre-built layouts</a> that cover most of the most common layouts seen around the web today.</p>
+
+<h3 id="more-to-explore">More to explore!</h3>
+
+<p>The differences covered here are just a few of those you’ll find when migrating from a more traditional webpage development approach to Famo.us. If you’ve recently started using Famo.us, and feel that something else should be included on this page, please <a href="contact.html">let us know</a>.</p>
+
+<p><a href="download-and-installation.html">Next: Download &amp; installation »</a> </p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/overview.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:33:00 GMT -->
+</html>
