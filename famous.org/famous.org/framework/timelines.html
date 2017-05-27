@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from famous.org/framework/timelines.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:34:44 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>Timelines | Famous Framework</title>
+     <script src="assets/scripts/toc.js"></script>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../index.html">
+        <object data="assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../index.html">Engine</a>
+              <a class="main-nav-link" href="index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="https://blog.famous.org/">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="hello-framework.html">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="states.html">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="control-flow.html">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="timelines.html" class="active">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24event.html">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-sections">
+    
+    <li>
+      
+      <a href="AppleTV/index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/structuring-an-app.html" >Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>Timelines</h1>
+          <p>Timelines make complex animations easy by allowing you to manipulate several behaviors over a given period of time. </p>
+
+<h2>Structure</h2>
+
+<p>To create a new timeline, use the <code>.timelines()</code> method that can be chained to the framework component. This method accepts an object with the timeline names and definitions containing selectors and behaviors. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;user:timeline-example&#39;, {
+  behaviors: {},
+  events: {}.
+  states: {}.
+  tree: &#39;&lt;node id=&quot;foo&quot;&gt;&lt;/node&gt;&#39;
+}).timelines({
+    &#39;animation1&#39;: {
+        #foo {
+        // Animate behaviors here
+        }
+    }
+});
+</code></pre></div>
+<p>Above, the <code>&#39;animation1&#39;</code> timeline targets the <code>#foo</code> node, which it will animate by accessing <code>#foo</code>&#39;s behavior functions. The <code>.timelines()</code> method can accept multiple timelines, each with any number of selectors and behavior animations contained within objects. </p>
+
+<p>Since timelines create &quot;tween&quot; animations between the values provided, only behaviors that take numerical values can be used. In other words, behaviors such as <code>&#39;content&#39;</code> or <code>&#39;style&#39;</code> cannot be used in a timeline.</p>
+
+<h2>Animating a behavior</h2>
+
+<p>We create animations by transitioning a component&#39;s behavior values smoothly over time. While transitions can be created through events, it can become burdensome when trying to coordinate multiple animations. This is where Timelines excel. Timelines allow you to specify any number of value changes between 0 - 100% of the timeline&#39;s duration.  </p>
+
+<p>Each behavior listed (under the selectors in the timeline definition) accepts an object whose keys represent percentages relating to the timeline&#39;s own duration. These can be thought of as the &quot;key frames&quot; in an animation. We then assign these duration percentages objects containing a new behavior value (under the <code>value</code> key) and an optional easing curve (under the <code>curve</code> key). </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;user:timeline-example&#39;, {
+    behaviors: {
+        &#39;#foo&#39;: {
+            &#39;size&#39;:[100,100],
+            &#39;style&#39;:{
+                &#39;background-color&#39;:&#39;blue&#39;
+            }
+        }
+    },
+    events: {}.
+    states: {}.
+    tree: &#39;&lt;node id=&quot;foo&quot;&gt;&lt;/node&gt;&#39;
+}).timelines({
+    &#39;animation1&#39;: {
+        #foo {
+            &#39;rotation-z&#39;: {
+                &#39;0%&#39;:   { value: 0, curve: &#39;linear&#39; },
+                &#39;50%&#39;:  { value: Math.PI * 2, curve: &#39;linear&#39;},
+                &#39;100%&#39;:  { value: 0, curve: &#39;linear&#39; }
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>Starting at rotation of zero, we rotate <code>#foo</code>&#39;s <code>&#39;rotation-z&#39;</code> behavior PI * 2 radians (one full rotation) by the halfway mark (50%) and then reverse its rotation back to 0 using a linear curve. Behind the scenes, the timeline creates a smooth transition between these values and gives us a spinning animation.</p>
+
+<h2>Adding an event</h2>
+
+<p>Once a timeline is defined, event functions can access it by dependency injecting the <code>$timelines</code> object. This object exposes a <code>.get()</code> method for locating an animation and a <code>.start()</code> method for triggering it.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">events: {
+    &#39;#foo&#39;: {
+        &#39;click&#39;: function($timelines){
+            $timelines.get(&#39;animation1&#39;).start({ duration: 2000 });
+        }
+    }
+}
+</code></pre></div>
+<p>Note how we pass the <code>$timeline.start()</code> method an object with a duration in milliseconds. This duration will be used to trigger the behavior changes assigned to percentage values in the timeline. So, at 1 second in or halfway through the animation (50% of 2000ms), the <code>#foo</code> node will finish rotating in a complete circle.   </p>
+
+<h2>Animating multiple behaviors</h2>
+
+<p>We can define multiple timelines, each with multiple selectors and behaviors. Below is a slightly more complex example with 2 animations. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    .timelines({
+        &#39;animation1&#39;: {
+            // Animation 1 code
+        },
+        &#39;animation2&#39;: {
+            &#39;#foo&#39;: {
+                &#39;scale&#39;: {
+                    &#39;0%&#39;:   { value: [1,1] },
+                    &#39;50%&#39;:  { value: [0,0], curve: &#39;easeInOut&#39;},
+                    &#39;100%&#39;:  { value: [1,1], curve: &#39;inOutBounce&#39; }
+                },
+                &#39;position&#39;: {
+                    &#39;0%&#39;:   { value: [0, 0, 0], curve: &#39;linear&#39; },
+                    &#39;50%&#39;:  { value: [-500, -500, 0], curve: &#39;easeOutBounce&#39;},
+                    &#39;100%&#39;:  { value: [0, 0, 0], curve: &#39;easeOutBounce&#39; }
+                },
+                &#39;rotation-z&#39;: {
+                    &#39;0%&#39;:   { value: 0 },
+                    &#39;50%&#39;:  { value: Math.PI * 2},
+                    &#39;100%&#39;:  { value: 0, curve: &#39;outBounce&#39; }
+                }
+            },
+            &#39;#bar&#39;:{
+                &#39;scale&#39;: {
+                    &#39;0%&#39;: [0.5,0.5],
+                    &#39;50%&#39;:[1,1]
+                }
+
+                // additional behaviors can go here
+
+            }
+        }
+    });
+</code></pre></div>
+<p>These timelines can be targeted individually using <code>$timelines.get()</code>, or added to a timeline queue.</p>
+
+<h2>Creating an animation queue</h2>
+
+<p>The <code>$timelines</code> object can queue muliple animations using the <code>.queue()</code> method.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$timelines.queue([
+    [ &#39;animation1&#39;, { duration: 2000 }],
+    [ &#39;animation2&#39;, { duration: 2000 }]
+]).startQueue();
+</code></pre></div>
+<p>The <code>.queue()</code> method accepts multiple animations passed in as an array of arrays. </p>
+
+<h2>Callbacks</h2>
+
+<p>The <code>$timelines.queue()</code> method can also be used to trigger callback functions at the end of animations. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">events: {
+    &#39;#foo&#39;: {
+        &#39;click&#39;: function($timelines){
+            // $timelines.get(&#39;animation1&#39;).start({ duration: 1500 });
+            $timelines.queue([
+                [ &#39;animation1&#39;, { duration: 2000 }, ()=&gt; console.log(&#39;Animation 1 finished&#39;)],
+                [ &#39;animation2&#39;, { duration: 2000 }, ()=&gt; console.log(&#39;Animation 2 finished&#39;)]
+            ], function(){
+                console.log(&quot;All of the animation are finished&quot;);
+            }).startQueue();
+        }
+    }
+}
+</code></pre></div>
+<p>Add a callback as the third item in the timeline selector array passed to the <code>.queue()</code> method. After the animation in the array is complete, the callback will fire before calling on the next animation. <code>.startQueue()</code> begins the entire animation sequence.</p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="next-prev-container">
+          
+            <a class="previous" rel="prev" href="static-assets.html" title="Static Assets">Static Assets</a>
+          
+          <div class="separator"></div>
+          
+            <a class="next" rel="next" href="%24dispatcher.html" title="API Docs">API Docs</a>
+          
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../terms.html">Terms</a>
+          <a href="../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from famous.org/framework/timelines.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:34:44 GMT -->
+</html>

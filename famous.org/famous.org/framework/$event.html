@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from famous.org/framework/$event.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:34:44 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>$event | Famous Framework</title>
+     <script src="assets/scripts/toc.js"></script>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../index.html">
+        <object data="assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../index.html">Engine</a>
+              <a class="main-nav-link" href="index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="https://blog.famous.org/">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="hello-framework.html">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="states.html">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="control-flow.html">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="timelines.html">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24event.html" class="active">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-sections">
+    
+    <li>
+      
+      <a href="AppleTV/index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/structuring-an-app.html" >Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>$event</h1>
+          <p><code>$event</code> is an object corresponding to an event created by <code>$dispatcher.emit</code>/<code>$dispatcher.broadcast</code> or a UI event captured by the <code>famous:events</code> module. <code>$event</code> can be dependency injected into any event function. However, if the event function was not triggered by a <code>$dispatcher</code> or by a UI event processed by the <code>famous:events</code> module, the value of <code>$event</code> will be <code>null</code>.</p>
+
+<p>Example when event handler is triggered by a behavior: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:foo&#39;, {
+    behaviors: {
+        &#39;$self&#39; : {
+            &#39;my-event&#39; : 10
+        }
+    },
+    events: {
+        &#39;$private&#39; : {
+            &#39;my-event&#39; : function($payload, $event) {
+                // $event === null
+                // $payload === 10
+            }
+        }
+    },
+});
+</code></pre></div>
+<p>Example when event handler is triggered by <code>$dispatcher.trigger</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:foo&#39;, {
+    events: {
+        &#39;$lifecycle&#39; : {
+            &#39;post-load&#39; : function($dispatcher) {
+                $dispatcher.trigger(&#39;start&#39;, {value: &#39;bar&#39;});
+            }
+        },
+        &#39;$public&#39; : {
+            &#39;start&#39; : function($event, $payload) {
+                debugger;
+                // $event === null
+                // $payload --&gt; {value: &#39;bar&#39;}
+            }
+        }
+    },
+});
+</code></pre></div>
+<p>Example when event handler is triggered by <code>$dispatcher.broadcast</code></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:parent&#39;, {
+    events: {
+        &#39;$lifecycle&#39; : {
+            &#39;post-load&#39; : function($dispatcher) {
+                $dispatcher.broadcast(&#39;parent-loaded&#39;, {loaded: true});
+            }
+        }
+    },
+    tree: `
+        &lt;username:child id=&quot;child&quot;&gt;&lt;/username:child&gt;
+    `
+});
+
+FamousFramework.scene(&#39;username:child&#39;, {
+    events: {
+        &#39;$self&#39; : {
+            &#39;parent-loaded&#39; : function($event, $payload) {
+                // $event is a CustomEvent (https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent)
+                // $payload --&gt; {loaded: true}
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>Example when event handler is triggered by <code>$dispatcher.emit</code></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:parent&#39;, {
+    events: {
+        &#39;$lifecycle&#39; : {
+            &#39;post-load&#39; : function($dispatcher) {
+                $dispatcher.broadcast(&#39;parent-loaded&#39;, {loaded: true});
+            }
+        },
+        &#39;$self&#39;: {
+          &#39;my-event&#39;: function($payload) {
+            // $event is a CustomEvent (https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent)
+            // $payload --&gt; true
+          }
+        }
+    },
+    tree: `
+        &lt;username:child id=&quot;child&quot;&gt;&lt;/username:child&gt;
+    `
+});
+
+FamousFramework.scene(&#39;username:child&#39;, {
+    events: {
+        &#39;$self&#39; : {
+            &#39;parent-loaded&#39; : function($event, $payload) {
+                $dispatcher.emit(&#39;my-event&#39;, true);
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>Example when event handler is triggered by a native UI event processed by <code>famous:events</code>.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:foo&#39;, {
+    events: {
+        &#39;$self&#39; : {
+            &#39;click&#39; : function($event, $payload) {
+                // $event is a MouseEvent that has been processed by FamousEngine.
+                // The type of event will vary based on the event listener
+                // (i.e. &#39;touchstart&#39; will be a TouchEvent).
+
+                // $payload === null
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>Note that by default, an event named <code>click</code> will get expanded to <code>famous:events:click</code> and <code>famous:events</code> will properly register the UI events on to the component via FamousEngine.</p>
+
+<p>Other event names corresponding to native UI events that automatically get prefixed with <code>famous:events</code> are:</p>
+
+<p><code>abort</code>, <code>beforeinput</code>, <code>blur</code>, <code>click</code>, <code>compositionend</code>, <code>compositionstart</code>, <code>compositionupdate</code>, <code>dblclick</code>, <code>focus</code>, <code>focusin</code>, <code>focusout</code>, <code>input</code>, <code>keydown</code>, <code>keyup</code>, <code>mousedown</code>, <code>mouseenter</code>, <code>mouseleave</code>, <code>mousemove</code>, <code>mouseout</code>, <code>mouseover</code>, <code>mouseup</code>, <code>scroll</code>, <code>select</code>, <code>touchcancel</code>, <code>touchend</code>, <code>touchmove</code>, <code>touchstart</code>, and <code>wheel</code>.</p>
+
+<p>Example when event handler is triggered by a Gesture event processed by <code>famous:events</code>.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.scene(&#39;username:foo&#39;, {
+    events: {
+        &#39;$self&#39; : {
+            &#39;drag&#39; : function($event, $payload) {
+                // $event is a custom FamousEngine generated object with 
+                // data corresponding to the gesture.
+
+                // $payload === null
+            }
+        }
+    }
+});
+
+</code></pre></div>
+<p>Other event names corresponding to FamousEngine supported gestures are <code>pinch</code>, <code>rotate</code>, and <code>tap</code>.</p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="next-prev-container">
+          
+            <a class="previous" rel="prev" href="%24dispatcher.html" title="$dispatcher">$dispatcher</a>
+          
+          <div class="separator"></div>
+          
+            <a class="next" rel="next" href="%24index.html" title="$index">$index</a>
+          
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../terms.html">Terms</a>
+          <a href="../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from famous.org/framework/$event.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:34:44 GMT -->
+</html>

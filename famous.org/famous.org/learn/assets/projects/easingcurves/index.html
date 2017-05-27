@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from famous.org/learn/assets/projects/easingcurves/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:37:47 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+        <style>
+
+        body{
+          
+            font-family: verdana;
+            -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+            overflow: scroll !important;
+
+        }
+
+         .easing-curve-graph {
+            margin: 0;
+            padding: 0;
+            border: none;
+            width: 200px;
+            height: 75px;
+        }
+
+        .easing-curve-container {
+            width: 200px;
+            height: 75px;
+            overflow: hidden;
+        }
+        
+        </style>
+    </head>
+    <body>
+    <table id="easing-curve-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Graph</th>
+                <th>Demo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>linear</td>
+                <td><canvas class="easing-curve-graph" id="linear-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="linear-container"></div></td>
+            </tr>
+             <tr>
+                <td>easeIn</td>
+                <td><canvas class="easing-curve-graph" id="easeIn-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="easeIn-container"></div></td>
+            </tr>
+             <tr>
+                <td>easeOut</td>
+                <td><canvas class="easing-curve-graph" id="easeOut-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="easeOut-container"></div></td>
+            </tr>
+             <tr>
+                <td>easeInOut</td>
+                <td><canvas class="easing-curve-graph" id="easeInOut-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="easeInOut-container"></div></td>
+            </tr>
+             <tr>
+                <td>easeOutBounce</td>
+                <td><canvas class="easing-curve-graph" id="easeOutBounce-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="easeOutBounce-container"></div></td>
+            </tr>
+             <tr>
+                <td>spring</td>
+                <td><canvas class="easing-curve-graph" id="spring-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="spring-container"></div></td>
+            </tr>
+            <tr>
+                <td>inQuad</td>
+                <td><canvas class="easing-curve-graph" id="inQuad-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inQuad-container"></div></td>
+            </tr>
+            <tr>
+                <td>outQuad</td>
+                <td><canvas class="easing-curve-graph" id="outQuad-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outQuad-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutQuad</td>
+                <td><canvas class="easing-curve-graph" id="inOutQuad-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutQuad-container"></div></td>
+            </tr>
+            <tr>
+                <td>inCubic</td>
+                <td><canvas class="easing-curve-graph" id="inCubic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inCubic-container"></div></td>
+            </tr>
+            <tr>
+                <td>outCubic</td>
+                <td><canvas class="easing-curve-graph" id="outCubic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outCubic-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutCubic</td>
+                <td><canvas class="easing-curve-graph" id="inOutCubic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutCubic-container"></div></td>
+            </tr>
+            <tr>
+                <td>inQuart</td>
+                <td><canvas class="easing-curve-graph" id="inQuart-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inQuart-container"></div></td>
+            </tr>
+            <tr>
+                <td>outQuart</td>
+                <td><canvas class="easing-curve-graph" id="outQuart-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outQuart-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutQuart</td>
+                <td><canvas class="easing-curve-graph" id="inOutQuart-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutQuart-container"></div></td>
+            </tr>
+            <tr>
+                <td>inQuint</td>
+                <td><canvas class="easing-curve-graph" id="inQuint-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inQuint-container"></div></td>
+            </tr>
+            <tr>
+                <td>outQuint</td>
+                <td><canvas class="easing-curve-graph" id="outQuint-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outQuint-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutQuint</td>
+                <td><canvas class="easing-curve-graph" id="inOutQuint-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutQuint-container"></div></td>
+            </tr>
+            <tr>
+                <td>inSine</td>
+                <td><canvas class="easing-curve-graph" id="inSine-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inSine-container"></div></td>
+            </tr>
+            <tr>
+                <td>outSine</td>
+                <td><canvas class="easing-curve-graph" id="outSine-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outSine-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutSine</td>
+                <td><canvas class="easing-curve-graph" id="inOutSine-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutSine-container"></div></td>
+            </tr>
+            <tr>
+                <td>inExpo</td>
+                <td><canvas class="easing-curve-graph" id="inExpo-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inExpo-container"></div></td>
+            </tr>
+            <tr>
+                <td>outExpo</td>
+                <td><canvas class="easing-curve-graph" id="outExpo-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outExpo-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutExpo</td>
+                <td><canvas class="easing-curve-graph" id="inOutExpo-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutExpo-container"></div></td>
+            </tr>
+            <tr>
+                <td>inCirc</td>
+                <td><canvas class="easing-curve-graph" id="inCirc-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inCirc-container"></div></td>
+            </tr>
+            <tr>
+                <td>outCirc</td>
+                <td><canvas class="easing-curve-graph" id="outCirc-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outCirc-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutCirc</td>
+                <td><canvas class="easing-curve-graph" id="inOutCirc-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutCirc-container"></div></td>
+            </tr>
+            <tr>
+                <td>inElastic</td>
+                <td><canvas class="easing-curve-graph" id="inElastic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inElastic-container"></div></td>
+            </tr>
+            <tr>
+                <td>outElastic</td>
+                <td><canvas class="easing-curve-graph" id="outElastic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outElastic-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutElastic</td>
+                <td><canvas class="easing-curve-graph" id="inOutElastic-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutElastic-container"></div></td>
+            </tr>
+            <tr>
+                <td>inBack</td>
+                <td><canvas class="easing-curve-graph" id="inBack-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inBack-container"></div></td>
+            </tr>
+            <tr>
+                <td>outBack</td>
+                <td><canvas class="easing-curve-graph" id="outBack-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outBack-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutBack</td>
+                <td><canvas class="easing-curve-graph" id="inOutBack-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutBack-container"></div></td>
+            </tr>
+            <tr>
+                <td>inBounce</td>
+                <td><canvas class="easing-curve-graph" id="inBounce-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inBounce-container"></div></td>
+            </tr>
+            <tr>
+                <td>outBounce</td>
+                <td><canvas class="easing-curve-graph" id="outBounce-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="outBounce-container"></div></td>
+            </tr>
+            <tr>
+                <td>inOutBounce</td>
+                <td><canvas class="easing-curve-graph" id="inOutBounce-graph"></canvas></td>
+                <td><div class="easing-curve-container" id="inOutBounce-container"></div></td>
+            </tr>
+        </tbody>
+    </table>
+
+        <script src="main.bundle.js"></script>
+    </body>
+
+<!-- Mirrored from famous.org/learn/assets/projects/easingcurves/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 May 2017 09:37:48 GMT -->
+</html>
