@@ -6,6 +6,6 @@ To view the old sites, just clone this repo, then open the `index.html` file in
 your browser.
 
 If you serve the files with a tool like
-[http-server,](https://www.npmjs.com/package/http-server) then it may
+[http-server](https://www.npmjs.com/package/http-server), then it will
 conveniently open index.html files without "index.html" needing to be included
 in the address bar URLs.
