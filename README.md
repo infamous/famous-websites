@@ -5,6 +5,7 @@ Mainly the purpose of this is to preserve the old documentation.
 To view the old sites, just clone this repo, then open the `index.html` file in
 your browser.
 
-If you serve the files with a tool like http-server, then it will automatically
-open index.html files without having to include "index.html" in the address bar
-URLs.
+If you serve the files with a tool like
+[http-server,](https://www.npmjs.com/package/http-server) then it may
+conveniently open index.html files without "index.html" needing to be included
+in the address bar URLs.
