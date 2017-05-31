@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from deprecated.famous.org/integrations/angular/examples/example-example51/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:08:02 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-example51</title>
+  <link href="../../bower_components/famous-angular/dist/famous-angular.css" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  
+
+  <script src="../../../../../code.famo.us/famous/global/0.2.2/famous.min.js"></script>
+  <script src="../../../../../ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="../../bower_components/famous-angular/dist/famous-angular.js"></script>
+  
+
+  
+</head>
+<body ng-app="faSurfaceExampleApp">
+  <fa-app ng-controller="SurfaceCtrl">
+    <fa-modifier fa-size="sizeForBoxFunction">
+      <fa-surface fa-background-color="'red'"></fa-surface>
+    </fa-modifier>
+  </fa-app>
+
+  <script>
+    angular.module('faSurfaceExampleApp', ['famous.angular'])
+      .controller('SurfaceCtrl', ['$scope', '$famous', function($scope, $famous) {
+          
+          $scope.sizeForBoxFunction = function() {
+             return [75, 75];
+          };
+
+      }]);
+  </script>
+</body>
+
+<!-- Mirrored from deprecated.famous.org/integrations/angular/examples/example-example51/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:08:03 GMT -->
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/transforms.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:59 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Transforms | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="transforms">Transforms</h1>
+
+<p>Transforms are objects that encapsulate the four transformation components: translation, rotation, scale, and skew.</p>
+
+<ul>
+  <li><strong>Translation</strong> — a change in position relative to the current position</li>
+  <li><strong>Rotation</strong> — a change in X-, Y-, or Z-axis rotation in space</li>
+  <li><strong>Scale</strong> — a change in size relative to the current size</li>
+  <li><strong>Skew</strong> — a distortion affecting the apparent “tilt” of the element</li>
+</ul>
+
+<p>Transforms correspond directly to the <a href="glossary.html#css3-transformation-matrix">CSS3 transformation matrix</a>, combining their four components into a 16-element array. In conjunction with <a href="modifiers.html">modifiers</a>, they can be applied to <a href="glossary.html#renderable">renderables</a> to produce visual effects.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Since Famo.us styles all DOM elements with <code>position: absolute</code>, their positions must be defined by transform objects. <strong>In fact, this is the core technique that makes the Famo.us platform performant.</strong></p>
+
+<p>The <code>Transform</code> class provides functions to break down a full transform into the four components. It also to provides functions to build up full transforms from them. In combination, we can use these functions to make elements appear to move, spin, and orient themselves in space.</p>
+
+<p>All of the <code>Transform</code> class’ functions return a full transform matrix. Modifiers insert that transform into the <a href="the-render-tree-and-render-nodes.html">render tree</a>, which applies it to all the elements beneath it. Now let’s take a look at how transforms are used in practice.</p>
+
+<h2 id="how-to-use-transform-objects">How to use transform objects</h2>
+
+<p>In general, we assign the output of a transform object to the <code>transform</code> property of a <a href="modifiers.html">modifier</a>. The modifier handles applying that transform to the appropriate elements in the render tree. For example:</p>
+
+<pre><code>var modifier = new Modifier({
+    transform: Transform.translate(100, 200, 300) 
+});
+</code></pre>
+
+<p>If we take the above snippet, and replace the transform’s <code>.translate()</code> method invocation with its output, the stanza above would look like this:</p>
+
+<pre><code>var modifier = new Modifier({
+    transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100, 200, 300, 1]
+});
+</code></pre>
+
+<p>That output, in turn, maps to a CSS <code>matrix3d</code> transform:</p>
+
+<pre><code>transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100, 200, 300, 1);
+</code></pre>
+
+<h2 id="transform-primitives">Transform primitives</h2>
+
+<p>We can do more with transforms than just <code>.translate()</code> elements as shown in the examples above. All transforms are built up from the following transform primitives, beginning with <code>identity</code>, which represents an “unchanged” transform state. The transform primitives possible are:</p>
+
+<ul>
+  <li>Identity</li>
+  <li>Translate</li>
+  <li>Scale</li>
+  <li>Rotation</li>
+  <li>Skew</li>
+</ul>
+
+<p>The translate, scale, rotate, and skew components all have default values:</p>
+
+<ul>
+  <li>Translation <code>[0, 0, 0]</code></li>
+  <li>Rotation <code>[0, 0, 0]</code></li>
+  <li>Scale <code>[1, 1, 1]</code></li>
+  <li>Skew <code>[0, 0, 0]</code></li>
+</ul>
+
+<p>Now, let’s look at how to use each of these primitives individually:</p>
+
+<h3 id="identity">Identity</h3>
+
+<p><code>Transform.identity</code> returns a 16-element array that represents <em>no change</em>:</p>
+
+<pre><code>Transform.identity
+=&gt; [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+    size: [200, 200],
+    content: 'No change!',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+var modifier = new Modifier({
+    transform: Transform.identity
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h3 id="translate">Translate</h3>
+
+<p><code>Transform.translate(x, y, z)</code> takes three numbers representing pixels, and returns a 16-element array that represents a translation in each of the three directions.</p>
+
+<pre><code>Transform.translate(x, y, z);
+=&gt; [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+    size: [200, 200],
+    content: 'Translated!',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+var modifier = new Modifier({
+    transform: Transform.translate(100, 200)
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h3 id="scale">Scale</h3>
+
+<p><code>Transform.scale(x, y, z)</code> takes three numbers representing scale factors, returns a 16-element array that represents a change in scale in each of the three directions.</p>
+
+<pre><code>Transform.scale(x, y, z);
+=&gt; [x, 0, 0, 0, 0, y, 0, 0, 0, 0, z, 0, 0, 0, 0, 1]
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+    size: [200, 200],
+    content: 'Scaled!',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+var modifier = new Modifier({
+    transform: Transform.scale(1.5, 2.0)
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h3 id="rotate">Rotate</h3>
+
+<p><code>Transform.rotateX(theta)</code>, <code>Transform.rotateY(theta)</code>, and <code>Transform.rotateZ(theta)</code> take in a value in radians, and return a 16-element array that represents a rotation in each of the the respective directions. (A shorthand, <code>Tranform.rotate(x, y, z)</code>, is also available.)</p>
+
+<pre><code>Transform.rotateX(theta);
+=&gt; [1, 0, 0, 0, 0, cos(theta), -sin(theta), 0, 0, sin(theta), cos(theta), 0, 0, 0, 0, 1]
+
+Transform.rotateY(theta);
+=&gt; [cos(theta), 0, sin(theta), 0, 0, 1, 0, 0, sin(theta), 0, cos(theta), 0, 0, 0, 0, 1]
+
+Transform.rotateZ(theta);
+=&gt; [cos(theta), -sin(theta), 0, 0, sin(theta), cos(theta), 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+    size: [200, 200],
+    content: 'Rotated!',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+var modifier = new Modifier({
+    transform: Transform.rotate(0.5, 1.0, 0.4)
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h3 id="skew">Skew</h3>
+
+<p><code>Transform.skewX(theta)</code> and <code>Transform.skewY(theta)</code> take in a value in radians, and return a 16-element array that represents a distortion.</p>
+
+<pre><code>Transform.skewX(theta)
+=&gt; [1, 0, 0, 0, tan(theta), 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+
+Transform.skewY(theta)
+=&gt; [1, tan(theta), 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transform = famous.core.Transform;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+    size: [200, 200],
+    content: 'Skewed!',
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+var modifier = new Modifier({
+    transform: Transform.skewX(0.5)
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h2 id="front--behind">Front / behind</h2>
+
+<p>The <code>Transform</code> class also has two preset transforms that can be used move the apparent placement of renderables toward or away from the screen. These are useful when layering renderables.</p>
+
+<h3 id="front">Front</h3>
+
+<p>The <code>Transform.inFront</code> property provides a small Z-translation forward toward the user.</p>
+
+<h3 id="behind">Behind</h3>
+
+<p>The <code>Transform.behind</code> property provides a small Z-translation backward away from the user.</p>
+
+<p><a href="layout.html">Next: Layout »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/transforms.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:59 GMT -->
+</html>

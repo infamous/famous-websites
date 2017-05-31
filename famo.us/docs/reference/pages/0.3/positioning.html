@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/positioning.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:59 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Positioning Elements | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="positioning-elements">Positioning Elements</h1>
+
+<p>To position elements in Famo.us, we use two key properties: <code>align</code> and <code>origin</code>.</p>
+
+<p>The <code>align</code> property sets the anchor point on the <em>parent</em> element, while the <code>origin</code> property sets the anchor point on the <em>child</em> element. Together, these allow the <a href="the-engine-and-contexts.html">engine</a> to determine where the elements should be placed when rendered.</p>
+
+<h2 id="align">Align</h2>
+
+<p>The <code>align</code> property is a reference point that the child uses when positioning itself <em>within a parent context</em>. The align reference point can be anywhere within the parent, but by default it is located at <code>[0, 0]</code>, the top-left of the parent context.</p>
+
+<h2 id="origin">Origin</h2>
+
+<p>The <code>origin</code> property is an <em>element’s own origin point</em>. That is, it’s the anchor point that an element uses when positioning itself. The origin reference point can be anywhere within the element, but by default it is located at <code>[0, 0]</code>, the top-left corner of the element.</p>
+
+<h2 id="putting-align-and-origin-together">Putting align and origin together</h2>
+
+<p>Align and origin are not much of anything without one another. When we position an element in Famo.us, we are really saying, “Place this element on the screen such that its <code>origin</code> point is in the same place as the parent’s <code>align</code> point.” To better understand, take a look at this example:</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group ao
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+
+var mainContext = Engine.createContext();
+
+var modifier = new Modifier({
+  origin: [0.5, 0.5], // The center of the element
+  align: [0.5, 0.5] // The center of the parent
+});
+
+var square = new Surface({
+  size: [100, 100],
+  properties: {
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+mainContext.add(square);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group ao
+// @famous-block-option textPanelActive true
+// @famous-block-option pictureInPicture true
+// @famous-block-filename en.md
+# Try It!
+
+Try changing the values for `origin` and `align` in the main `modifier` in this code example.
+
+What happens if you change the `align` value to `[0, 0]`?
+
+What happens if you change both `align` and `origin` value to `[1, 1]`?
+</code></pre>
+
+<h2 id="align-vs-origin">Align vs. Origin</h2>
+
+<p>Let’s add a crosshair to show where the center of the context is, so we can get an even clearer look at how <code>align</code> and <code>origin</code> interact. In this example, <code>lightSquare</code> has its align set to <code>[0.5, 0.5]</code>. <code>darkSquare</code>, on the other hand, has its default origin overridden. While its align is the same as lightSquare, setting the origin to <code>[1, 1]</code> positions its bottom right corner in the context center.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Transform = famous.core.Transform;
+var StateModifier = famous.modifiers.StateModifier;
+
+var mainContext = Engine.createContext();
+
+var lightSquare = new Surface({
+  size: [100, 100],
+  properties: {
+    color: '#000000',
+    backgroundColor: '#aaaaaa'
+  }
+});
+
+var darkSquare = new Surface({
+  size: [100, 100],
+  properties: {
+    color: '#dddddd',
+    backgroundColor: '#666666'
+  }
+});
+
+var centerCircle = new Surface({
+  size: [15, 15],
+  properties: {
+    border: '1px solid #dddddd',
+    borderRadius: '7px'
+  }
+});
+
+var horizontalRule = new Surface({
+  size: [undefined, 1],
+  properties: {
+    backgroundColor: '#ffffff'
+  }
+});
+
+var verticalRule = new Surface({
+  size: [1, undefined],
+  properties: {
+    backgroundColor: '#ffffff'
+  }
+});
+
+var originModifier = new StateModifier({
+  origin: [0.5, 0.5],
+  align: [0.5, 0.5]
+});
+
+var alignModifier = new StateModifier({
+  align: [0.5, 0.5],
+  origin: [0, 0]
+});
+
+var alignOriginModifier = new StateModifier({
+  align: [0.5, 0.5],
+  origin: [1, 1]
+});
+
+mainContext.add(alignModifier).add(lightSquare);
+mainContext.add(alignOriginModifier).add(darkSquare);
+
+/* Bonus section! */
+// Constructing this crosshair involves
+// adding multiple surfaces to originModifier.
+// To do this correctly, declare the modifier's
+// place in the scene graph as a variable.
+
+var node = mainContext.add(originModifier);
+node.add(verticalRule);
+node.add(horizontalRule);
+node.add(centerCircle);
+</code></pre>
+
+<h2 id="origin-and-transforms">Origin and Transforms</h2>
+
+<p>Changing the <code>origin</code> does more than just change the anchor point on the child element. <strong>Origin is also the point about which <a href="transforms.html">transforms</a> get applied.</strong> Here, we set <code>origin</code> to <code>[0.5, 0.5]</code> so that its rotation transform rotates the element about its center. If you set the origin to <code>[0, 0]</code>, what do you think will happen? Give it a try!</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Transform = famous.core.Transform;
+var Modifier = famous.core.Modifier;
+
+var mainContext = Engine.createContext();
+
+var surface = new Surface({
+  size: [200, 200],
+  properties: {
+    color: 'white',
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+var modifier = new Modifier({
+  align: [0.5, 0.5],
+  origin: [0.5, 0.5]
+});
+
+var z = 0.01;
+modifier.transformFrom(function() {
+  return Transform.rotateZ(z += 0.01);
+});
+
+mainContext.add(modifier).add(surface);
+</code></pre>
+
+<p><a href="ready-made-layouts.html">Next: Ready-made Layouts »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/positioning.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:59 GMT -->
+</html>

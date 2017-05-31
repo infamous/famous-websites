@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:36:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Welcome! | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="famous-03-reference-documentation">Famo.us 0.3 Reference Documentation</h1>
+
+<p>Welcome to the reference documentation for <a href="https://github.com/Famous/famous/tree/v0.3.5">Famo.us 0.3</a>. Here, you’ll find everything you need to know about Famo.us, from the core platform to support tools to third-party integrations.</p>
+
+<h2 id="preface">Preface</h2>
+
+<p>This reference documentation is intended for programmers who want to build applications with the Famo.us platform. It includes explanations and live-coding examples that cover how to use the essential bits and pieces.</p>
+
+<p>If you’re a beginner who is looking for resources on learning to program, <a href="resources.html">see the resources page</a>. If you’re an expert programmer interested in low-level details about the platform, see the <a href="../../../index.html">API documentation</a> or the <a href="https://github.com/Famous/famous/tree/v0.3.5">source code</a>.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+
+<ul>
+  <li><a href="why-famous.html">Why Famo.us?</a></li>
+  <li><a href="overview.html">Overview</a>
+    <ul>
+      <li><a href="download-and-installation.html">Download &amp; Installation</a></li>
+      <li><a href="starter-kit.html">Starter Kit</a></li>
+      <li><a href="what-is-included.html">What’s Included</a></li>
+      <li><a href="browser-and-device-support.html">Browser / Device Support</a></li>
+      <li><a href="licensing.html">Licensing</a></li>
+      <li><a href="contributing.html">Contributing</a></li>
+    </ul>
+  </li>
+  <li><a href="core.html">Core</a>
+    <ul>
+      <li><a href="the-engine-and-contexts.html">The Engine &amp; Contexts</a></li>
+      <li><a href="the-famous-stylesheet.html">The Famo.us Stylesheet</a></li>
+      <li><a href="the-render-tree-and-render-nodes.html">The Render Tree &amp; Render Nodes</a></li>
+      <li><a href="surfaces.html">Surfaces</a></li>
+      <li><a href="modifiers.html">Modifiers</a></li>
+      <li><a href="transforms.html">Transforms</a></li>
+    </ul>
+  </li>
+  <li><a href="layout.html">Layout</a>
+    <ul>
+      <li><a href="sizing.html">Sizing</a></li>
+      <li><a href="positioning.html">Positioning</a></li>
+      <li><a href="ready-made-layouts.html">Ready-Made Layouts</a>
+        <ul>
+          <li><a href="headerfooterlayout.html">HeaderFooterLayout</a></li>
+          <li><a href="sequentiallayout.html">SequentialLayout</a></li>
+          <li><a href="flexiblelayout.html">FlexibleLayout</a></li>
+          <li><a href="gridlayout.html">GridLayout</a></li>
+        </ul>
+      </li>
+      <li><a href="nested-layouts.html">Nested Layouts</a></li>
+    </ul>
+  </li>
+  <li><a href="views.html">Views</a></li>
+  <li><a href="animation.html">Animation</a>
+    <ul>
+      <li><a href="tweening.html">Tweening</a></li>
+      <li><a href="easing-curves.html">Easing Curves</a></li>
+      <li><a href="animation-with-physics.html">Physics Transitions</a></li>
+    </ul>
+  </li>
+  <li><a href="interaction.html">Interaction</a>
+    <ul>
+      <li><a href="user-input.html">User Input</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
+  </li>
+  <li><a href="physics.html">Physics</a>
+    <ul>
+      <li><a href="particles-and-forces.html">Particles &amp; Forces</a></li>
+    </ul>
+  </li>
+  <li><a href="mobile-and-native.html">Mobile &amp; Native</a>
+    <ul>
+      <li><a href="battery-life.html">Battery Life</a></li>
+      <li><a href="cordova-phonegap.html">Cordova / PhoneGap</a></li>
+    </ul>
+  </li>
+  <li><a href="integrations.html">Integrations</a>
+    <ul>
+      <li><a href="jquery.html">jQuery</a></li>
+    </ul>
+  </li>
+  <li><a href="troubleshooting.html">Troubleshooting</a>
+    <ul>
+      <li><a href="common-questions.html">Common Questions</a></li>
+      <li><a href="pitfalls-and-gotchas.html">Pitfalls &amp; Gotchas</a></li>
+    </ul>
+  </li>
+  <li><a href="resources.html">Resources</a></li>
+  <li><a href="glossary.html">Glossary</a></li>
+</ul>
+
+<h2 id="getting-help">Getting help</h2>
+
+<p>The best place to get help is our <a href="http://webchat.freenode.net/?channels=famous">community chat room</a>. If you have any problems at all with this documentation, don’t hesitate to join the chat room and ask. The Famo.us staff monitors it regularly and will be there to answer your questions, no matter how simple or complex.</p>
+
+<h2 id="found-a-problem-caught-a-typo">Found a problem? Caught a typo?</h2>
+
+<p>If you find anything wrong with this reference documentation, let us know at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#098;&#117;&#103;&#115;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;">&#098;&#117;&#103;&#115;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;</a>. If you have a suggestion for improving it, email us at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#103;&#103;&#101;&#115;&#116;&#105;&#111;&#110;&#115;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;">&#115;&#117;&#103;&#103;&#101;&#115;&#116;&#105;&#111;&#110;&#115;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;</a>.</p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:37:32 GMT -->
+</html>

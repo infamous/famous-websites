@@ -1,8 +1,0 @@
-famo.us/docs -O famo.us -n -T30 -B
-File generated automatically on Mon, 29 May 2017 23:34:30, do NOT edit
-
-To update a mirror, just launch httrack without any parameters
-The existing cache will be used (and modified)
-To have other options, retype all parameters and launch HTTrack
-To continue an interrupted mirror, just launch httrack without any parameters
-

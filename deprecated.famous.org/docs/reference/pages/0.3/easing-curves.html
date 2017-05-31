@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/easing-curves.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:02 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Easing Curves | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="easing-curves">Easing Curves</h1>
+
+<p>In the section on <a href="tweening.html">tweening</a>, we learned how to use <em>transitionables</em> to move elements smoothy from one state to another. But all of the animation examples shown in that section suffered from a certain degree of rigidity — the elements all transitioned at an unnatural-looking constant rate, and then just stopped.</p>
+
+<p>The solution for making transition animations feel more natural is <em>easing curves</em>. Easing curves are <strong>functions that describe changes in the rate of transition over time.</strong> With these functions, we can even model real-world effects like springyness and bouncyness. First, let’s look at the easing curves that are available with Famo.us, and then we’ll look at ways to use them.</p>
+
+<h2 id="easing-curves-included">30 easing curves included</h2>
+
+<p>The Famo.us library comes with 30 different easing curves included. Here they are, with the graph of their functions and a simple demo to illustrate the effect they produce.</p>
+
+<script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20141201145729/libraries/famous-0.3.0-globals-compilation.min.js"></script>
+
+<style type="text/css">
+    .easing-curve-graph {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 200px;
+        height: 75px;
+    }
+
+    .easing-curve-container {
+        width: 200px;
+        height: 75px;
+        overflow: hidden;
+    }
+</style>
+
+<table id="easing-curve-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Graph</th>
+            <th>Demo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>inQuad</td>
+            <td><canvas class="easing-curve-graph" id="inQuad-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inQuad-container"></div></td>
+        </tr>
+        <tr>
+            <td>outQuad</td>
+            <td><canvas class="easing-curve-graph" id="outQuad-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outQuad-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutQuad</td>
+            <td><canvas class="easing-curve-graph" id="inOutQuad-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutQuad-container"></div></td>
+        </tr>
+        <tr>
+            <td>inCubic</td>
+            <td><canvas class="easing-curve-graph" id="inCubic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inCubic-container"></div></td>
+        </tr>
+        <tr>
+            <td>outCubic</td>
+            <td><canvas class="easing-curve-graph" id="outCubic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outCubic-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutCubic</td>
+            <td><canvas class="easing-curve-graph" id="inOutCubic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutCubic-container"></div></td>
+        </tr>
+        <tr>
+            <td>inQuart</td>
+            <td><canvas class="easing-curve-graph" id="inQuart-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inQuart-container"></div></td>
+        </tr>
+        <tr>
+            <td>outQuart</td>
+            <td><canvas class="easing-curve-graph" id="outQuart-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outQuart-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutQuart</td>
+            <td><canvas class="easing-curve-graph" id="inOutQuart-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutQuart-container"></div></td>
+        </tr>
+        <tr>
+            <td>inQuint</td>
+            <td><canvas class="easing-curve-graph" id="inQuint-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inQuint-container"></div></td>
+        </tr>
+        <tr>
+            <td>outQuint</td>
+            <td><canvas class="easing-curve-graph" id="outQuint-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outQuint-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutQuint</td>
+            <td><canvas class="easing-curve-graph" id="inOutQuint-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutQuint-container"></div></td>
+        </tr>
+        <tr>
+            <td>inSine</td>
+            <td><canvas class="easing-curve-graph" id="inSine-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inSine-container"></div></td>
+        </tr>
+        <tr>
+            <td>outSine</td>
+            <td><canvas class="easing-curve-graph" id="outSine-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outSine-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutSine</td>
+            <td><canvas class="easing-curve-graph" id="inOutSine-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutSine-container"></div></td>
+        </tr>
+        <tr>
+            <td>inExpo</td>
+            <td><canvas class="easing-curve-graph" id="inExpo-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inExpo-container"></div></td>
+        </tr>
+        <tr>
+            <td>outExpo</td>
+            <td><canvas class="easing-curve-graph" id="outExpo-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outExpo-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutExpo</td>
+            <td><canvas class="easing-curve-graph" id="inOutExpo-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutExpo-container"></div></td>
+        </tr>
+        <tr>
+            <td>inCirc</td>
+            <td><canvas class="easing-curve-graph" id="inCirc-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inCirc-container"></div></td>
+        </tr>
+        <tr>
+            <td>outCirc</td>
+            <td><canvas class="easing-curve-graph" id="outCirc-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outCirc-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutCirc</td>
+            <td><canvas class="easing-curve-graph" id="inOutCirc-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutCirc-container"></div></td>
+        </tr>
+        <tr>
+            <td>inElastic</td>
+            <td><canvas class="easing-curve-graph" id="inElastic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inElastic-container"></div></td>
+        </tr>
+        <tr>
+            <td>outElastic</td>
+            <td><canvas class="easing-curve-graph" id="outElastic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outElastic-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutElastic</td>
+            <td><canvas class="easing-curve-graph" id="inOutElastic-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutElastic-container"></div></td>
+        </tr>
+        <tr>
+            <td>inBack</td>
+            <td><canvas class="easing-curve-graph" id="inBack-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inBack-container"></div></td>
+        </tr>
+        <tr>
+            <td>outBack</td>
+            <td><canvas class="easing-curve-graph" id="outBack-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outBack-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutBack</td>
+            <td><canvas class="easing-curve-graph" id="inOutBack-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutBack-container"></div></td>
+        </tr>
+        <tr>
+            <td>inBounce</td>
+            <td><canvas class="easing-curve-graph" id="inBounce-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inBounce-container"></div></td>
+        </tr>
+        <tr>
+            <td>outBounce</td>
+            <td><canvas class="easing-curve-graph" id="outBounce-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="outBounce-container"></div></td>
+        </tr>
+        <tr>
+            <td>inOutBounce</td>
+            <td><canvas class="easing-curve-graph" id="inOutBounce-graph"></canvas></td>
+            <td><div class="easing-curve-container" id="inOutBounce-container"></div></td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+var Easing = famous.transitions.Easing;
+var padding = 0;
+var width = 400 - padding * 2;
+var height = 150 - padding * 2;
+
+var table = document.getElementById('easing-curve-table');
+var rows = table.rows;
+for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    var tds = row.querySelectorAll('td');
+    if (tds.length > 0) {
+        var name = tds[0].innerText;
+        var curve = Easing[name];
+
+        // Draw the curve on the canvas.
+        var canvas = document.getElementById(name + '-graph');
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext('2d');
+        var maxX = 100;
+        var bounds = findBounds(curve, maxX);
+        var minY = bounds.min;
+        var maxY = bounds.max;
+        var scale = (maxY - minY);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        for (var t = 0; t < maxX; t++) {
+            var v = curve(t / maxX);
+            var x = t * (width / maxX) + padding;
+            var y = height - ((v - minY) / scale) * height + padding;
+            ctx.lineTo(~~x, ~~y);
+        }
+        ctx.stroke();
+
+        // Display a demo in the container
+        var container = document.getElementById(name + '-container');
+        var Engine = famous.core.Engine;
+        Engine.setOptions({ appMode: false });
+        var Surface = famous.core.Surface;
+        var StateModifier = famous.modifiers.StateModifier;
+        var faContext = Engine.createContext(container);
+        var mod = new StateModifier({
+            size: [40, 40],
+            align: [0, 0],
+            origin: [0, 0]
+        });
+        makeAnim(faContext, mod, curve);
+        var sfc = new Surface({
+            properties: {
+                backgroundColor: '#fa5c4f'
+            }
+        });
+        faContext.add(mod).add(sfc);
+    }
+}
+function makeAnim(cont, mod, curve) {
+    var goRight = function() { mod.setAlign([.75, 0], { duration: 2000, curve: curve }, goLeft); }
+    var goLeft = function() { mod.setAlign([0, 0], { duration: 2000, curve: curve }, goRight); }
+    goRight();
+}
+function findBounds(fn, divisions) {
+    var min = 0;
+    var max = 0;
+    for (var i = 0; i < divisions; i++) {
+        var n = fn(i / divisions);
+        if (max < n) max = n;
+        if (min > n) min = n;
+    }
+    return { min: min, max: max };
+}
+</script>
+
+<p>All easing curve functions are available a properties on the <code>Easing</code> module:</p>
+
+<pre><code>var Easing = famous.transitions.Easing;
+Easing.inBounce
+Easing.inOutElastic
+Easing.inExpo
+// etc.
+</code></pre>
+
+<h2 id="using-easing-curves-with-a-transitionable">Using easing curves with a Transitionable</h2>
+
+<p>To use an easing curve with an instance of <code>Transitionable</code> (see the section on <a href="tweening.html#transitionables">transitionables</a>), we set the <code>curve</code> property of the transition object (the second argument to the <code>.set()</code> method).</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+var Transitionable = famous.transitions.Transitionable;
+var Easing = famous.transitions.Easing;
+
+var context = Engine.createContext();
+
+var transitionable = new Transitionable([0, 0]);
+
+transitionable.set([.5, .5], {
+    duration: 1000,
+
+    // We can set the easing curve via the
+    // transition object's `curve` property.
+    // You can set the function itself, or
+    // the string name of the function.
+    curve: Easing.inOutExpo
+});
+
+var modifier = new Modifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+modifier.alignFrom(function() {
+    return transitionable.get();
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h2 id="using-easing-curves-with-a-statemodifier">Using easing curves with a StateModifier</h2>
+
+<p>To use an easing curve with an instance of <code>StateModifier</code> (see the section on <a href="tweening.html#state-modifier">state modifiers</a>), we set the <code>curve</code> property of the transition object (the second argument to the setter method).</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var StateModifier = famous.modifiers.StateModifier;
+var Easing = famous.transitions.Easing;
+
+var context = Engine.createContext();
+
+var stateModifier = new StateModifier({
+    size: [100, 100],
+    origin: [0, 0],
+    align: [0, 0]
+});
+
+stateModifier.setAlign([0.5, 0.5], {
+    duration: 2000,
+    curve: Easing.inOutBounce
+});
+
+var surface = new Surface({
+    properties: {
+        backgroundColor: '#fa5c4f'
+    }
+});
+
+context.add(stateModifier).add(surface);
+</code></pre>
+
+<h2 id="writing-your-own-easing-curve">Writing your own easing curve</h2>
+
+<p>You aren’t limited to the <a href="#30-easing-curves">30 easing curves</a> included in Famo.us by default. You can also write your own! An easing curve is just a function that takes a single argument for <code>time</code> (a value between <code>0.0</code> and <code>1.0</code>) and which returns a value between <code>0.0</code> and <code>1.0</code>. Example:</p>
+
+<pre><code>function myEasingCurve(time) {
+    return time; // Pretty boring!
+}
+</code></pre>
+
+<p><a href="animation-with-physics.html">Next: Animation with Physics »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/easing-curves.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:02 GMT -->
+</html>

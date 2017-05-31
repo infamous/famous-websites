@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from famo.us/docs/api/latest/math/Vector by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:35:33 GMT -->
+<head>
+        <title>famo.us</title>
+        <meta name="viewport" content="width=1024" />
+        <!-- Twitter Card data --> 
+        <meta name="twitter:card" content="summary_large_image"> 
+        <meta name="twitter:site" content="@befamous"> 
+        <meta name="twitter:title" content="Famo.us"> 
+        <meta name="twitter:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL"> 
+        <meta name="twitter:creator" content="@befamous"> 
+        <!-- Twitter summary card with large image must be at least 280x150px --> 
+        <meta name="twitter:image:src" content="../../../../../code.famo.us/assets/famous.jpg">        <!-- Open Graph data --> 
+        <meta property="og:title" content="Famo.us" /> 
+        <meta property="og:type" content="website" /> 
+        <meta property="og:url" content="../../../../index.html" />
+        <meta property="og:image" content="../../../../../code.famo.us/assets/famous.jpg" />
+        <meta property="og:description" content="A free, open source JavaScript framework for creating complex UIs for any screen. 3D layout and physics animation engines. Renders to DOM, Canvas, or WebGL" /> 
+        <meta property="og:site_name" content="Famo.us" /> 
+        <meta property="fb:admins" content="500011502,8055,540108906,504445166" />        <!-- Scripts -->
+        <script type="text/javascript" src="../../../../../code.famo.us/lib/requestAnimationFrame.js"></script>
+        <script type="text/javascript" src="../../../../../code.famo.us/lib/functionPrototypeBind.js"></script>
+        <script type="text/javascript" src="../../../../lib/alameda.min.js"></script>
+        <script type="text/javascript" src="../../../../lib/zepto.min.js"></script>
+        <script type="text/javascript" src="../../../../lib/famous/famous.min.js"></script>
+        <script type="text/javascript" src="../../../../src/social.js"></script>
+        <script type="text/javascript" src="../../../../src/demos.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="../../../../lib/famous/famous.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../assets/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../assets/code.css" />        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-34653957-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- Require -->
+        <script type="text/javascript">
+            require.config({ baseUrl: '../../../..' });
+            require(['src/main']);
+        </script>
+    </head>
+    <body>
+        <nav id="navigation" class="famous-root">
+            <a class="menu" href="../../../../index.html"><img src="../../../../assets/images/famous_logo_white.svg" alt="&phi;"></a>
+            <a class="menu university" href="../../../../university/home/index.html">Famo.us University</a>
+            <a class="menu" href="../../../../integrations/angular/index.html">Famo.us/Angular</a>
+            <a class="menu" href="../../../index.html">Docs</a>
+            <a class="menu" href="../../../../help.html">Help</a>
+            <a class="menu" href="../../../../blog/index.html">Blog</a>
+            <a class="cta highlight download" href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top">Download</a>
+        </nav>
+        <div id="preloaded" class="content" data-route="/docs/api/latest/math/Vector">
+<div id="doc-container" class="col1">
+  <div class="col1 navigation-margin relative pad20">
+    <div class="col1">
+      <div class="col1-4">
+        <ul class="mar-20 sidebar nav">
+          <li>core</li>
+          <li><a href="../core/Context.html">Context</a>
+          </li>
+          <li><a href="../core/ElementAllocator.html">ElementAllocator</a>
+          </li>
+          <li><a href="../core/ElementOutput.html">ElementOutput</a>
+          </li>
+          <li><a href="../core/Engine.html">Engine</a>
+          </li>
+          <li><a href="../core/Entity.html">Entity</a>
+          </li>
+          <li><a href="../core/EventEmitter.html">EventEmitter</a>
+          </li>
+          <li><a href="../core/EventHandler.html">EventHandler</a>
+          </li>
+          <li><a href="../core/Group.html">Group</a>
+          </li>
+          <li><a href="../core/Modifier.html">Modifier</a>
+          </li>
+          <li><a href="../core/OptionsManager.html">OptionsManager</a>
+          </li>
+          <li><a href="../core/RenderNode.html">RenderNode</a>
+          </li>
+          <li><a href="../core/Scene.html">Scene</a>
+          </li>
+          <li><a href="../core/SpecParser.html">SpecParser</a>
+          </li>
+          <li><a href="../core/Transform.html">Transform</a>
+          </li>
+          <li><a href="../core/View.html">View</a>
+          </li>
+          <li><a href="../core/ViewSequence.html">ViewSequence</a>
+          </li>
+          <li>events</li>
+          <li><a href="../events/EventArbiter.html">EventArbiter</a>
+          </li>
+          <li><a href="../events/EventFilter.html">EventFilter</a>
+          </li>
+          <li><a href="../events/EventMapper.html">EventMapper</a>
+          </li>
+          <li>inputs</li>
+          <li><a href="../inputs/Accumulator.html">Accumulator</a>
+          </li>
+          <li><a href="../inputs/GenericSync.html">GenericSync</a>
+          </li>
+          <li><a href="../inputs/MouseSync.html">MouseSync</a>
+          </li>
+          <li><a href="../inputs/PinchSync.html">PinchSync</a>
+          </li>
+          <li><a href="../inputs/RotateSync.html">RotateSync</a>
+          </li>
+          <li><a href="../inputs/ScaleSync.html">ScaleSync</a>
+          </li>
+          <li><a href="../inputs/ScrollSync.html">ScrollSync</a>
+          </li>
+          <li><a href="../inputs/TouchSync.html">TouchSync</a>
+          </li>
+          <li><a href="../inputs/TouchTracker.html">TouchTracker</a>
+          </li>
+          <li><a href="../inputs/TwoFingerSync.html">TwoFingerSync</a>
+          </li>
+          <li>math</li>
+          <li><a href="Matrix.html">Matrix</a>
+          </li>
+          <li><a href="Quaternion.html">Quaternion</a>
+          </li>
+          <li><a href="Random.html">Random</a>
+          </li>
+          <li><a href="Utilities.html">Utilities</a>
+          </li>
+          <li><a href="Vector.html">Vector</a>
+          </li>
+          <li>modifiers</li>
+          <li><a href="../modifiers/Draggable.html">Draggable</a>
+          </li>
+          <li><a href="../modifiers/Fader.html">Fader</a>
+          </li>
+          <li><a href="../modifiers/ModifierChain.html">ModifierChain</a>
+          </li>
+          <li><a href="../modifiers/StateModifier.html">StateModifier</a>
+          </li>
+          <li>physics</li>
+          <li><a href="../physics/PhysicsEngine.html">PhysicsEngine</a>
+          </li>
+          <li>physics/bodies</li>
+          <li><a href="../physics/bodies/Body.html">Body</a>
+          </li>
+          <li><a href="../physics/bodies/Circle.html">Circle</a>
+          </li>
+          <li><a href="../physics/bodies/Particle.html">Particle</a>
+          </li>
+          <li><a href="../physics/bodies/Rectangle.html">Rectangle</a>
+          </li>
+          <li>physics/constraints</li>
+          <li><a href="../physics/constraints/Surface.html">Surface</a>
+          </li>
+          <li><a href="../physics/constraints/Collision.html">Collision</a>
+          </li>
+          <li><a href="../physics/constraints/Constraint.html">Constraint</a>
+          </li>
+          <li><a href="../physics/constraints/Curve.html">Curve</a>
+          </li>
+          <li><a href="../physics/constraints/Distance.html">Distance</a>
+          </li>
+          <li><a href="../physics/constraints/Snap.html">Snap</a>
+          </li>
+          <li><a href="../physics/constraints/Wall.html">Wall</a>
+          </li>
+          <li><a href="../physics/constraints/Walls.html">Walls</a>
+          </li>
+          <li>physics/forces</li>
+          <li><a href="../physics/forces/Drag.html">Drag</a>
+          </li>
+          <li><a href="../physics/forces/Force.html">Force</a>
+          </li>
+          <li><a href="../physics/forces/Repulsion.html">Repulsion</a>
+          </li>
+          <li><a href="../physics/forces/RotationalDrag.html">RotationalDrag</a>
+          </li>
+          <li><a href="../physics/forces/RotationalSpring.html">RotationalSpring</a>
+          </li>
+          <li><a href="../physics/forces/Spring.html">Spring</a>
+          </li>
+          <li><a href="../physics/forces/VectorField.html">VectorField</a>
+          </li>
+          <li>physics/integrators</li>
+          <li><a href="../physics/integrators/SymplecticEuler.html">SymplecticEuler</a>
+          </li>
+          <li>surfaces</li>
+          <li><a href="../surfaces/CanvasSurface.html">CanvasSurface</a>
+          </li>
+          <li><a href="../surfaces/ContainerSurface.html">ContainerSurface</a>
+          </li>
+          <li><a href="../surfaces/ImageSurface.html">ImageSurface</a>
+          </li>
+          <li><a href="../surfaces/InputSurface.html">InputSurface</a>
+          </li>
+          <li><a href="../surfaces/TextareaSurface.html">TextareaSurface</a>
+          </li>
+          <li><a href="../surfaces/VideoSurface.html">VideoSurface</a>
+          </li>
+          <li>transitions</li>
+          <li><a href="../transitions/CachedMap.html">CachedMap</a>
+          </li>
+          <li><a href="../transitions/Easing.html">Easing</a>
+          </li>
+          <li><a href="../transitions/MultipleTransition.html">MultipleTransition</a>
+          </li>
+          <li><a href="../transitions/SnapTransition.html">SnapTransition</a>
+          </li>
+          <li><a href="../transitions/SpringTransition.html">SpringTransition</a>
+          </li>
+          <li><a href="../transitions/Transitionable.html">Transitionable</a>
+          </li>
+          <li><a href="../transitions/TransitionableTransform.html">TransitionableTransform</a>
+          </li>
+          <li><a href="../transitions/TweenTransition.html">TweenTransition</a>
+          </li>
+          <li><a href="../transitions/WallTransition.html">WallTransition</a>
+          </li>
+          <li>utilities</li>
+          <li><a href="../utilities/KeyCodes.html">KeyCodes</a>
+          </li>
+          <li><a href="../utilities/Timer.html">Timer</a>
+          </li>
+          <li><a href="../utilities/Utility.html">Utility</a>
+          </li>
+          <li>views</li>
+          <li><a href="../views/ContextualView.html">ContextualView</a>
+          </li>
+          <li><a href="../views/Deck.html">Deck</a>
+          </li>
+          <li><a href="../views/DrawerLayout.html">DrawerLayout</a>
+          </li>
+          <li><a href="../views/EdgeSwapper.html">EdgeSwapper</a>
+          </li>
+          <li><a href="../views/FlexibleLayout.html">FlexibleLayout</a>
+          </li>
+          <li><a href="../views/Flipper.html">Flipper</a>
+          </li>
+          <li><a href="../views/GridLayout.html">GridLayout</a>
+          </li>
+          <li><a href="../views/HeaderFooterLayout.html">HeaderFooterLayout</a>
+          </li>
+          <li><a href="../views/Lightbox.html">Lightbox</a>
+          </li>
+          <li><a href="../views/RenderController.html">RenderController</a>
+          </li>
+          <li><a href="../views/ScrollContainer.html">ScrollContainer</a>
+          </li>
+          <li><a href="../views/Scroller.html">Scroller</a>
+          </li>
+          <li><a href="../views/Scrollview.html">Scrollview</a>
+          </li>
+          <li><a href="../views/SequentialLayout.html">SequentialLayout</a>
+          </li>
+          <li>widgets</li>
+          <li><a href="../widgets/NavigationBar.html">NavigationBar</a>
+          </li>
+          <li><a href="../widgets/ToggleButton.html">TabBar</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col1-2">
+        <div id="docs-container" class="cf docs col1 pad-g1 main">
+          <div class="col1 pad-ls-g1 pad-t1">
+            <div class="col1 spacer">
+              <div class="col1 spacer-bar mar-b">
+                <h2 class="col1">Vector</h2>
+                <h5>Three-element floating point vector.</h5>
+              </div>
+              <div class="col1 miniSpacer spacer-bar mar-b">
+                <h3 class="col-1">Overview</h3>
+                <div class="col1-3">
+                  <h5>Options</h5>
+                </div>
+                <div class="col1-3">
+                  <h5>Methods</h5>
+                  <div class="red">add</div>
+                  <div class="red">sub</div>
+                  <div class="red">mult</div>
+                  <div class="red">div</div>
+                  <div class="red">cross</div>
+                  <div class="red">equals</div>
+                  <div class="red">rotateX</div>
+                  <div class="red">rotateY</div>
+                  <div class="red">rotateZ</div>
+                  <div class="red">dot</div>
+                  <div class="red">normSquared</div>
+                  <div class="red">norm</div>
+                  <div class="red">normalize</div>
+                  <div class="red">clone</div>
+                  <div class="red">isZero</div>
+                  <div class="red">set</div>
+                  <div class="red">put</div>
+                  <div class="red">clear</div>
+                  <div class="red">cap</div>
+                  <div class="red">project</div>
+                  <div class="red">reflectAcross</div>
+                  <div class="red">get</div>
+                </div>
+              </div>
+              <div class="col1 linkable">
+                <h3 id="Vector" class="mar-t1 left">Vector(x, y, z)</h3>
+              </div>
+              <h5 class="medium-grey miniSpacer col1">Constructor Parameters</h5>
+              <div class="col1 spacer-bar mar-b constructor">
+                <p class="col1-3">x</p>
+                <p class="col1-3 monospace">Number</p>
+                <p class="col1-3">x element value</p>
+                <p class="col1-3">y</p>
+                <p class="col1-3 monospace">Number</p>
+                <p class="col1-3">y element value</p>
+                <p class="col1-3">z</p>
+                <p class="col1-3 monospace">Number</p>
+                <p class="col1-3">z element value</p>
+              </div>
+              <h5 class="medium-grey miniSpacer col1-2">Methods</h5>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="add" class="mar-t1 left">add(v)</h3>
+                  </div>
+                  <p>Add this element-wise to another Vector, element-wise. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">addend</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">vector sum</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="sub" class="mar-t1 left">sub(v)</h3>
+                  </div>
+                  <p>Subtract another vector from this vector, element-wise. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">subtrahend</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">vector difference</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="mult" class="mar-t1 left">mult(r)</h3>
+                  </div>
+                  <p>Scale Vector by floating point r. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">r</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">scalar</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">vector result</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="div" class="mar-t1 left">div(r)</h3>
+                  </div>
+                  <p>Scale Vector by floating point 1/r. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">r</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">scalar</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">vector result</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="cross" class="mar-t1 left">cross(v)</h3>
+                  </div>
+                  <p>Given another vector v, return cross product (v)x(this). Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">Left Hand Vector</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">vector result</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="equals" class="mar-t1 left">equals(v)</h3>
+                  </div>
+                  <p>Component-wise equality test between this and Vector v.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">vector to compare</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Boolean</div>
+                    <div class="col2-3"></div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="rotateX" class="mar-t1 left">rotateX(theta)</h3>
+                  </div>
+                  <p>Rotate clockwise around x-axis by theta radians. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">theta</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">radians</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">rotated vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="rotateY" class="mar-t1 left">rotateY(theta)</h3>
+                  </div>
+                  <p>Rotate clockwise around y-axis by theta radians. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">theta</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">radians</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">rotated vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="rotateZ" class="mar-t1 left">rotateZ(theta)</h3>
+                  </div>
+                  <p>Rotate clockwise around z-axis by theta radians. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">theta</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">radians</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">rotated vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="dot" class="mar-t1 left">dot(v)</h3>
+                  </div>
+                  <p>Return dot product of this with a second Vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">second vector</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">dot product</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="normSquared" class="mar-t1 left">normSquared()</h3>
+                  </div>
+                  <p>Return squared length of this vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">squared length</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="norm" class="mar-t1 left">norm()</h3>
+                  </div>
+                  <p>Return length of this vector</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Number</div>
+                    <div class="col2-3">length</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="normalize" class="mar-t1 left">normalize(length)</h3>
+                  </div>
+                  <p>Scale Vector to specified length. If length is less than internal tolerance, set vector to [length, 0, 0]. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">length</div>
+                    <div class="col1-3 monospace">Number</div>
+                    <div class="col1-3">target length, default 1.0</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3"></div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="clone" class="mar-t1 left">clone()</h3>
+                  </div>
+                  <p>Make a separate copy of the Vector.</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3"></div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="isZero" class="mar-t1 left">isZero()</h3>
+                  </div>
+                  <p>True if and only if every value is 0 (or falsy)</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Boolean</div>
+                    <div class="col2-3"></div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="set" class="mar-t1 left">set(v)</h3>
+                  </div>
+                  <p>Set this Vector to the values in the provided Array or Vector.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Object</div>
+                    <div class="col1-3">array, Vector, or number</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">this</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="put" class="mar-t1 left">put(v)</h3>
+                  </div>
+                  <p>Put result of last internal register calculation in specified output vector.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">v</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">destination vector</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">destination vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="clear" class="mar-t1 left">clear()</h3>
+                  </div>
+                  <p>Set this vector to [0,0,0]</p>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="cap" class="mar-t1 left">cap()</h3>
+                  </div>
+                  <p>Scale this Vector down to specified &quot;cap&quot; length. If Vector shorter than cap, or cap is Infinity, do nothing. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">capped vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="project" class="mar-t1 left">project(n)</h3>
+                  </div>
+                  <p>Return projection of this Vector onto another. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">n</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">vector to project upon</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">projected vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="reflectAcross" class="mar-t1 left">reflectAcross(n)</h3>
+                  </div>
+                  <p>Reflect this Vector across provided vector. Note: This sets the internal result register, so other references to that vector will change.</p>
+                  <h5 class="medium-grey miniSpacer col1">Parameters</h5>
+                  <div class="col1 miniSpacer">
+                    <div class="col1-3 red miniSpacer">n</div>
+                    <div class="col1-3 monospace">Vector</div>
+                    <div class="col1-3">vector to reflect across</div>
+                    <!-- todo: .col1-3= param.optional-->
+                  </div>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Vector</div>
+                    <div class="col2-3">reflected vector</div>
+                  </col1>
+                </div>
+              </div>
+              <div class="col1 method-block spacer-bar miniSpacer">
+                <div class="method-item method">
+                  <div class="col1 linkable">
+                    <h3 id="get" class="mar-t1 left">get()</h3>
+                  </div>
+                  <p>Convert Vector to three-element array.</p>
+                  <h5 class="medium-grey miniSpacer col1">Returns</h5>
+                  <col1 class="miniSpacer">
+                    <div class="col1-3 red">Array&lt;number&gt;</div>
+                    <div class="col2-3">three-element array</div>
+                  </col1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- script(type='text/javascript', src='#{pathPrefix}/js/main.js')-->
+<!-- script//- include ../lib/assets/js/main.js
+--></div>
+        <footer id="footer" class="social block desktop-only">
+            <div class="links">
+                <a href="../../../../branding/index.html">Branding</a>
+                <a href="../../../../terms/index.html">Terms</a>
+                <a href="../../../../privacy-policy/index.html">Privacy</a>
+                <a href="https://jobs.lever.co/famo.us?lever-source=homepage">Jobs</a>
+                &copy; Famous Industries, Inc. 2015
+            </div>
+            <div class="subscribe">
+                <form class="subscribe" action="http://famo.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;id=3293122916" method="POST" target="_blank">
+                    <input type="email" name="EMAIL" placeholder="Email Address" />
+                    <button>Get Updates</button>
+                </form>
+            </div>
+        </footer>
+    </body>
+
+<!-- Mirrored from famo.us/docs/api/latest/math/Vector by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:35:33 GMT -->
+</html>

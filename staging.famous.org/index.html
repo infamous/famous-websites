@@ -1,0 +1,133 @@
+<html lang="en">
+<!-- Mirrored from staging.famous.org/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:39:49 GMT -->
+<head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="Famous is a platform for making beautiful experiences on the internet."/><meta name="author" content="Famous Industries"/><meta name="keywords" conent="html5,javascript,mobile,famous,animation,jQuery,webgl,hybrid,phonegap,cordova,native,ios,android"/><meta property="og:title" content="Famous"/><meta property="og:type" content="website"/><meta property="og:url" content="../famous.org/index.html"/><meta property="og:description" content="Famous is a platform for making beautiful experiences on the internet."/><meta property="og:site_name" content="Famous.org"/><meta property="fb:admins" content="500011502,8055,540108906,504445166"/><meta property="og:image" content="../code.famo.us/assets/famous.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:site" content="@befamous"/><meta name="twitter:title" content="Famous.org"/><meta name="twitter:description" content="Famous is a platform for making beautiful experiences on the internet."/><meta name="twitter:creator" content="@befamous"/><meta name="twitter:image:src" content="../code.famo.us/assets/famous.jpg"/><script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type": "WebSite",
+  "name": "Famous.org",
+  "alternateName": "Famous Industries",
+  "url": "http://www.famous.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Famous.org",
+  "url": "http://www.famous.org",
+  "logo": "http://code.famo.us/assets/famous.jpg",
+  "sameAs": [
+    "http://www.facebook.com/famousindustries",
+    "http://www.twitter.com/befamous",
+    "http://github.com/famous/"
+  ]
+}
+</script>
+<title>Famous: JavaScript Library for Animations &amp; Interfaces</title><link rel="stylesheet" href="../fonts.googleapis.com/csse9c6.css?family=Roboto:100,300,400,700,900"/><link rel="stylesheet" href="../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro"/><link rel="stylesheet" href="css/main.css"/></head><body class="home"><!-- Main navigation--><nav class="nav-main cf home"><a href="index.html" class="nav-logo"><object type="image/svg+xml" data="images/famous-logo-text.svg"></object></a><label for="reveal-nav" class="reveal-nav-btn">Menu</label><input type="checkbox" id="reveal-nav" class="reveal-nav-input"/><div class="nav-main-list"><div class="list-left"><a href="index.html" class="main-nav-link">Engine</a><a href="framework/index.html" class="main-nav-link">Framework</a></div><div class="list-right"><a href="learn/index.html" class="main-nav-link">Learn</a><a href="docs/index.html" class="main-nav-link">API Docs</a><a href="support/index.html" class="main-nav-link">Support</a><a href="https://github.com/Famous/engine" onclick="trackOutboundLink('https://github.com/Famous/engine'); return false;" class="main-nav-link">Github</a><a href="../blog.famous.org/index.html" class="main-nav-link">Blog</a></div></div></nav><script>//watches for vertical scroll change events and either
+//enables or disables the background on the sticky nav
+
+var nav = document.querySelector(".nav-main");
+var hero = document.querySelector(".hero");
+var hasBackground = nav.classList.contains("background");
+
+function scrollWatcher(e) {
+
+    var doc = document.documentElement;
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+    //if we're over the hero area, keep things transparent
+    if(top < hero.offsetHeight - nav.offsetHeight) {
+        if(hasBackground) {
+            nav.classList.remove("background");
+            hasBackground = false;
+        }
+        return;
+    }
+
+    //if we're not over the hero area, add the background
+    //if it doesn't already exist
+    if(!hasBackground) {
+        nav.classList.add("background");
+        hasBackground = true;
+    }
+};
+
+window.addEventListener("load", scrollWatcher);
+document.addEventListener("scroll", scrollWatcher);
+
+
+/** Script for tracking install on landing page
+**/
+var trackInstallClick = function() {
+   ga('send', 'event', 'installClick', 'click');
+}</script><!-- Hero section--><header class="hero"><div class="container"><h1>Famous<wbr/><span>Engine</span></h1><h2>High-performance javascript library for animations & interfaces</h2><div class="install"><a href="get-started.html" class="button get-started">Get Started</a><a href="learn/hello-famous.html" class="button learn">Learn More</a></div></div><div class="subscribe"><form target="_blank" method="POST" action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4"><input type="email" placeholder="Want product updates? Sign up for our newsletter" name="EMAIL" class="standard"/><input type="email" placeholder="Want product updates?" name="EMAIL" class="mobile"/><button>Get Updates</button></form></div></header><!-- Main Content--><section class="content padded-bottom"><div class="example"><h2 id="hello-famous">Hello Famous</h2>
+<p>Famous abstracts the DOM &amp; WebGL, allowing you to do custom layout and rendering. Centering objects and rotating them can be done with only a few lines of code.</p>
+<iframe src='../famous.org/examples/index63ac.html?block=hello-famous&amp;detail=false&amp;header=false' scrolling='no' class='code-block' allowtransparency='true'></iframe></div><div class="example new"><h2 id="what-s-new-">What&#39;s new?</h2>
+<h3 id="-mixed-mode-http-famous-org-learn-webgl-content-html-"><a href="../famous.org/learn/webgl-content.html">Mixed Mode</a>:</h3>
+<p>Famous now unites DOM and WebGL under a single coordinate system. Borrowing concepts from modern video game engines, Famous structures applications in a <a href="../famous.org/learn/scene-graph.html">scene graph</a> hierarchy that makes manipulating <a href="../famous.org/learn/webgl-content.html">HTML and WebGL</a> together simple.</p>
+<h3 id="rebuilt-architecture-">Rebuilt Architecture:</h3>
+<p>The new Famous Engine produces almost no garbage at all. Transforms are now updated through an event-based system, which avoids unnecessary matrix multiplications. The result is a renderer that delivers consistent, smooth, 60fps animations with even better performance than before.</p>
+<iframe src='../famous.org/examples/indexe460.html?block=layout&amp;detail=false&amp;header=false' scrolling='no' class='code-block' allowtransparency='true'></iframe>
+
+
+<h3 id="3d-physics-engine-http-famous-org-learn-physics-html-">3D <a href="../famous.org/learn/physics.html">Physics Engine</a>:</h3>
+<p>Famous introduces a brand new 3D physics engine that brings real life movement to your applications. Living in its own module entirely, you can incorporate as little or as much of it as you want.<br><a href="../famous.org/learn/physics.html"><strong>More on Famous physics engine here</strong></a></p>
+<iframe src='../famous.org/examples/indexa3ac.html?block=physics&amp;detail=false&amp;header=false' scrolling='no' class='code-block' allowtransparency='true'></iframe>
+
+<h3 id="streamlined-events-">Streamlined Events:</h3>
+<p>Famous&#39; eventing system has been simplified, promoting encapsulation of reusable and shareable components.</p>
+<h3 id="improved-sizing-http-famous-org-learn-sizing-html-">Improved <a href="../famous.org/learn/sizing.html">Sizing</a>:</h3>
+<p>We&#39;ve redesigned our sizing API to increase flexibility. Developers can now fine-tune sizing independently for X, Y, and Z axes. </p>
+<h3 id="modularity-">Modularity:</h3>
+<p>We&#39;ve built Famous with extensibility in mind. In particular, we decoupled our scene graph from our rendering pipeline by using a draw command buffer. This paves the way for new integrations and allows for frameworks to be built on top of our drawing API. </p>
+<h3 id="-mit-license-https-github-com-famous-engine-"><a href="https://github.com/famous/engine">MIT License</a>:</h3>
+<p>We&#39;ve moved to a fully open source MIT license that encourages <a href="../famous.org/support/index.html#contributing">active participation from the community</a>.  Additionally, we&#39;ve redesigned our <a href="../famous.org/index.html">website</a> and <a href="../famous.org/learn/index.html">learning</a> <a href="../famous.org/docs/index.html">resources</a> to make Famous more accessible to everyone. </p>
+</div></section><!-- Footer--><footer class="site-footer"><nav class="nav-footer"><span>&copy; Famous Industries, Inc. 2015</span><a href="terms.html">Terms</a><a href="privacy-policy.html">Privacy</a><a href="https://jobs.lever.co/famo.us">Jobs</a></nav><div class="subscribe"><form target="_blank" method="POST" action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4"><input type="email" placeholder="Email Address" name="EMAIL"/><button>Get Updates</button></form></div></footer><!--scripts--><!-- GA--><script src="../cdn.optimizely.com/js/3006670490.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63145313-1', 'auto');
+window.optimizely = window.optimizely || [];
+window.optimizely.push("activateUniversalAnalytics");
+ga('send', 'pageview');
+ga('require', 'linkid', 'linkid.html');</script><script>//watches for vertical scroll change events and either
+//enables or disables the background on the sticky nav
+
+var nav = document.querySelector(".nav-main");
+var hero = document.querySelector(".hero");
+var hasBackground = nav.classList.contains("background");
+
+function scrollWatcher(e) {
+
+    var doc = document.documentElement;
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+    //if we're over the hero area, keep things transparent
+    if(top < hero.offsetHeight - nav.offsetHeight) {
+        if(hasBackground) {
+            nav.classList.remove("background");
+            hasBackground = false;
+        }
+        return;
+    }
+
+    //if we're not over the hero area, add the background
+    //if it doesn't already exist
+    if(!hasBackground) {
+        nav.classList.add("background");
+        hasBackground = true;
+    }
+};
+
+window.addEventListener("load", scrollWatcher);
+document.addEventListener("scroll", scrollWatcher);
+
+
+/** Script for tracking install on landing page
+**/
+var trackInstallClick = function() {
+   ga('send', 'event', 'installClick', 'click');
+}</script></body>
+<!-- Mirrored from staging.famous.org/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:43:25 GMT -->
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/browser-and-device-support.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:56 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Famo.us Browser & Device Support | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="famous-browser--device-support">Famo.us Browser &amp; Device Support</h1>
+
+<p>Famo.us works in most modern browsers; it’s also compatible via tools like <a href="cordova-phonegap.html">Cordova</a>, which allow you to package your project as a native application. Due to inconsistencies between different browser implementations, though, there are a few notes to keep in mind.</p>
+
+<h2 id="browsers">Browsers</h2>
+
+<p><strong>Chrome, Safari, and Firefox have first-class support.</strong> Famo.us should, however, work in most modern browsers with HTML5/CSS3/JavaScript support.</p>
+
+<p><strong>Internet Explorer:</strong> If you are working with Microsoft browsers, it should be noted that <strong>all versions of IE have a bug</strong> with respect to the CSS3 <code>preserve-3d</code> attribute, which specifically affects 3D interfaces. We are currently working with Microsoft to resolve this bug, and will update our <a href="../../../../index.html">newsletter</a> when it is resolved. If you are experiencing difficulty with IE and you need help, please email us at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;</a>.</p>
+
+<p><strong>Famo.us is actively tested in the following browsers:</strong></p>
+
+<ul>
+  <li>Chrome</li>
+  <li>Firefox</li>
+  <li>Safari</li>
+  <li>IE11+</li>
+</ul>
+
+<h2 id="devices">Devices</h2>
+
+<p>Famo.us supports modern desktop computers, laptops, and mobile devices.</p>
+
+<p><strong>Famo.us is actively tested on the following devices:</strong></p>
+
+<ul>
+  <li><strong>Android phones:</strong> Nexus 4, Nexus 5, Nexus 6, Moto G</li>
+  <li><strong>Android tablets:</strong> Nexus 7, Nexus 9</li>
+  <li><strong>iOS phones:</strong> iPhone 4S, iPhone 5/5C, iPhone 5S, iPhone 6</li>
+  <li><strong>iOS tablets:</strong> iPad 3/4, iPad Air, iPad Mini, iPad Mini Retina</li>
+</ul>
+
+<p><strong>Television sets:</strong> We have performed several experiments running Famo.us on televisions sets, including Samsung and LG sets, but these devices are not officially supported. IOT devices have been experimented with successfully, as well as VR devices, but are also not officially supported at this time.</p>
+
+<h2 id="known-browser---device-specific-issues">Known browser- &amp; device-specific issues</h2>
+
+<p>Each browser and device comes with its own set of quirks. Understanding the limitations of the browsers and devices — and how Famo.us behaves when encountering these limitations — is very important when developing applications that are cross-browser and cross-device compatible. Below are some of the known browser/device issues that you may come across while developing with Famo.us.</p>
+
+<h3 id="all-browsers">All browsers</h3>
+
+<p><strong>Unexpected results when hiding overflow:</strong> Combining <code>overflow: hidden</code> and CSS transforms in z-space causes unexpected results. Unfortunately, this is a bug common in the majority of currently available browser implementations. The inclusion of <code>overflow: hidden</code> causes the browser to not interpret z depth correctly when a perspective is set. Avoid setting <code>overflow: hidden</code> if possible.</p>
+
+<p><strong>Performance degradation when using semi-transparent windows:</strong> Frame-rate in the browser will take a serious hit when semi-transparent windows lie over them. Be careful when organizing the windows on your desktop, as this can lead to very confusing performance drops.</p>
+
+<h3 id="chrome--firefox">Chrome &amp; Firefox</h3>
+
+<p><strong>Incorrectly rendered intersecting surfaces:</strong> Intersecting surfaces do not render correctly in Chrome and Firefox. Because of the extensive use of rotation and translation in Famo.us, it is common to come across this issue frequently.</p>
+
+<h3 id="chrome">Chrome</h3>
+
+<p><strong>Invisible surfaces at certain rotations:</strong> When a Surface is inserted in the Render Tree, if it is rotated in such a way that none of its pixels would be visible from the current perspective, Chrome will not draw that Surface at all. This is due to the fact that Chrome tries to save performance by not drawing pixels that cannot be seen. Two ways to combat this:</p>
+
+<ul>
+  <li>Do not apply that rotation until immediately before that Surface needs to be seen</li>
+  <li>Give that Surface the property <code>backface-visibility: visible</code> to force Chrome to paint those pixels</li>
+</ul>
+
+<h3 id="safari">Safari</h3>
+
+<p><strong>Slow garbage collection:</strong> Garbage collection in Safari tends to be more pronouced. If an application is performant in Chrome and Firefox but not on Safari, it may be fixable by having more intelligent memory allocation.</p>
+
+<h3 id="ios7-ipad">iOS7 iPad</h3>
+
+<p><strong>Miscalculated window.innerHeight:</strong> iPads that are running iOS7 miscalculate <code>window.innerHeight</code> when they are in landscape orientation. This poses issues for developers relying on the window’s size for laying-out components.</p>
+
+<h3 id="android">Android</h3>
+
+<p><strong>Blurry images:</strong> When using Famo.us on an Android device, it is common that images will be blurry. This can be fixed by setting a perspective on your context to any non-zero value, like this: <code>context.setPerspective(1)</code></p>
+
+<p><strong>Bitmap scaling artifacts:</strong> Images that are scaled smaller before being added to the render tree will have their bitmap affected. If that scale transform is then removed, the image will not be displayed using its actual bitmap, due to Android’s eager optimization to cache the initial bitmap. To combat this, avoid scaling images before they are added to the render tree.</p>
+
+<p><a href="licensing.html">Next: Licensing »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/browser-and-device-support.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:56 GMT -->
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from famous.org/framework/hello-framework.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:27:42 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>Hello Framework | Famous Framework</title>
+     <script src="assets/scripts/toc.js"></script>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../index.html">
+        <object data="assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../index.html">Engine</a>
+              <a class="main-nav-link" href="index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="../../blog.famous.org/index.html">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="hello-framework.html" class="active">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="states.html">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="control-flow.html">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="timelines.html">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24event.html">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-sections">
+    
+    <li>
+      
+      <a href="AppleTV/index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/structuring-an-app.html" >Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>Hello Framework</h1>
+          <p>The <a href="https://github.com/Famous/framework">Famous Framework</a> provides a structured API for controlling UI elements with the Famous Engine. As a framework, its goals are to bring composability, extensibility, and consistency to UI applications.</p>
+
+<h2>The basics</h2>
+
+<p>All Famous Framework projects begin with the following syntax:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;module-name&#39;,  { /* module definition /* });
+</code></pre></div>
+<p>The bulk of a project lives within the <em>module definition</em>, where we list our behaviors, events, states, and tree as members of an object (see <a href="core-concepts.html">Core Concepts</a> for an intro to the BEST architectural pattern).</p>
+
+<h2>A simple project</h2>
+
+<p>Check out the &#39;Hello World&#39; example below. When reading through the code, think of the <em>tree</em> as Famous-enhanced HTML and the <em>behaviors</em> as CSS styles on steroids.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/**
+*  hello-framework.js
+**/
+
+FamousFramework.component(&#39;my-name:hello-framework&#39;,  {
+    behaviors: {
+        &#39;#background&#39;: {
+            &#39;style&#39;: {
+                &#39;background&#39;: &#39;linear-gradient(to right, #00B9D7, #9783F2)&#39;
+            }
+        },
+        &#39;#text&#39;: {
+           &#39;size&#39;: [400, 80],
+           &#39;align&#39;: [0.5, 0.5],
+           &#39;mount-point&#39;: [0.5, 0.5],
+           &#39;style&#39;: {
+               &#39;color&#39;: &#39;white&#39;,
+               &#39;font-family&#39;: &#39;Lato&#39;,
+               &#39;font-size&#39;: &#39;60px&#39;,
+               &#39;text-align&#39;: &#39;center&#39;
+           }
+        }
+    },
+    events: {},
+    states: {},
+    tree: `
+        &lt;node id=&#39;background&#39;&gt;
+        &lt;node id=&#39;text&#39;&gt; 
+            &lt;div&gt; Hello Framework! &lt;/div&gt;
+        &lt;/node&gt;
+        &lt;/node&gt;
+    `
+});
+</code></pre></div>
+<p>Note how we use CSS selectors (<code>#background</code>, <code>#text</code>) to target behaviors to elements that are declared in the <code>tree</code>.</p>
+
+<p>While the <em>tree</em> sets up the structure of our app, the <em>behaviors</em> tell the module how each element should be displayed. The result: a &#39;Hello Framework!&#39; message centered and styled in front of a CSS gradient background.</p>
+
+<h2>Creating your component</h2>
+
+<p>In a framework <a href="https://github.com/Famous/framework">project</a>, create a new component directory within <code>lib/core-components</code> called <code>my-name</code>.</p>
+
+<p>Create a subdirectory within that one for your new component called <code>hello-framework</code>.</p>
+
+<p>In that subdirectory, create the file <code>hello-framework.js</code>. The result should be like this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">lib/core-components/my-name/hello-framework/hello-framework.js
+</code></pre></div>
+<p>In that file, add the framework boilerplate:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;my-name:hello-framework&#39;, {
+    /* Your BEST code goes here */
+    /* See example above */
+});
+</code></pre></div>
+<p>Note how the string <code>my-name:hello-framework</code> matches the filename <code>my-name/hello-framework/hello-framework.js</code>. This matching is required.</p>
+
+<p>If your local dev server is currently running, stop it now. The restart it with:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ npm run dev -- -e my-name:hello-framework
+</code></pre></div>
+<p>Now surf to <a href="http://localhost:1618/?ff=hello-framework">localhost:1618/?ff=my-name:hello-framework</a>. (Note the query string in the URL.)</p>
+
+<p>Changes you make to that file should trigger automatic reload.</p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      <div class="next-prev-container">
+          
+          <div class="separator"></div>
+          
+            <a class="next" rel="next" href="getting-started.html" title="Getting Started">Getting Started</a>
+          
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../terms.html">Terms</a>
+          <a href="../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from famous.org/framework/hello-framework.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:27:42 GMT -->
+</html>

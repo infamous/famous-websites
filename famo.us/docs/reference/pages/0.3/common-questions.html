@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/common-questions.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:50:12 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Common Questions | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="common-questions">Common Questions</h1>
+
+<p>Here is a collection of questions about common issues you might encounter while developing applications in Famo.us 0.3. If you are running into a problem that you don’t see listed as a question here, please <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#103;&#103;&#101;&#115;&#116;&#105;&#111;&#110;&#115;&#064;&#102;&#097;&#109;&#111;&#046;&#117;&#115;">contact us</a>. We want to make sure this guide is as helpful as it can be.</p>
+
+<h3 id="why-is-my-surface-behind-this-second-surface">Why is my surface behind this second surface?</h3>
+
+<p>There are a few reasons this could happen.</p>
+
+<p><strong>1. The order in which surfaces are instantiated</strong> can affect surface display order. Surfaces that are <em>instantiated</em> first end up being rendered behind newer surfaces because their associated DOM element is created first.</p>
+
+<p><strong>2. Famo.us translations could be affecting your surface’s position.</strong> Check your code to see if you have any modifiers affecting your surface’s translation in z-space.</p>
+
+<p><strong>3. CSS z-indexing can also affect the display position of surfaces.</strong> Look carefully at any CSS you might have included in your application that includes <code>z-index</code> properties. For surfaces that share the same translation in z-space, default DOM layering will be overridden by explicit CSS z-index values.</p>
+
+<h3 id="why-is-my-surface-not-getting-this-click">Why is my surface not getting this click?</h3>
+
+<p><strong>Most likely there is an invisible surface on top of the one you are trying to click.</strong> This can happen when a surface has an opacity of <code>0</code> but still exists in the DOM. If you inspect the element you are trying to click, you may get insight into the exact DOM element you are targeting.</p>
+
+<h3 id="how-do-i-find-the-absolute-position-of-a-surface">How do I find the absolute position of a surface?</h3>
+
+<p>By design this is not possible. Instead, you’ll need to implement your positioning logic using <a href="positioning.html">align and origin</a> or via translations using <a href="transforms.html">transforms</a>.</p>
+
+<h3 id="when-should-i-be-using-a-new-context2">When should I be using a new <a href="the-engine-and-contexts.html#contexts">context</a>?</h3>
+
+<p>New contexts should be used when various sections of your application require different perspectives to be set.</p>
+
+<p>A great example is having an overlay or HUD. It would make sense to have a context for a 3D scene and a second context for a flat HUD sitting on top of the 3D scene. This same technique is also useful when implementing modals.</p>
+
+<p>Be careful with the amount of contexts that are created. Each context created triggers another full render cycle for the engine to calculate; overuse of contexts can lead to performance loss.</p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/common-questions.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:50:12 GMT -->
+</html>

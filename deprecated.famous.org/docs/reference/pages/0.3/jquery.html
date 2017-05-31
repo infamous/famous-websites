@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/jquery.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:08 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>jQuery & Famo.us | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="jquery--famous">jQuery &amp; Famo.us</h1>
+
+<p>You already know <a href="http://learn.jquery.com/">jQuery</a> is a cornerstone of frontend web development: It’s used on millions of websites by developers who enjoy its fast, easy-to-use methods for manipulating web pages. But you might not know that jQuery and Famo.us play together well.</p>
+
+<p><em>This section covers techniques for using jQuery with Famo.us. If you’re looking for information on how to learn jQuery itself, <a href="http://learn.jquery.com/">visit the jQuery learning center</a>.</em></p>
+
+<h2 id="when-to-use-jquery-with-famous">When to use jQuery with Famo.us</h2>
+
+<p>Before you decide include the jQuery library within your Famo.us project, spend some time carefully thinking about why exactly you need it.</p>
+
+<p>The area where jQuery shines brightest is its concise, powerful methods for DOM manipulation, but since Famo.us endorses avoiding touching the DOM at all, using the libraries together poses a risk of deoptimization. <strong>Ask yourself whether you can achieve your goals in Famo.us alone</strong>, without touching the DOM. If you think you will need to manipulate the DOM no matter what, jQuery could be a great addition. Here are a few rules of thumb:</p>
+
+<p><strong>Good reasons to use jQuery with Famo.us:</strong></p>
+
+<ul>
+  <li>Concisely selecting and working with collections of DOM elements</li>
+  <li>Easily changing element attributes/properties (such as classes)</li>
+  <li>Making AJAX requests</li>
+</ul>
+
+<p><strong>Bad reasons to use jQuery with Famo.us:</strong></p>
+
+<ul>
+  <li>Effects/animation (instead, use Famo.us transitionables)</li>
+  <li>Events (instead, use the Famo.us <code>EventHandler</code>)</li>
+  <li>Supporting older browsers (Famo.us only supports modern browsers)</li>
+</ul>
+
+<h2 id="including-jquery-in-your-famous-project">Including jQuery in your Famo.us project</h2>
+
+<p>You should be able to use jQuery within your Famo.us project right out of the box, without any additional wiring-up. Simply link to the jQuery library from your within main HTML file, e.g.:</p>
+
+<pre><code>&lt;script src="//code.jquery.com/jquery-migrate-2.1.1.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>jQuery is available in a variety of different formats (Bower, CDN links); <a href="http://jquery.com/download/">see the jQuery downlod page for more options.</a></p>
+
+<h2 id="manipulating-dom-elements-not-controlled-by-famous">Manipulating DOM elements not controlled by Famo.us</h2>
+
+<p>If you want to use jQuery to manipulate elements on the page that are not directly controlled by Famo.us, you can use jQuery normally, <strong>without needing to add any special handling code</strong> for Famo.us. jQuery will retrieve the elements you select without interfering with the Famo.us rendering engine.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group A
+// @famous-block-option preset famous-0.3.0-globals-jquery
+// @famous-block-filename main.js
+var Engine = famous.core.Engine;
+// Famo.us stuff goes here.
+// Etc.
+
+// Elsewhere, we can use jQuery.
+$('p').addClass('blue');
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group A
+// @famous-block-filename main.html
+&lt;div&gt;
+  &lt;p&gt;jQuery&lt;/p&gt;
+  &lt;p&gt;&amp;&lt;/p&gt;
+  &lt;p&gt;Famo.us&lt;/p&gt;
+  &lt;p&gt;Rock!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group A
+// @famous-block-filename main.css
+.blue {
+  color: cyan;
+}
+</code></pre>
+
+<h2 id="manipulating-elements-within-famous-surfaces">Manipulating elements within Famo.us surfaces</h2>
+
+<p>One thing you might want to do with jQuery within a Famo.us app is to select elements contained <em>within</em> surfaces and change them in some way — say, by reordering them, or changing all of their class names. For example, suppose we had a surface whose content was an unordered list (<code>&lt;ul&gt;</code>) element. If we needed to toggle a class on all of those list elements, and then sort the items in the list, jQuery can be a great tool for the job.</p>
+
+<p>Surfaces aren’t inserted into the DOM right when they are instantiated; the Famo.us Engine decides whether to insert each surface into the DOM as part of its main rendering loop. Because of this, we can’t be sure exactly when the surface content will be present in the DOM in order to be successfully selected by jQuery. Fortunately, every <code>Surface</code> instance emits a <code>'deploy'</code> event when it has been inserted into the DOM. We can use a callback to trigger our jQuery code at the appropriate time.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group B
+// @famous-block-option preset famous-0.3.0-globals-jquery
+// @famous-block-filename main.js
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+  content: '&lt;ul class="list"&gt;&lt;li&gt;Peach&lt;/li&gt;&lt;li&gt;Apple&lt;/li&gt;&lt;li&gt;Orange&lt;/li&gt;&lt;li&gt;Banana&lt;/li&gt;&lt;li&gt;Plum&lt;/li&gt;&lt;li&gt;Pear&lt;/li&gt;&lt;/ul&gt;',
+  properties: {
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+surface.on('deploy', function() {
+  var $list = $('.list');
+  var $items = $list.find('li');
+
+  $items.addClass('blue');
+
+  var $sorted = $items.sort(function(a, b) {
+    var aText = $(a).text();
+    var bText = $(b).text();
+    return aText &gt; bText;
+  });
+
+  $list.append($sorted);
+});
+
+var modifier = new Modifier({
+  size: [250, 250],
+  align: [0.5, 0.5],
+  origin: [0.5, 0.5]
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group B
+// @famous-block-filename main.css
+.blue {
+  color: cyan;
+}
+</code></pre>
+
+<p><strong>Important:</strong> Note that a surface instance may emit a <code>'deploy'</code> event multiple times, because the Famo.us Engine may recycle its respective <code>&lt;div&gt;</code> element for use with other instances, and then reinsert it at a later point. For finer-grained control of jQuery within that lifecycle, you may also wish to listen to a surface’s <code>'recall'</code> event, which is fired when the surface instance is removed from the DOM.</p>
+
+<h3 id="manipulating-surfaces">Manipulating surfaces</h3>
+
+<p>We can also use jQuery to select and modify Famo.us surfaces directly. All surfaces have the class <code>famous-surface</code>, which we can select with jQuery in order to manipulate them directly. We can also assign a class to the surface when we instantiate it and select that. Suppose, for example, that we wanted to insert content into the surface once data has been loaded from the server:</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group C
+// @famous-block-option preset famous-0.3.0-globals-jquery
+// @famous-block-filename main.js
+var Engine = famous.core.Engine;
+var Surface = famous.core.Surface;
+var Modifier = famous.core.Modifier;
+
+var context = Engine.createContext();
+
+var surface = new Surface({
+  classes: ['data-surface'],
+  properties: {
+    backgroundColor: '#fa5c4f'
+  }
+});
+
+// A simple AJAX call, for demonstration purposes
+$.ajax({
+  url: '#',
+  type: 'GET',
+  success: function() {
+    surface.setContent('Data has loaded!');
+  }
+});
+
+var modifier = new Modifier({
+  size: [250, 250],
+  align: [0.5, 0.5],
+  origin: [0.5, 0.5]
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<h2 id="the-right-tool-for-the-job">The right tool for the job</h2>
+
+<p>Ultimately, whether you choose to use jQuery with your Famo.us project is entirely up to you: The two are perfectly compatible. The question to ask is whether jQuery (or Famo.us) is the right tool for the job you’re doing. When used properly, jQuery and Famo.us can work great together. Just keep the pitfalls in mind, and always stop to think about what the best approach to a problem is. If you have suggestions for great ways to integrate jQuery with Famo.us, <a href="../../../../community/index.html">we’d love to hear about them</a>.</p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/jquery.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:08 GMT -->
+</html>

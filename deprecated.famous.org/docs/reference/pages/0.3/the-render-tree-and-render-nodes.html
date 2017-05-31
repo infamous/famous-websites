@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/the-render-tree-and-render-nodes.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:01 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>The Render Tree & Render Nodes | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="the-render-tree--render-nodes">The Render Tree &amp; Render Nodes</h1>
+
+<p>One of the first things you’ll notice about Famo.us is how little we expose HTML and the DOM to the developer. Interacting with the DOM is riddled with performance issues. Famo.us abstracts away DOM management by maintaining a representation of it in JavaScript called <strong>the <em>render tree</em></strong>.</p>
+
+<h2 id="intro-to-the-render-tree">Intro to the render tree</h2>
+
+<p>If you inspect a website running Famo.us, you’ll notice the DOM is very flat: most elements are siblings of one another. Inspect any other website, and you’ll see the DOM is highly nested. <strong>Famo.us takes a radically different approach.</strong> We keep the structure of HTML in JavaScript. To Famo.us, HTML is more like a list of things to draw to the screen than the source of truth.</p>
+
+<p>Developers are used to nesting HTML elements because that’s the way to get relative positioning, event bubbling, and semantic structure. However, there is a cost to each of these: relative positioning causes slow page reflows on animating content; event bubbling is expensive when event propagation is not carefully managed; and semantic structure is not well separated from visual rendering in HTML.</p>
+
+<p>Famo.us promises a rich 60 <a href="glossary.html#fps">FPS</a> experience, and to do so, we needed to circumvent these inefficiencies. When we decided to abstract away the DOM, we needed a way to maintain the expectations every web developer has of the DOM, but in a way that doesn’t compromise on performance. <strong>The render tree is our solution to relative positioning and semantic structure.</strong></p>
+
+<h2 id="creating-the-render-tree">Creating the render tree</h2>
+
+<p>A tree’s starting point is called its <em>root</em>. In HTML, this root is the <code>&lt;body&gt;</code> tag. In Famo.us, the root is a <em>context</em>. We instantiate a <em>context</em> via the <a href="the-engine-and-contexts.html">engine</a>’s <code>.createContext()</code> method. This creates a <code>&lt;div&gt;</code> with the CSS class <code>famous-container</code>. We can also pass in a pre-existing DOM element, e.g. <code>.createContext(myElement)</code>, if we want to create a context only within that element.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context1
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var context = Engine.createContext();
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context1
+// @famous-block-filename main.css
+.famous-container {
+  outline: 1px dashed white;
+  margin: 1px;
+  padding: 1px;
+}
+.famous-container::after {
+  font-family: monospace;
+  content: "context (.famous-container)";
+}
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context1
+// @famous-block-filename en.md
+# A simple context
+
+Here, we illustrate creating the _root_ of the render tree by creating a context with nothing in it. Pretty boring!
+
+We've added dotted lines and text to better illustrate what's going on here. In real-world practice, contexts themselves are invisible.
+</code></pre>
+
+<h2 id="nodes">Nodes</h2>
+
+<p>A tree is made up of nodes. In HTML, those nodes would be tags like <code>&lt;div&gt;</code> or <code>&lt;button&gt;</code>. In Famo.us, nodes come in two flavors: <em><a href="glossary.html#renderable">renderables</a></em> and <em><a href="modifiers.html">modifiers</a></em>. <em>Renderables</em> are nodes that actually get drawn to the screen. <em>Modifiers</em> aren’t themselves drawn, but affect how renderables get drawn. We use both of these types of nodes in conjunction to get content onto the screen. This process is known as <em>extending the render tree</em>.</p>
+
+<h2 id="extending-the-render-tree">Extending the render tree</h2>
+
+<p>A context has no visual representation; it merely provides a starting point for Famo.us’ render cycle. To get something on the screen, we will need to <strong>extend the render tree</strong> by adding nodes via the <a href="the-engine-and-contexts.html#contexts">context</a>’s <code>.add()</code> method. A Famo.us <a href="surfaces.html"><em>surface</em></a> is one kind of node, which loosely corresponds to a <code>&lt;div&gt;</code> in HTML. This <code>&lt;div&gt;</code> will be nested inside of the <code>&lt;div&gt;</code> allocated to the context.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context2
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var context = Engine.createContext();
+
+var Surface = famous.core.Surface;
+var surface = new Surface({
+  size: [100, 100]
+});
+
+context.add(surface);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context2
+// @famous-block-filename main.css
+.famous-container {
+  outline: 1px dashed white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #111;
+}
+.famous-container::after {
+  font-family: monospace;
+  content: "context (.famous-container)";
+}
+.famous-surface {
+  outline: 1px solid white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #222;
+}
+.famous-surface::after {
+  font-family: monospace;
+  content: "surface (.famous-surface)";
+}
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context2
+// @famous-block-filename en.md
+# Adding a node
+
+Calling `.add()` on the _context_ and passing it a _renderable_ has the effect of adding a node to the render tree.
+
+If you inspect the _surface_ element that appears in the demo area, you'll see that it's just a `&lt;div&gt;` element.
+
+We've added some lines and text here for illustration that would not be present in a normal Famo.us app.
+</code></pre>
+
+<h2 id="modifying-parts-of-the-render-tree">Modifying parts of the render tree</h2>
+
+<p>A <a href="modifiers.html">modifier</a> is another type of Famo.us render node that is capable of <strong>modifying the nodes below it in the render tree</strong>. (Surfaces are “dumb.” They don’t know where they are in the page, or whether they’re even visible; that is the job of the <em>modifier</em>.) By using modifiers in conjuntion with <em><a href="transforms.html">transforms</a></em>, we can change the size, position, scale, and opacity of renderables.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context3
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var context = Engine.createContext();
+
+var Surface = famous.core.Surface;
+var surface = new Surface({
+  size: [100, 100]
+});
+
+var Transform = famous.core.Transform;
+var Modifier = famous.core.Modifier;
+var modifier = new Modifier({
+  transform: Transform.translate(100, 200)
+});
+
+context.add(modifier).add(surface);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context3
+// @famous-block-filename main.css
+.famous-container {
+  outline: 1px dashed white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #111;
+}
+.famous-container::after {
+  font-family: monospace;
+  content: "context (.famous-container)";
+}
+.famous-surface {
+  outline: 1px solid white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #222;
+}
+.famous-surface::after {
+  font-family: monospace;
+  content: "surface (.famous-surface)";
+}
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context3
+// @famous-block-filename en.md
+# Adding a modifier
+
+Here, we add a modifier above the surface in the render tree. The modifier applies changes to the surface.
+
+The modifier has a single property set: its _transform_ property. We're assigning it the value of a transform matrix. That matrix describes a _translation_ of 100 pixels to the right and 200 pixels downward.
+</code></pre>
+
+<h2 id="chaining-nodes">Chaining nodes</h2>
+
+<p>As we’ve already seen, modifiers affect the part of the render tree beneath them. Modifiers can affect other modifiers, too. <strong>By chaining modifiers, their effects compound:</strong> their transforms are composed, and their opacities are multiplied. This makes separating state easy to do. One modifier can handle opacity, while another can handle rotation. For example:</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context4
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var context = Engine.createContext();
+
+var Surface = famous.core.Surface;
+var surface = new Surface({
+  size: [100, 100]
+});
+
+var Transform = famous.core.Transform;
+var Modifier = famous.core.Modifier;
+var modifier1 = new Modifier({
+  transform: Transform.rotateZ(0.5)
+});
+var modifier2 = new Modifier({
+  opacity: 0.5
+});
+
+context.add(modifier1).add(modifier2).add(surface);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context4
+// @famous-block-filename main.css
+.famous-container {
+  outline: 1px dashed white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #111;
+}
+.famous-container::after {
+  font-family: monospace;
+  content: "context (.famous-container)";
+}
+.famous-surface {
+  outline: 1px solid white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #222;
+}
+.famous-surface::after {
+  font-family: monospace;
+  content: "surface (.famous-surface)";
+}
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context4
+// @famous-block-filename en.md
+# Rotation and opacity
+
+In this demo, we apply both a rotation and an opacity to the surface.
+
+The first modifier applies a rotational transform to all nodes below it (including `modifier2`). The second modifier applies an opacity of `0.5` to all nodes below (the `surface`).
+
+The end effect is a rotated, semi-transparent surface.
+</code></pre>
+
+<h2 id="branching-nodes">Branching nodes</h2>
+
+<p>Render trees don’t have to be linear. They can branch, too. Below is a simple example demonstrating how to branch the tree by calling <code>.add()</code> successively on the same node.</p>
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context5
+// @famous-block-option textPanelActive true
+var Engine = famous.core.Engine;
+var context = Engine.createContext();
+
+var Surface = famous.core.Surface;
+var surface1 = new Surface({
+  size: [100, 100]
+});
+var surface2 = new Surface({
+  size: [150, 150]
+});
+
+var Transform = famous.core.Transform;
+var Modifier = famous.core.Modifier;
+var modifier = new Modifier({
+  transform: Transform.translate(100, 200)
+});
+
+context.add(modifier).add(surface1);
+context.add(surface2);
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context5
+// @famous-block-filename main.css
+.famous-container {
+  outline: 1px dashed white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #111;
+}
+.famous-container::after {
+  font-family: monospace;
+  content: "context (.famous-container)";
+}
+.famous-surface {
+  outline: 1px solid white;
+  margin: 1px;
+  padding: 1px;
+  background-color: #222;
+}
+.famous-surface::after {
+  font-family: monospace;
+  content: "surface (.famous-surface)";
+}
+</code></pre>
+
+<!-- -->
+
+<pre><code>// @famous-block
+// @famous-block-option preset famous-0.3.0-globals
+// @famous-block-group context5
+// @famous-block-filename en.md
+# Separate branches
+
+Here, we arranged the render tree such that the modifier only effects one of the two surfaces.
+
+When we call `.add()` on the root node (the `context`), we are adding a branch _from that node_, as opposed to the last node added to it.
+
+The `.add()` method returns the node added, so chaining calls to `.add()` has the effect of adding branches one after another.
+</code></pre>
+
+<h2 id="the-big-picture">The big picture</h2>
+
+<blockquote>
+  <p>It’s modifiers all the way down – Anon</p>
+</blockquote>
+
+<p>In all the examples above, you’ll notice a pattern: <strong>a render tree starts with a context, branches into a bunch of modifiers, and ends with surfaces</strong>. Unlike the DOM, where nodes mix visual representation with syntactic clustering, the render tree makes a clear separation between layout (modifiers), content (surfaces), and structure (<code>.add()</code>).</p>
+
+<p>In fact, if you want to know what the position, or opacity of a surface at the bottom of the render tree, you just have to multiply the opacities and transforms of the modifiers above it!</p>
+
+<p>Another point of divergence to note is that the DOM executes a redraw whenever a node’s styling or content is changed (i.e., <em>immediate mode</em>). In Famo.us, the render tree batches changes behind the scenes by buffering them against the <code>window.requestAnimationFrame</code> API (i.e., <em>retain mode</em>). This ensures that changes are resolved at the most optimal time (synced to your monitor’s refresh rate).</p>
+
+<h2 id="recap">Recap</h2>
+
+<p>To recap, here’s a comparison between traditional DOM and the Famo.us render tree.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        Famo.us render tree
+      </th>
+      <th>
+        DOM
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>Tree structure</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    </tr>
+    <tr>
+    <td>Nodes</td>
+    <td><a href="glossary.html#renderable">Renderables</a></td>
+    <td>HTML elements</td>
+    </tr>
+    <tr>
+    <td>Reflows</td>
+    <td>No</td>
+    <td>Yes</td>
+    </tr>
+    <tr>
+    <td>Encapsulation</td>
+    <td><a href="views.html">Views</a></td>
+    <td>Shadow DOM</td>
+    </tr>
+    <tr>
+    <td>Meaning</td>
+    <td>Structure</td>
+    <td>Structure &amp; rendering</td>
+    </tr>
+    <tr>
+    <td>Render cycle</td>
+    <td>Retain mode</td>
+    <td>Immediate mode</td>
+    </tr>
+    <tr>
+    <td>Language</td>
+    <td>JavaScript</td>
+    <td>HTML</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="surfaces.html">Next: Surfaces »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from deprecated.famous.org/docs/reference/pages/0.3/the-render-tree-and-render-nodes.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 01:05:01 GMT -->
+</html>

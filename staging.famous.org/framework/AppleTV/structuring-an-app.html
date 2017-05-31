@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from staging.famous.org/framework/AppleTV/structuring-an-app.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:43:36 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>Structuring an app | Famous Framework</title>
+     <script src="../assets/scripts/toc.js"></script>
+    <link href="../assets/styles/main.css" rel="stylesheet">
+    <link href="../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../../index.html">
+        <object data="../assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../../index.html">Engine</a>
+              <a class="main-nav-link" href="../index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="../../../blog.famous.org/index.html">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="../hello-framework.html">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="../behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../states.html">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../control-flow.html">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="../deployment.html">Deploy / publish</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../timelines.html">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="../%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24event.html">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="../examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-children current-lesson"}>
+    
+    <li>
+      
+      <a href="index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="structuring-an-app.html"  class="active">Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="../faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>Structuring an app</h1>
+          <p>In this section, we will teach you how to plan out an application and structure your code accordingly.</p>
+
+<h2>What are we building?</h2>
+
+<p>Here&#39;s a list of everything we want our gallery to do:</p>
+
+<ul>
+<li>Display multiple images at random positions</li>
+<li>Slowly move them to the top of the screen repeatedly</li>
+<li>Rotate images in unison around a central point</li>
+</ul>
+
+<!--Starting from the top, we will need to create elements for each of our images. Since these elements will be identical besides the image displayed, we'll make use of the `$repeat` control flow statement in our code. 
+
+For moving the images to the top, we need to store the vertical position of our image nodes in the module's [state](#). That way we can slowly increment the values in regular intervals and our behaviors will respond. When the nodes get to the top of the screen, we can move them back to the bottom.
+
+Finally, since we want to rotate all of our images in unison, we will attach all of them to a single shared node. This is where the scene graph will come in to play. 
+-->
+
+<h2>Building the Tree</h2>
+
+<p>Now that we have an idea of what we&#39;re building, we can build out a <a href="../tree.html">Tree</a> to match. </p>
+
+<p><span class="sidenote"> The Tree will serve as a representation of the <a href="../../../famous.org/learn/scene-graph.html">Famous Scene graph</a> used to structure our project. Building out the Tree will give us foundation where we can attach our behaviors and store relationships of elements in an ordered hierarchy.</span> </p>
+
+<p>Open up <code>apple-tv.html</code> and  add the following code to it. Note the XML like syntax for creating our Tree and how we add traditional HTML id&#39;s and classes to it.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;node id=&quot;root&quot;&gt;
+    &lt;node id=&quot;rotator-node&quot;&gt;
+        &lt;node class=&quot;gallery-item&quot;&gt;
+        &lt;/node&gt;
+    &lt;/node&gt;
+&lt;/node&gt;
+</code></pre></div>
+<p>In the snippet above, pay attention to how we nest a single <code>&#39;gallery-item&#39;</code> node within the main <code>&#39;rotator-node&#39;</code>. This makes it so when we move the <code>&#39;rotator-node&#39;</code> all <code>&#39;gallery-item&#39;</code> nodes will move with it in unison. </p>
+
+<p>You may be wondering why we only include a single <code>&#39;gallery-item&#39;</code> in our tree when we will have multiple images in our gallery. That&#39;s because we will repeat this element in our behaviors, not our tree. It&#39;s important to note that all control flow logic, like repeating elements and creating dynamic content, is handled in behaviors. </p>
+
+<p>Let&#39;s see how we will repeat <code>&#39;gallery-item&#39;</code> in the next section</p>
+
+<p><span class="cta">
+<a href="behaviors.html">Up next: Behaviors &raquo;</a>
+</span></p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../../terms.html">Terms</a>
+          <a href="../../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from staging.famous.org/framework/AppleTV/structuring-an-app.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:43:36 GMT -->
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/pitfalls-and-gotchas.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:50:12 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Pitfalls & Gotchas | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="pitfalls--gotchas">Pitfalls &amp; Gotchas</h1>
+
+<p>Famo.us does its best to provide a rich visual experience at 60 <a href="glossary.html#fps">FPS</a>. However, some techniques that are commonplace in traditional web development can have a negative impact on Famo.us’ performance. Here, we’ll cover a few of the main <strong>techniques to avoid</strong> so that your application will keep humming.</p>
+
+<h2 id="pinging-the-dom">Pinging the DOM</h2>
+
+<p>Famo.us is very different from many Javascript frameworks, since it endorses zero touches to the <a href="glossary.html#dom">DOM</a>. Querying the DOM (selecting elements, querying an element property) can lead to both performance issues as well as unexpected behavior.</p>
+
+<p>In terms of performance, invoking large queries against the DOM is fairly expensive (in measurement of CPU cycles). Also, seemingly simple requests, such as asking for the width of a DOM element, will sometimes cause the entire page to reflow in order to calculate the correct value for the element’s width. These reflows are made more apparent in a highly animated environment.</p>
+
+<p>When pinging the DOM, unexpected behavior can also arise because of how Famo.us uses DOM elements. Some Famo.us components, such as <a href="scrollview.html">Scrollview</a>, can cause the DOM element associated with a surface to be deallocated. This resource pooling optimization allows Famo.us to minimize the amount of DOM element creations (an expensive operation). However, this leads to issues when trying to access DOM elements that no longer are present in the DOM.</p>
+
+<h2 id="using-setinterval-settimeout-etc">Using setInterval, setTimeout, etc.</h2>
+
+<p>Using the default Javascript <code>.setInterval()</code> timer function will cause issues in Famo.us because of the amount of code the <a href="the-engine-and-contexts.html">engine</a> runs. In some cases, it is even possible for the default <code>.setInterval()</code> to miss a cycle. If you need <code>.setInterval()</code>- or <code>.setTimeout()</code>-type functionality, use Famo.us’ <code>Timer</code> utility instead:</p>
+
+<pre><code>var Timer = famous.utilities.Timer;
+Timer.setTimeout(function(){ /*...*/ }, 100);
+Timer.setInterval(function(){ /*...*/ }, 100);
+</code></pre>
+
+<h2 id="using-native-dom-events">Using native DOM events</h2>
+
+<p>Using native DOM events is fine for intra-surface eventing but is messy for inter-surface eventing. When trying to communicate across surfaces, it is best to use Famo.us’ own <a href="events.html">eventing system</a>. By keeping all events in a single system, your application will be much easier to manage.</p>
+
+<p>Also, because of the resource pooling (mentioned above in the section in <a href="#pinging-the-dom">Pinging the DOM</a>), it is possible that your surface may have its DOM element deallocated — resulting in a loss of all of the registered DOM event handlers that were registered on it.</p>
+
+<h2 id="non-performant-css">Non-performant CSS</h2>
+
+<p>CSS is from the age of web pages, not web applications. As a result, the long <a href="glossary.html#repaint">paint</a> and <a href="glossary.html#reflow">reflow</a> times associated with certain CSS classes has gone somewhat unnoticed due to the static nature of the web. Below are some of the CSS pitfalls a developer may run into in a highly dynamic environment:</p>
+
+<ul>
+  <li>
+    <p><strong>Combining <code>border-radius</code> and <code>box-shadow</code>:</strong> Try to avoid this technique as it will lead to performance problems, especially during animations. See the <em><a href="http://www.html5rocks.com/en/tutorials/speed/css-paint-times/">CSS Paint Times and Page Render Weight</a></em> for a great explanation.</p>
+  </li>
+  <li>
+    <p><strong>Breaking the bounding box.</strong> Using CSS to position child elements outside of the bounding box of their parent will lead to performance issues. While it is common to see DOM elements absolutely positioned, e.g. <code>left: -5px</code>, in the wild, this technique actually makes it harder for browsers to paint the element performantly.</p>
+  </li>
+  <li>
+    <p><strong>Transitioning color values:</strong> This causes large amounts of repainting and is very non-performant. To achieve a similar effect, try stacking a handful of <code>&lt;canvas&gt;</code> or <code>&lt;div&gt;</code> elements of different colors and, then opacitate them in/out accordingly. (Be careful not to add too many layers, as there is also a performance hit when too many surfaces exist on the screen.</p>
+  </li>
+</ul>
+
+<p>Check out <em><a href="http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">High Performance Animations</a></em> for a great rundown of CSS’ impact on performance.</p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/pitfalls-and-gotchas.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:50:13 GMT -->
+</html>

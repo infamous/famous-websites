@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.optimizely.com	TRUE	/	FALSE	1999999999	cdn	http%3a%2f%2fakamai%3adsd%40cdn.optimizely.com%2fjs%2f3006670490.js
+

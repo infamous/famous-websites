@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from famous.org/learn/Carousel/AnimatingWithPhysics.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:31:04 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="../../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>Animating with Physics | Guides | Famous Platform</title>
+     <script src="../assets/scripts/toc.js"></script>
+    <link href="../assets/styles/main.css" rel="stylesheet">
+    <link href="../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../../index.html">
+        <object data="../assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../../index.html">Engine</a>
+              <a class="main-nav-link" href="../../framework/index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              <a class="main-nav-link" href="../index.html">Learn</a>
+              <a class="main-nav-link" href="../../docs/index.html">API Docs</a>
+              <a class="main-nav-link" href="../../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/engine'); return false;" href="https://github.com/Famous/engine">Github</a>
+              <a class="main-nav-link" href="../../../blog.famous.org/index.html">Blog</a>
+          </div>
+      </div>
+      <h1>Learn: Famous Engine Guides</h1>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class='parent'>Overview</span>
+          
+        
+          
+          <ul>
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../hello-famous.html"><span class="linked">Hello Famous</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../download-and-install.html"><span class="linked">Download & install</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../browser-and-device-support.html"><span class="linked">Browser & device support</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../contributing.html"><span class="linked">Contributing</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+        
+    
+  
+    <li>
+        
+          
+            <span class='parent'>Essentials</span>
+          
+        
+          
+          <ul>
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../boilerplate.html"><span class="linked">Boilerplate</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../scene-graph.html"><span class="linked">Scene graph</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../components.html"><span class="linked">Components</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../displaying-content.html"><span class="linked">HTML Content</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../styling-content.html"><span class="linked">HTML Styling</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../positioning.html"><span class="linked">Positioning</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../sizing.html"><span class="linked">Sizing</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../user-input.html"><span class="linked">User input</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../gesture-handler.html"><span class="linked">Gesture Handler</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+        
+    
+  
+    <li>
+        
+          
+            <span class='parent'>Intermediate</span>
+          
+        
+          
+          <ul>
+  
+    <li>
+        
+          
+            <span class='parent'>Animation</span>
+          
+        
+          
+          <ul>
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../transitionables.html"><span class="linked">Transitionables</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../easing-curves.html"><span class="linked">Easing curves</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+        
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../program-events.html"><span class="linked">Program events</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../physics.html"><span class="linked">Physics</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../webgl-content.html"><span class="linked">WebGL Content</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../webgl-styling.html"><span class="linked">WebGL Styling</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+        
+    
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+     
+    <span class="lesson-toggle">Carousel</span>
+    <ul class="lesson-children current-lesson">
+    
+    
+    <li>
+      
+      
+        
+          <a href="index.html" class="linked">Welcome</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="GettingStarted.html" class="linked">Getting Started</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="HelloFamous.html" class="linked">Hello Famous</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Architecture.html" class="linked">Architecture</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Layout.html" class="linked">Layout</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="OrganizingCode.html" class="linked">Organizing Code</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Arrows.html" class="linked">Arrows</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Dots.html" class="linked">Dots</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Pager.html" class="linked">Pager</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+         
+         <a href="AnimatingWithPhysics.html" class="active">Animating with Physics</a>
+         
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="UserInteraction.html" class="linked">User Interaction</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="Finish.html" class="linked">Finish</a>
+        
+      
+    </li>
+    
+    </ul>
+  </li>
+  
+  
+  
+  <li>
+    
+    <span class="lesson-toggle">Twitterus</span>
+    <ul class="lesson-sections">
+    
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/index.html" class="linked">Welcome</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/GettingStarted.html" class="linked">Getting Started</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/CreatingAnApp.html" class="linked">Creating an App</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Architecture.html" class="linked">Architecture</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Layout.html" class="linked">Layout</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Header.html" class="linked">Header</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Footer.html" class="linked">Footer</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Swapper.html" class="linked">Swapper</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/UserInteraction.html" class="linked">User Interaction</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Animation.html" class="linked">Animation</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../Twitterus/Finish.html" class="linked">Finish</a>
+        
+      
+    </li>
+    
+    </ul>
+  </li>
+  
+  
+  
+  <li>
+    
+    <span class="lesson-toggle">Mixed Mode</span>
+    <ul class="lesson-sections">
+    
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/index.html" class="linked">Intro</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/UsingMeshes.html" class="linked">Using Meshes</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/LightsCameraAction.html" class="linked">Lights, Camera, Action</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/MixingModes.html" class="linked">Mixing Modes</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/OrganizingOurScene.html" class="linked">Organizing Our Scene</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/ImportingTheModel.html" class="linked">Importing The Model</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/TheIframeScreen.html" class="linked">The Iframe Screen</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/DetailsDetails.html" class="linked">Details Details</a>
+        
+      
+    </li>
+    
+    <li>
+      
+      
+        
+          <a href="../MixedMode/Finish.html" class="linked">Finish</a>
+        
+      
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+          
+  
+    <li>
+        
+          
+            <span class='parent'>Help</span>
+          
+        
+          
+          <ul>
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../pitfalls.html"><span class="linked">Pitfalls</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../faq.html"><span class="linked">FAQ</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+        
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../glossary.html"><span class="linked">Glossary</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+    <li>
+        
+          
+            
+            
+              
+                <a href="../resources.html"><span class="linked">Resources</span></a>
+              
+            
+          
+        
+        </li>
+       
+    
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>Animating with Physics</h1>
+          <p><span class="intro-graf">
+Famous&#39; built-in physics engine allows us to add realistic motion to our application and animate our carousel.
+</span></p>
+
+<p>Instead of using an external function to position our child elements as shown in the first steps of this lesson, we will use the Famous <a href="../physics.html">physics engine</a>.</p>
+
+<h2>About the physics engine</h2>
+
+<p>The physics engine simulates constraints and forces applied to bodies in space. In the simplest terms, we add bodies to the physics engine&#39;s simulation, set them in motion with forces, and then relay their positional data back to our visible components.</p>
+
+<div class="sidenote">
+<p>It's important to note that the physics engine is its own entity entirely and has no knowledge of our application. All of the <code>imageNodes</code> in our <code>Pager</code> will simply respond to the data provided by the physics engine's body simulations.</p>
+</div>
+
+<h2>Updating our simulation</h2>
+
+<p>When running a physics simulation, we need to use the core Famous component to manage frame-by-frame updates of our elements&#39; positions. Expand the <code>Pager.js</code> file with the code below to do just that:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// Not shown: Other `require` statements above here ^^^
+var PhysicsEngine = require(&#39;famous/physics/PhysicsEngine&#39;); // To use later...
+var FamousEngine = require(&#39;famous/core/FamousEngine&#39;);
+
+function Pager(node, options) {
+    // Not shown: The existing constructor statements
+
+    // Add a physics simulation and update this instance
+    // using regular time updates from the clock.
+    this.simulation = new PhysicsEngine();
+
+    // .requestUpdate will call the .onUpdate method next frame, passing in the time stamp for that frame
+    FamousEngine.requestUpdate(this);
+}
+
+Pager.prototype.onUpdate = function(time) {
+    this.simulation.update(time)
+    // we will fill this out later
+    // ...
+
+    // by queueing up our .onUpdate, we can be sure this will be called every frame
+    FamousEngine.requestUpdateOnNextTick(this);
+}
+</code></pre></div>
+<p>By repeatedly calling on the <code>.requestUpdateOnNextTick()</code> method we can update our physics simulation and elements&#39; positions up to 60 frames per second. Note how we use the <code>onUpdate</code> method to pass our simulation a time stamp <code>time</code>, call <code>.update()</code> on <code>this.simulation</code>, and then repeat.</p>
+
+<h2>Adding physics bodies</h2>
+
+<p>Physics entities (such as bodies and forces) aren&#39;t themselves visible. Their data is used to control the position of elements that <em>are</em> visible. The image below illustrates the relationship.</p>
+
+<p><span class="art-insert">
+<img src="assets/images/Physics.png" alt="Physics">
+</span></p>
+
+<p>To animate an element&#39;s <em>x-position</em>, we will make use of a physics body called a <code>Box</code>, which we will attach to an <em>anchor point</em> with a <code>Spring</code> force.</p>
+
+<p>Moving the anchor point to the left and right will have the effect of pulling the <code>Box</code> along in space, thereby updating the <code>imageNode</code>&#39;s x-position component in a dynamic manner.</p>
+
+<p>Additionally, we will use a quaternion to control the y-rotation of the nodes, and attach these to <code>RotationalSpring</code> forces that will give each box an interesting animation when they move on and off screen.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/**
+ * Pager.js
+ * [complete file not shown]
+ */
+
+// We need to import all of these additional modules.
+var physics = require(&#39;famous/physics&#39;);
+var math = require(&#39;famous/math&#39;);
+var Box = physics.Box;
+var Spring = physics.Spring;
+var RotationalSpring = physics.RotationalSpring;
+var RotationalDrag = physics.RotationalDrag;
+var Quaternion = math.Quaternion;
+var Vec3 = math.Vec3;
+</code></pre></div>
+<p>Next, will add a <code>Box</code> body to each <code>imageNode</code> and link their movements through the <code>Pager</code> instance&#39;s <code>update</code> method.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/**
+ * Pager.js
+ * [complete file not shown]
+ */
+
+function _createPages(root, pageData) {
+    var pages = [];
+
+    for (var i = 0; i &lt; pageData.length; i++) {
+        var imageNode = root.addChild();
+
+        imageNode.setSizeMode(1,1,1)
+        imageNode.setAbsoluteSize(500, 500, 0);
+        imageNode.setAlign(0.5, 0.5);
+        imageNode.setMountPoint(0.5, 0.5);
+        imageNode.setOrigin(0.5, 0.5);
+
+        var el = new DOMElement(imageNode);
+        el.setProperty(&#39;backgroundImage&#39;, &#39;url(&#39; + pageData[i] + &#39;)&#39;);
+        el.setProperty(&#39;background-repeat&#39;, &#39;no-repeat&#39;);
+        el.setProperty(&#39;background-size&#39;, &#39;cover&#39;);
+
+        // A `Box` body to relay simulation data back to the visual element
+        var box = new Box({
+            mass: 100,
+            size: [100,100,100]
+        });
+
+        // Place all anchors off the screen, except for the
+        // anchor belonging to the first image node
+        var anchor = i === 0 ? new Vec3(0, 0, 0) : new Vec3(1, 0, 0);
+
+        // Attach the box to the anchor with a `Spring` force
+        var spring = new Spring(null, box, {
+            period: 0.6,
+            dampingRatio: 0.5,
+            anchor: anchor
+        });
+
+        // Rotate the image 90deg about the y-axis,
+        // except for first image node
+        var quaternion = i === 0 ? new Quaternion() : new Quaternion().fromEuler(0,-Math.PI/2,0);
+
+        // Attach an anchor orientation to the `Box` body with a `RotationalSpring` torque
+        var rotationalSpring = new RotationalSpring(null, box, {
+            period: 1,
+            dampingRatio: 0.2,
+            anchor: quaternion
+        });
+
+        // Notify the physics engine to track the box and the springs
+        this.simulation.add(box, spring, rotationalSpring);
+
+        pages.push({
+          node: imageNode,
+          el: el,
+          box: box,
+          spring: spring,
+          quaternion: quaternion,
+          rotationalSpring: rotationalSpring,
+          anchor: anchor
+        });
+    }
+
+    return pages;
+}
+</code></pre></div>
+<p>Above, all nodes except the first one are positioned off of the screen and rotated out. But now the the <code>Pager</code> class will need an <code>update</code> method to link the <code>Box</code> bodies&#39; transforms to the <code>imageNodes</code>.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/**
+ * Pager.js
+ * [complete file not shown]
+ */
+
+ Pager.prototype.onUpdate = function(time) {
+     this.simulation.update(time)
+
+     var page;
+     var physicsTransform;
+     var p;
+     var r;
+     for (var i = 0, len = this.pages.length; i &lt; len; i++) {
+         page = this.pages[i];
+
+         // Get the transform from the `Box` body
+         physicsTransform = this.simulation.getTransform(page.box);
+         p = physicsTransform.position;
+         r = physicsTransform.rotation;
+
+         // Set the `imageNode`&#39;s x-position to the `Box` body&#39;s x-position
+         page.node.setPosition(p[0] * this.pageWidth, 0, 0);
+
+         // Set the `imageNode`&#39;s rotation to match the `Box` body&#39;s rotation
+         page.node.setRotation(r[0], r[1], r[2], r[3]);
+     }
+
+     Famous.requestUpdateOnNextTick(this);
+ }
+</code></pre></div>
+<p>The code above loops through all of the image nodes, retrieves a transform from each <code>Box</code> body in the physics simulation, and then applies the transformation to the corresponding node&#39;s position and rotation components. Note how we use <code>this.pageWidth</code> to offset our boxes in relation to the width of the screen.</p>
+
+<p>Now our <code>imageNodes</code> are linked to boxes in the physics simulation. However, we will need to apply forces to the boxes in order to animate the carousel. In the next section, we will use events to provide these forces.</p>
+
+<div class="sidenote--other">
+<p><strong>Modified files:</strong> <a href="https://github.com/famous/lesson-carousel-starter-kit/blob/step7-AddPhysics/src/carousel/Pager.js">Pager.js</a> | <a href="https://github.com/Famous/lesson-carousel-starter-kit/blob/step7-AddPhysics/src/carousel/Carousel.js">Carousel.js</a></p>
+</div>
+
+<div class="sidenote">
+<p><strong>Section recap:</strong> <a href="https://github.com/famous/lesson-carousel-starter-kit/tree/step7-AddPhysics">Code for this step</a></p>
+</div>
+
+<p><span class="cta">
+<a href="UserInteraction.html">Up next: User interaction &raquo;</a>
+</span></p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../../terms.html">Terms</a>
+          <a href="../../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from famous.org/learn/Carousel/AnimatingWithPhysics.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:31:05 GMT -->
+</html>

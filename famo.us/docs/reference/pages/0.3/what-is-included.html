@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/what-is-included.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:56 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>What's Included in Famo.us | 0.3 | Reference Documentation | Famo.us</title>
+    <link rel="shortcut icon" href="../../favicon5e1f.ico?v=2" />
+    <link rel="stylesheet" href="../../assets/normalize.css" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/css8f84.css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link href="../../../../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../assets/global.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/famous-website.css" type="text/css">
+  </head>
+  <body>
+    <div id="nav-bar">
+      <a href="../../../../index.html" class="nav-bar-item"><img src="../../assets/images/famous_logo_white.svg" alt="Ï†"></a>
+      <a href="../../../../university/home/index.html" class="nav-bar-item">Famo.us University</a>
+      <a href="../../../../integrations/angular/index.html" class="nav-bar-item">Famo.us/Angular</a>
+      <a href="../../../index.html" class="nav-bar-item active">Docs</a>
+      <a href="../../../../help.html" class="nav-bar-item">Help</a>
+      <a href="../../../../blog/index.html" class="nav-bar-item">Blog</a>
+      <a href="../../../../../code.famo.us/famous-starter-kit/famous-starter-kit460f.zip?source=top" class="download">Download</a>
+    </div>
+    <div id="nav-placeholder"></div>
+    <div class="container">
+      <p><a href="index.html">Home</a></p>
+      <h1 id="whats-included-in-famous">What’s Included in Famo.us</h1>
+
+<p>The Famo.us platform comes packaged with <strong>a wide variety of modules and utility classes</strong> that provide all you need to build a high-performance interface. You don’t need to know about all of these modules to get started, but <strong>you may want to bookmark this page</strong> for reference later.</p>
+
+<h2 id="core">Core</h2>
+
+<p>The core modules of Famo.us include all of the low-level componentry required to make Famo.us applications possible. <em>(Note that many of the objects listed here are only for the Famo.us engine’s internal use.)</em></p>
+
+<ul>
+  <li><strong>Context:</strong> The top-level container for a Famo.us-renderable piece of the document.</li>
+  <li><strong>ElementAllocator:</strong> Internal helper object that handles the process of creating and allocating document elements for use in Surfaces (for internal engine only).</li>
+  <li><strong>Engine:</strong> The singleton object initiated upon process startup which manages all active Contexts, runs the render dispatch loop, and acts as a listener and dispatcher for events.</li>
+  <li><strong>Entity:</strong> A singleton that maintains a global registry of rendered surfaces (for internal engine only).</li>
+  <li><strong>EventEmitter:</strong> EventEmitter represents a channel for events.</li>
+  <li><strong>EventHandler:</strong> EventHandler forwards received events to a set of provided callback functions. It allows events to be captured, processed, and optionally piped through to other event handlers.</li>
+  <li><strong>Group:</strong> An internal Context designed to contain surfaces and set properties to be applied to all of them at once (for internal engine only).</li>
+  <li><strong>Modifier:</strong> A collection of visual changes to be applied to another renderable component.</li>
+  <li><strong>OptionsManager:</strong> A collection of methods for setting options which can be extended onto other classes.</li>
+  <li><strong>RenderNode:</strong> A wrapper for inserting a renderable component (like a Modifer or Surface) into the render tree.</li>
+  <li><strong>Scene:</strong> Builds and renders a scene graph based on a declarative structure definition.</li>
+  <li><strong>SpecParser:</strong> This object translates the rendering instructions that renderable components generate into document update instructions (for internal engine only).</li>
+  <li><strong>Surface:</strong> A base class for viewable content and event targets inside an application.</li>
+  <li><strong>Transform:</strong> A high-performance matrix math library used to calculate affine transforms on surfaces and other renderables.</li>
+  <li><strong>View:</strong> Useful for quickly creating elements within applications with large event systems.</li>
+  <li><strong>ViewSequence:</strong> Helper object used to iterate through items sequentially. Used in views that deal with layout.</li>
+</ul>
+
+<h2 id="events">Events</h2>
+
+<p>Famo.us implements an event interface, similar to the one used in Node.js, for communication between objects. You can use these objects to tie together the different modules in your application.</p>
+
+<ul>
+  <li><strong>EventArbiter:</strong> A switch which wraps several event destinations and redirects received events to at most one of them.</li>
+  <li><strong>EventFilter:</strong> EventFilter regulates the broadcasting of events based on a specified condition.</li>
+  <li><strong>EventMapper:</strong> EventMapper routes events to various event destinations based on custom logic.</li>
+</ul>
+
+<h2 id="inputs">Inputs</h2>
+
+<p>Famo.us provides a number of input modules that allow your application to accept and handle user input, including those that synchronize input from different sources such as mouse and touchscreen.</p>
+
+<ul>
+  <li><strong>Accumulator:</strong> Accumulates differentials of event sources that emit a <code>delta</code> attribute.</li>
+  <li><strong>DesktopEmulationMode:</strong> Emulate desktop input on mobile devices</li>
+  <li><strong>FastClick:</strong> FastClick is an override shim to speed up clicks on some browsers.</li>
+  <li><strong>GenericSync:</strong> Combines multiple types of event handling into one standardized interface.</li>
+  <li><strong>MouseSync:</strong> Handles piped-in mouse drag events.</li>
+  <li><strong>PinchSync:</strong> Handles piped-in two-finger touch events to change position via pinching / expanding.</li>
+  <li><strong>RotateSync:</strong> Handles piped-in two-finger touch events to support rotation.</li>
+  <li><strong>ScaleSync:</strong> Handles piped-in two-finger touch events to increase or decrease scale via pinching / expanding.</li>
+  <li><strong>ScrollSync:</strong> Handles piped-in mousewheel events.</li>
+  <li><strong>TouchSync:</strong> Handles piped-in touch events.</li>
+  <li><strong>TouchTracker:</strong> Helper to TouchSync that tracks piped in touch events, organizes touch events by ID, and emits track events back to TouchSync.</li>
+  <li><strong>TwoFingerSync:</strong> Helper to PinchSync, RotateSync, and ScaleSync. Handles piped in two-finger touch events.</li>
+</ul>
+
+<h2 id="math">Math</h2>
+
+<p>Famo.us’ math functions and utilities are used throughout the Famo.us core and in Famo.us’ physics modules.</p>
+
+<ul>
+  <li><strong>Matrix:</strong> Simple math libary for 3x3 numerical matrices.</li>
+  <li><strong>Quaternion:</strong> Simple library for using Quaternions.</li>
+  <li><strong>Random:</strong> Extremely simple uniform random number generator.</li>
+  <li><strong>Utilities:</strong> A collection of static methods to help with math functions.</li>
+  <li><strong>Vector:</strong> Three-element numerical vector library.</li>
+</ul>
+
+<h2 id="modifiers">Modifiers</h2>
+
+<p>These modifier modules are implementations of the core <code>Modifier</code> pattern, which outputs transforms to the render tree.</p>
+
+<ul>
+  <li><strong>Draggable:</strong> Makes added render nodes responsive to drag behavior.</li>
+  <li><strong>Fader:</strong> Modifier that allows you to fade the opacity of affected renderables in and out.</li>
+  <li><strong>ModifierChain:</strong> A class to add and remove a chain of modifiers at a single point in the render tree.</li>
+  <li><strong>StateModifier:</strong> A collection of visual changes to be applied to another renderable component, strongly coupled with the state that defines those changes.</li>
+</ul>
+
+<h2 id="physics">Physics</h2>
+
+<p>This collection of modules allows for physical simulation based on real-world physics, including particles, forces, bodies, and more.</p>
+
+<h3 id="core-1">Core</h3>
+
+<ul>
+  <li><strong>PhysicsEngine:</strong> The physics engine is responsible for mediating bodies and their interaction with forces and constraints.</li>
+  <li><strong>SymplecticEuler:</strong> Ordinary Differential Equation (ODE) integrator. Manages updating a physics body’s state over time.</li>
+</ul>
+
+<h3 id="bodies">Bodies</h3>
+
+<ul>
+  <li><strong>Particle:</strong> A unit controlled by the physics engine which serves to provide position.</li>
+  <li><strong>Body:</strong> A unit controlled by the physics engine which serves to provide position and orientation.</li>
+  <li><strong>Circle:</strong> An elemental circle-shaped Body in the physics engine.</li>
+  <li><strong>Rectangle:</strong> An elemental rectangle-shaped body.</li>
+</ul>
+
+<h3 id="constraints">Constraints</h3>
+
+<ul>
+  <li><strong>Collision:</strong> Allows for two circular bodies to collide and bounce off each other.</li>
+  <li><strong>Constraint:</strong> Allows for two circular bodies to collide and bounce off each other.</li>
+  <li><strong>Curve:</strong> A constraint that keeps a physics body on a given implicit curve regardless of other physical forces are applied to it.</li>
+  <li><strong>Distance:</strong> A constraint that keeps a physics body a given distance away from a given anchor, or another attached body.</li>
+  <li><strong>Snap:</strong> A spring constraint is like a spring force, except that it is always numerically stable (even for low periods).</li>
+  <li><strong>Surface:</strong> A constraint that keeps a physics body on a given implicit surface regardless of other physical forces are applied to it.</li>
+  <li><strong>Wall:</strong> A wall describes an infinite two-dimensional plane that physics bodies can collide with.</li>
+  <li><strong>Walls:</strong> Walls combines one or more Wall primitives and exposes a simple API to interact with several walls at once</li>
+</ul>
+
+<h3 id="forces">Forces</h3>
+
+<ul>
+  <li><strong>Drag:</strong> Drag is a force that opposes velocity. Attach it to the physics engine to slow down a physics body in motion.</li>
+  <li><strong>Force:</strong> Force base class.</li>
+  <li><strong>Repulsion:</strong> Repulsion is a force that repels (or attracts) bodies away (or towards) each other.</li>
+  <li><strong>RotationalDrag:</strong> Rotational drag is a force that opposes angular velocity. Attach it to a physics body to slow down its rotation.</li>
+  <li><strong>RotationalSpring:</strong> A force that rotates a physics body back to target Euler angles.</li>
+  <li><strong>Spring:</strong> A force that moves a physics body to a location with a spring motion.</li>
+  <li><strong>VectorField:</strong> A force that moves a physics body to a location with a spring motion.</li>
+</ul>
+
+<h2 id="surfaces">Surfaces</h2>
+
+<p>These surface modules are extensions of the core <code>Surface</code> module, providing a concrete interface to common visual document elements.</p>
+
+<ul>
+  <li><strong>ContainerSurface:</strong> An object designed to contain surfaces and set properties that must be applied to all of them at once.</li>
+  <li><strong>FormContainerSurface:</strong> A surface to contain form elements.</li>
+  <li><strong>ImageSurface:</strong> An image element.</li>
+  <li><strong>InputSurface:</strong> An input element.</li>
+  <li><strong>SubmitInputSurface:</strong> A form submit button.</li>
+  <li><strong>TextareaSurface:</strong> A textarea element.</li>
+  <li><strong>VideoSurface:</strong> A video element.</li>
+  <li><strong>CanvasSurface:</strong> A canvas element.</li>
+</ul>
+
+<h2 id="transitions">Transitions</h2>
+
+<p>Transitions are used to create animations, usually by providing data to <code>Modifier</code> instances.</p>
+
+<ul>
+  <li><strong>CachedMap:</strong> A simple in-memory object cache. Used as a helper for Views with provider functions.</li>
+  <li><strong>Easing:</strong> A library of curves which map an animation explicitly as a function of time.</li>
+  <li><strong>MultipleTransition:</strong> Transition meta-method to support transitioning multiple values with scalar-only methods.</li>
+  <li><strong>SnapTransition:</strong> SnapTransition is a method of transitioning between two values (numbers, or arrays of numbers)</li>
+  <li><strong>SpringTransition:</strong> SpringTransition is a method of transitioning between two values (numbers, or arrays of numbers) with a bounce.</li>
+  <li><strong>Transitionable:</strong> A state maintainer for a smooth transition between numerically-specified states.</li>
+  <li><strong>TransitionableTransform:</strong> A class for transitioning the state of a Transform by transitioning its translate, scale, skew and rotate components independently.</li>
+  <li><strong>TweenTransition:</strong> A state maintainer for a smooth transition between numerically-specified states.</li>
+  <li><strong>WallTransition:</strong> WallTransition is a method of transitioning between two values (numbers, or arrays of numbers) with a bounce.</li>
+</ul>
+
+<h2 id="utilities">Utilities</h2>
+
+<p>The utilities collection hosts various helper classes and static methods that may be useful throughout your Famo.us applications.</p>
+
+<ul>
+  <li><strong>KeyCodes:</strong> Collection to map keyboard codes to plain English.</li>
+  <li><strong>Timer:</strong> An internal library to reproduce JavaScript time-based schedulers such as <code>setTimeout</code>.</li>
+  <li><strong>Utility:</strong> Other miscellaneous, standalone utility functions.</li>
+</ul>
+
+<h2 id="views">Views</h2>
+
+<p>Views are higher-level, visual, interactive components for use in applications. They provide a convenient wrapping over many lower-level components to support several common interface expressions.</p>
+
+<ul>
+  <li><strong>ContextualView:</strong> ContextualView is an interface for creating views that need to be aware of their parent’s transform, size, and/or origin.</li>
+  <li><strong>Deck:</strong> A Sequential Layout that can be opened and closed with animations.</li>
+  <li><strong>DrawerLayout:</strong> A layout which will arrange two renderables: a featured content, and a concealed drawer. The drawer can be revealed from any side of the content (left, top, right, bottom) by dragging the content.</li>
+  <li><strong>EdgeSwapper:</strong> Container which handles swapping renderables from the edge of its parent context.</li>
+  <li><strong>FlexibleLayout:</strong> A layout which divides a context into sections based on a proportion of the total sum of ratios. FlexibleLayout can either lay renderables out vertically or horizontally.</li>
+  <li><strong>Flipper:</strong> Allows you to link two renderables as front and back sides that can be ‘flipped’ back and forth along a chosen axis.</li>
+  <li><strong>GridLayout:</strong> A layout which divides a context into several evenly-sized grid cells.</li>
+  <li><strong>HeaderFooterLayout:</strong> A layout which will arrange three renderables into a header and footer area of defined size, and a content area of flexible size.</li>
+  <li><strong>Lightbox:</strong> Lightbox, using transitions, shows and hides different renderables.</li>
+  <li><strong>RenderController:</strong> Show, hide, or switch between different renderables with a configurable transitions and in/out states.</li>
+  <li><strong>ScrollContainer:</strong> A scrollview added within a container surface.</li>
+  <li><strong>Scroller:</strong> Doc: Lays out a collection of renderables, and will browse through them based on accessed position.</li>
+  <li><strong>Scrollview:</strong> Lays out the sequenced renderables sequentially and makes them scrollable.</li>
+  <li><strong>SequentialLayout:</strong> Lays out specified renderables sequentially.</li>
+</ul>
+
+<h2 id="widgets">Widgets</h2>
+
+<p>Widgets is a collection of small, useful views. Unlike the modules in the views library, widgets make some assumptions about styling.</p>
+
+<ul>
+  <li><strong>NavigationBar:</strong> A view for display for displaying the title of the current page, as well as icons for navigating backwards and opening further options.</li>
+  <li><strong>Slider:</strong> A view for a slider.</li>
+  <li><strong>TabBar:</strong> A view for display various tabs that dispatch events based on the id of the button that was clicked.</li>
+  <li><strong>ToggleButton:</strong> A view for transistioning between two surfaces based on a ‘on’ and ‘off’ state.</li>
+</ul>
+
+<p><a href="browser-and-device-support.html">Next: Browser &amp; Device Support »</a></p>
+
+
+      <p class="copyright">Copyright &#169; 2013-2015 Famous Industries, Inc.</p>
+    </div>
+    <script type="text/javascript" src="../../../../../s3-us-west-2.amazonaws.com/university.famo.us/releases/20150129145231/limelight/fu2-famous-limelight.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56956122-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+
+<!-- Mirrored from famo.us/docs/reference/pages/0.3/what-is-included.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:49:56 GMT -->
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from famous.org/framework/control-flow.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:27:53 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>Control Flow | Famous Framework</title>
+     <script src="assets/scripts/toc.js"></script>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../index.html">
+        <object data="assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../index.html">Engine</a>
+              <a class="main-nav-link" href="index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="../../blog.famous.org/index.html">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="hello-framework.html">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="states.html">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="control-flow.html" class="active">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="timelines.html">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24event.html">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-sections">
+    
+    <li>
+      
+      <a href="AppleTV/index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/structuring-an-app.html" >Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>Control Flow</h1>
+          <p>The Famous Framework currently supports three basic control-flow operations: <code>$if</code>, <code>$repeat</code>, and <code>$yield</code>. Unlike other template-based frameworks, the Famous Framework doesn&#39;t support programming these kinds of operations inside the structural declaration of your component (i.e. in the tree). Instead, control flow must be implemented as <a href="behaviors.html">behaviors</a>.</p>
+
+<h2>$if</h2>
+
+<p>The <code>$if</code> control-flow behavior is a special behavior that will add/remove selected components from the scene graph based on a boolean return value. Here&#39;s a simple example, in which an element is removed from the scene when it is clicked:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;jane-doe:control-flow-if&#39;, {
+    behaviors: {
+        &#39;#el&#39;: {
+            // Elements in the tree that match the `#el` selector will
+            // be added/removed from the scene depending on whether the
+            // result of this function is true/false respectively
+            &#39;$if&#39;: function(toggle) {
+                return toggle;
+            }
+        }
+    },
+    events: {
+        &#39;#el&#39;: {
+            &#39;click&#39;: function($state) {
+                $state.set(&#39;toggle&#39;, false);
+            }
+        }
+    },
+    states: { toggle: true },
+    tree: `&lt;node id=&quot;el&quot;&gt;&lt;p&gt;Now you see me...&lt;/p&gt;&lt;/node&gt;`,
+});
+</code></pre></div>
+<h2>$repeat</h2>
+
+<p>The <code>$repeat</code> control-flow behavior will repeat the selected components a certain number of times, where the number of times reflects the <code>.length</code> of the array returned from the function. For example, the following example repeats a <code>node</code> three times:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">   FamousFramework.component(&#39;jane-doe:repeat&#39;, {
+        tree: `&lt;node class=&quot;el&quot;&gt;&lt;/node&gt;`,
+        behaviors: {
+            &#39;.el&#39;: {
+                &#39;$repeat&#39;: function() {
+                    return [
+                        {position:[0,0],content:&#39;Hello&#39;},
+                        {position:[50,50],content:&#39;Howdy&#39;},
+                        {position:[100,100],content:&#39;Ahoy&#39;}
+                    ];
+                }
+            }
+        }
+    });
+</code></pre></div>
+<p>If objects are given as the array elements returned by the <code>$repeat</code> behavior, the properties of those objects will be sent as event messages to each repeated component as it is initialized.</p>
+
+<p>Injecting <code>$index</code> into any behavior function allows you to access the index of an item in the <code>$repeat</code> array. Additionally, the <code>$index</code> parameter notifies the framework to call that behavior function for each item in the <code>$repeat</code> array. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"> FamousFramework.component(&#39;jane-doe:repeat&#39;, {
+        tree: `&lt;node class=&quot;el&quot;&gt;&lt;/node&gt;`,
+        states: {
+            colors: [&#39;red&#39;, &#39;yellow&#39;, &#39;blue&#39;, &#39;green&#39;]
+        }
+        behaviors: {
+            &#39;.el&#39;: {
+                &#39;$repeat&#39;: function(colors) {
+                    return colors;
+                },
+                style: function($index, colors){
+                   return {
+                    &#39;background-color&#39;: colors[$index]
+                   }
+                }
+            }
+        }
+    });
+</code></pre></div>
+<p>Above, the <code>colors</code> array (in the states) is injected into the <code>$repeat</code> function and a new node is created for each item in the array. Note how we use <code>$index</code> to set a different background color for each node we create.</p>
+
+<h2>$yield</h2>
+
+<p>The <code>$yield</code> control-flow behavior allows a component to define the conditions under which a parent can insert content into it. In other words, when a <code>$yield</code> action occurs, control of some region within a component&#39;s tree is &quot;yielded&quot; to the parent.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">    // jane-doe/example/example.js
+    // This scene allows content to &quot;punch through&quot;
+   FamousFramework.component(&#39;jane-doe:example&#39;, {
+        tree: `
+            &lt;node id=&quot;main&quot;&gt;&lt;/node&gt;
+            &lt;node id=&quot;sidebar&quot;&gt;&lt;/node&gt;
+        `,
+        behaviors: {
+            &#39;#main&#39;: {
+                &#39;$yield&#39;: &#39;#main-content&#39;
+            },
+            &#39;#sidebar&#39;: {
+                &#39;$yield&#39;: &#39;#sidebar-content&#39;
+            }
+        }
+    });
+
+    // someone/else/else.js is the parent component
+    // This scene uses of jane-doe:example&#39;s $yield behavior
+   FamousFramework.component(&#39;someone:else&#39;, {
+        tree: `
+            &lt;jane-doe:example&gt;
+                &lt;node id=&quot;main-content&quot;&gt;&lt;/node&gt;
+                &lt;node id=&quot;sidebar-content&quot;&gt;&lt;/node&gt;
+            &lt;/jane-doe:example&gt;
+        `
+    })
+</code></pre></div>
+<p>In the example above, we introduce one component, <code>jane-doe:example</code>, which makes use of the <code>$yield</code> behavior. It has a specific rule for when another (parent) component tries to define content as its child.</p>
+
+<p>For <code>jane-doe:example</code>, the injected content will only be allowed if the injected elements have <code>id=&quot;main-content&quot;</code> or <code>id=&quot;sidebar-content&quot;</code>. Moreover, it specifically designates the elements within its own tree that the surrogate content will be placed. (<code>#main-content</code> will be inserted into <code>#main</code>, and <code>#sidebar-content</code> will be inserted into <code>#sidebar</code>.)</p>
+
+<p><code>$yield</code> is one of the most fundamental control-flow operations in the Famous Framework, because it makes component nesting, layouts, and default/overridable content possible. And although most components will never need to use <code>$yield</code> behaviors directly, almost all will indirectly make use of it -- any time they declare even a simple nested tree:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;node&gt;
+    &lt;!-- `node` uses &#39;yield&#39; to allow `other-thing` to be injected here --&gt;
+    &lt;other-thing&gt;&lt;/other-thing&gt;
+&lt;/node&gt;
+</code></pre></div>
+<p>One of the most commonly used pre-built components in the Famous Framework, <code>&lt;famous:core:node&gt;</code> (or just <code>&lt;node&gt;</code>) exists mainly as an empty container that content can be injected into. </p>
+
+<h2>A word of warning about performance</h2>
+
+<p>Control flow operations should be used sparingly, when possible, because they make direct modifications to the scene graph structure any time they run. (Modifying the scene graph is a potentially expensive operation.)</p>
+
+<p>If hiding an element is the goal, for example, it may make sense to toggle a node&#39;s <code>opacity</code> instead of removing it from the scene entirely via the much-heavier <code>$if</code> behavior.</p>
+
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="next-prev-container">
+          
+            <a class="previous" rel="prev" href="layout.html" title="Layout">Layout</a>
+          
+          <div class="separator"></div>
+          
+            <a class="next" rel="next" href="includes.html" title="Includes">Includes</a>
+          
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../terms.html">Terms</a>
+          <a href="../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from famous.org/framework/control-flow.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:27:53 GMT -->
+</html>

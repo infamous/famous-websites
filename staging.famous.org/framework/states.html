@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from staging.famous.org/framework/states.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:43:27 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Famous is a platform for making beautiful experiences on the internet." name="description">
+    <meta content="Famous Industries" name="author">
+    <script src="../../ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    
+    
+    
+    <title>States | Famous Framework</title>
+     <script src="assets/scripts/toc.js"></script>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="../../fonts.googleapis.com/cssf0be.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+  </head>
+  <body>
+
+  <nav class="nav-main cf">
+      <a class="nav-logo" href="../index.html">
+        <object data="assets/images/famous-logo-text.svg" type="image/svg+xml"></object>
+      </a>
+      <label class="reveal-nav-btn" for="reveal-nav">Menu</label>
+      <input type="checkbox" class="reveal-nav-input" id="reveal-nav">
+      <div class="nav-main-list">
+          <div class="list-left">
+              <a class="main-nav-link" href="../index.html">Engine</a>
+              <a class="main-nav-link" href="index.html">Framework</a>
+          </div>
+          <div class="list-right">
+              
+              <!-- <a class="main-nav-link" href="/learn">Learn</a> -->
+              <!-- <a class="main-nav-link" href="/docs">API Docs</a> -->
+              <a class="main-nav-link" href="../support/index.html">Support</a>
+              <a class="main-nav-link" onclick="trackOutboundLink('https://github.com/Famous/framework'); return false;" href="https://github.com/Famous/framework">Github</a>
+              <a class="main-nav-link" href="../../blog.famous.org/index.html">Blog</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+
+      <div class="sidebar">
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            <span class="parent">Overview</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="hello-framework.html">Hello Framework</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="getting-started.html">Getting Started</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="core-concepts.html">Core Concepts</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Essentials</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="behaviors.html">Behaviors</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="events.html">Events</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="states.html" class="active">States</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="tree.html">Tree</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="layout.html">Layout</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="control-flow.html">Control flow</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Intermediate</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="deployment.html">Deploy / publish</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="includes.html">Includes</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="imports.html">Imports</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="static-assets.html">Static Assets</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="timelines.html">Timelines</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">API Docs</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="%24dispatcher.html">$dispatcher</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24event.html">$event</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24index.html">$index</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24payload.html">$payload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24repeatPayload.html">$repeatPayload</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24route.html">$route</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24state.html">$state</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="%24timelines.html">$timelines</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="sugar.html">Syntactic sugar</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+    <li>
+        
+          
+            
+            <a href="examples.html">Examples</span></a>
+          
+          
+        
+    </li>
+  
+    <li>
+        
+          
+          <span class="parent">Tutorials</span>
+<ul>
+  
+  
+  
+  <li>
+    <span class="lesson-toggle">Apple TV</span>
+    <ul class="lesson-sections">
+    
+    <li>
+      
+      <a href="AppleTV/index.html" >Welcome</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/getting-started.html" >Getting Started</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/structuring-an-app.html" >Structuring an App</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/behaviors.html" >Behaviors</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/adding-state.html" >Adding State</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/setting-images.html" >Setting Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/positioning-images.html" >Positioning Images</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/animations.html" >Creating Animations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/rotations.html" >Rotations</a>
+    </li>
+    
+    <li>
+      
+      <a href="AppleTV/finish.html" >Finish</a>
+    </li>
+    
+    </ul>
+  </li>
+  
+</ul>
+
+        
+    </li>
+  
+    <li>
+        
+          
+            <span class="parent">Troubleshooting</span>
+          
+          
+            
+            <ul>
+  
+    <li>
+        
+          
+            
+            <a href="faq.html">FAQ</span></a>
+          
+          
+        
+    </li>
+  
+</ul>
+
+          
+        
+    </li>
+  
+</ul>
+
+      </div>
+
+      <div class="content">
+          <h1>States</h1>
+          <p><code>states</code> is an object that carries the arbitrary data (or what you can think of as &quot;settings&quot;) of a single component. Since behavior functions listen to changes in states, you can use states to drive animations. States cannot be shared between components, and only a component&#39;s <a href="events.html">event functions</a> can modify state values, via the <code>$state.set</code> operation (see below).</p>
+
+<h2>Overview</h2>
+
+<p>State values are stored as properties in the component&#39;s states object:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;example&#39;, {
+    states: {
+        clickCount: 0
+    }
+});
+</code></pre></div>
+<p>Behaviors functions respond to changes in these defined states. When a state value (e.g. <code>clickCount</code>) is listed as a parameter to a behavior function, that function will be called whenever that value changes. </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;example&#39;, {
+    behaviors: {
+        &#39;#someNode&#39;: {
+            &#39;rotation-z&#39;: function(clickCount){
+                return clickCount;
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>For example, the <code>rotation-z</code> behavior function will be called when <code>clickCount</code> state value changes. To actually go about changing <code>clickCount</code>, we use the <code>$state</code> object in conjunction with an event function. </p>
+
+<h1>The $state API</h1>
+
+<p>Event functions are able to dependency-inject a special <code>$state</code> object that gives access to special getter/setter methods for accessing and mutating the state values enclosed by the component.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">FamousFramework.component(&#39;example&#39;, {
+    events: {
+        &#39;#foo&#39;: {
+            &#39;click&#39;: function($state) {
+                // manipulate state here
+            }
+        }
+    }
+});
+</code></pre></div>
+<p>Let&#39;s look quickly at the APIs that this <em>state manager</em> instance exposes to you. For brevity, we&#39;ll omit the rest of the boilerplate in the examples below. </p>
+
+<h2>Basics</h2>
+
+<p>The most basic methods are <code>.get()</code> and <code>.set()</code>, which work best when dealing with simple values and operations:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// states are { foo: 1 }
+$state.get(&#39;foo&#39;); // Returns `1`
+$state.set(&#39;foo&#39;, 2); // Sets the state `foo` to `2`
+</code></pre></div>
+<h2>Transitions</h2>
+
+<p>If we want to transition a state value to another value smoothly over time, we can pass a transition options object as the third argument:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// states are { foo: 0 }
+$state.set(&#39;foo&#39;, 3, { duration: 1000 });
+</code></pre></div>
+<p>The above will transition the state value <code>foo</code> from <code>0</code> to <code>3</code> smoothly over the course of one second. We can also supply an easing curve:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$state.set(&#39;foo&#39;, 3, { duration: 1000, curve: &#39;easeOutBounce&#39; });
+</code></pre></div>
+<p>See the <a href="../../famous.org/learn/easing-curves.html">easing curves table</a> for a full list of curves.</p>
+
+<h2>Chaining transitions</h2>
+
+<p>If you want to transition a state value after some state value has completed a transition, use the <code>.thenSet()</code> method:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$state.set(&#39;foo&#39;, 1, { duration: 1000 })
+      .thenSet(&#39;bar&#39;, 2, { duration: 5000 })
+      .thenSet(&#39;baz&#39;, 3.14);
+</code></pre></div>
+<h2>Complex / nested state values (arrays and objects)</h2>
+
+<p>States can store any JSON-serializable value including arrays and objects. Arrays are especially helpful when dealing with <code>$repeat</code> <a href="control-flow-2.html">control flow</a> behaviors.</p>
+
+<p>If you wish to access a single value within a states array, the <code>.get()</code> method accepts the state name and the index you wish to access passed to it in an array:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"> // states are: { stateArray: [&#39;blue&#39;,&#39;red&#39;,&#39;green&#39;] }
+ $state.get([&#39;stateArray&#39;, 1])  // returns &#39;red&#39;
+</code></pre></div>
+<p>Similar to the <code>.get()</code> method, you can set a single value in a states array by passing the <code>.set()</code> method an array with the name and target index as its first parameter and the new value as the second: </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// states are: { stateArray: [&#39;blue&#39;,&#39;red&#39;,&#39;green&#39;] }
+$state.set([&#39;stateArray&#39;, 2], &#39;purple&#39;)
+// after, states are: { stateArray: [&#39;blue&#39;,&#39;red&#39;,&#39;purple&#39;]} 
+</code></pre></div>
+<p>For objects, the API is very similar, except instead of using the element index integer, you use a string for the name of the property key:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// states are: { stateObj: { foo: &#39;bar&#39; } }
+$state.set([&#39;stateObj&#39;, &#39;foo&#39;], &#39;ABC&#39;);
+// after, states are: { stateObj: { foo: &#39;ABC&#39; } }
+</code></pre></div>
+      </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="next-prev-container">
+          
+            <a class="previous" rel="prev" href="events.html" title="Events">Events</a>
+          
+          <div class="separator"></div>
+          
+            <a class="next" rel="next" href="tree.html" title="Tree">Tree</a>
+          
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+  </div>
+
+  <footer class="site-footer">
+      <nav class="nav-footer">
+          <span>&copy; Famous Industries, Inc. 2015</span>
+          <a href="../terms.html">Terms</a>
+          <a href="../privacy-policy.html">Privacy</a>
+          <a href="https://jobs.lever.co/famo.us">Jobs</a>
+      </nav>
+      <div class="subscribe">
+          <form action="http://famous.us5.list-manage.com/subscribe/post?u=4656ba2b0a364690c8530bc1e&amp;amp;id=fe5c0dd6d4" method="POST" target="_blank">
+              <input type="email" name="EMAIL" placeholder="Email Address"><button>Get Updates</button>
+          </form>
+      </div>
+  </footer>
+
+  <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js" type="text/javascript"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+  
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63145313-1', 'auto');
+  ga('send', 'pageview');</script>
+  
+  <script>
+      var trackOutboundLink = function(url) {
+         ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+           function () {
+           document.location = url;
+           }
+         });
+      }
+  </script>
+
+  </body>
+
+<!-- Mirrored from staging.famous.org/framework/states.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 May 2017 00:43:30 GMT -->
+</html>

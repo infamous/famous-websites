@@ -1,0 +1,8 @@
+famous.org/docs famo.us/docs -O ./ -n -T30 -B -v -*slack.com* -*github.com* +*famous.org* +*amazonaws.com/*famo.us* +*.json +*.ttf
+File generated automatically on Tue, 30 May 2017 17:16:16, do NOT edit
+
+To update a mirror, just launch httrack without any parameters
+The existing cache will be used (and modified)
+To have other options, retype all parameters and launch HTTrack
+To continue an interrupted mirror, just launch httrack without any parameters
+
