@@ -1,5 +1,5 @@
-famous.org/docs famo.us/docs -O ./ -n -T30 -B -v -*slack.com* -*github.com* +*famous.org* +*amazonaws.com/*famo.us* +*.json +*.ttf
-File generated automatically on Tue, 30 May 2017 17:16:16, do NOT edit
+famous.org/docs famo.us/docs famous.org/examples/blocks/position/manifest.json famous.org/examples/blocks/align/manifest.json famous.org/examples/blocks/alignposition/manifest.json famous.org/examples/blocks/mountpoint/manifest.json famous.org/examples/blocks/origin/manifest.json famous.org/examples/blocks/positioncomponent/manifest.json -O ./ -n -T30 -B -v -*slack.com* -*github.com* +*famous.org* +*amazonaws.com/*famo.us* +*.json +*.ttf
+File generated automatically on Tue, 30 May 2017 19:12:30, do NOT edit
 
 To update a mirror, just launch httrack without any parameters
 The existing cache will be used (and modified)
